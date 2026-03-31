@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="th" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI Educator Mastery Hub - แหล่งเรียนรู้การใช้ AI สำหรับคุณครู โดย Vulcan Academy">
+    <title>AI Educator Mastery Hub - by Vulcan Academy</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { --focus-color: #facc15; }
+        body { font-family: 'Kanit', sans-serif; scroll-behavior: smooth; background-color: #f8fafc; transition: all 0.3s ease; }
+        .prompt-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .prompt-card:hover { transform: translateY(-4px); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1); border-color: #3b82f6; }
+        .gradient-text { background: linear-gradient(135deg, #2563eb, #7c3aed, #db2777); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .bg-pattern { background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 20px 20px; }
+        .prompt-scroll::-webkit-scrollbar { height: 6px; }
+        .prompt-scroll::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+        
+        /* A11y Features */
+        *:focus-visible { outline: 4px solid var(--focus-color) !important; outline-offset: 4px !important; border-radius: 4px; }
+        body.text-large { font-size: 115%; }
+        body.text-xlarge { font-size: 130%; }
+        
+        /* High Contrast Mode */
+        body.high-contrast { background-color: #000 !important; color: #FFF !important; }
+        body.high-contrast .bg-white, body.high-contrast .bg-slate-50, body.high-contrast .bg-slate-100, body.high-contrast .bg-slate-800, body.high-contrast .bg-slate-900, body.high-contrast .bg-blue-50, body.high-contrast .bg-indigo-50, body.high-contrast .bg-amber-50, body.high-contrast .bg-purple-50, body.high-contrast .bg-emerald-50, body.high-contrast .bg-orange-50 { background-color: #000 !important; }
+        body.high-contrast .text-slate-900, body.high-contrast .text-slate-800, body.high-contrast .text-slate-600, body.high-contrast .text-slate-500, body.high-contrast .text-blue-600, body.high-contrast .text-purple-600, body.high-contrast .gradient-text { color: #FFF !important; -webkit-text-fill-color: #FFF !important; }
+        body.high-contrast .border { border-color: #FF0 !important; border-width: 2px; }
+        body.high-contrast button, body.high-contrast a.btn-primary { background-color: #000 !important; color: #FF0 !important; border: 2px solid #FF0 !important; }
+        body.high-contrast button:hover, body.high-contrast a.btn-primary:hover, body.high-contrast button:focus { background-color: #FF0 !important; color: #000 !important; }
+        body.high-contrast i { color: #FF0 !important; }
+    </style>
+</head>
+<body class="text-slate-800 antialiased relative" id="main-body">
+
+    <!-- Skip Link (A11y) -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-6 py-3 z-[100] rounded-xl font-bold border-4 border-yellow-400" aria-label="ข้ามไปยังเนื้อหาหลัก">ข้ามไปยังเนื้อหาหลัก (Skip to content)</a>
+
+    <!-- A11y & Lang Toolbar -->
+    <div class="bg-slate-900 text-white py-2 px-4 z-[60] relative" role="region" aria-label="เครื่องมือการเข้าถึง">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2 text-sm">
+            <div class="flex items-center gap-2">
+                <i class="fas fa-globe" aria-hidden="true"></i>
+                <label for="lang-select" class="sr-only">เลือกภาษา</label>
+                <select id="lang-select" onchange="changeLanguage()" class="bg-slate-800 border border-slate-700 text-white text-sm rounded focus:ring-yellow-400 focus:border-yellow-400 p-1">
+                    <option value="th">🇹🇭 ภาษาไทย</option>
+                    <option value="en">🇬🇧 English</option>
+                    <option value="zh">🇨🇳 中文</option>
+                </select>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2">
+                    <span id="font-size-label" class="hidden sm:inline" data-i18n="text_size">ขนาดอักษร:</span>
+                    <button onclick="changeTextSize('normal')" class="px-2 py-1 bg-slate-800 rounded hover:bg-slate-700" aria-label="ขนาดปกติ" aria-describedby="font-size-label">A</button>
+                    <button onclick="changeTextSize('large')" class="px-2 py-1 bg-slate-800 rounded hover:bg-slate-700 text-lg" aria-label="ขนาดใหญ่" aria-describedby="font-size-label">A</button>
+                    <button onclick="changeTextSize('xlarge')" class="px-2 py-1 bg-slate-800 rounded hover:bg-slate-700 text-xl" aria-label="ขนาดใหญ่มาก" aria-describedby="font-size-label">A</button>
+                </div>
+                <button onclick="toggleHighContrast()" class="flex items-center gap-2 px-3 py-1 bg-slate-800 rounded hover:bg-slate-700" aria-pressed="false" id="btn-contrast">
+                    <i class="fas fa-adjust" aria-hidden="true"></i>
+                    <span class="hidden sm:inline" data-i18n="high_contrast">สีตัดกันสูง</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-lg border-b border-slate-200 shadow-sm" role="banner">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+            
+            <!-- Vulcan Academy Logo (Responsive & Accessible) -->
+            <a href="#" class="flex items-center transition-transform hover:scale-105 rounded-lg outline-none" aria-label="หน้าแรก Vulcan Academy">
+                <!-- Desktop Light -->
+                <img src="assets/VulcanAcademy_ Full.png" alt="Vulcan Academy" class="hidden md:block dark:hidden h-9 w-auto" onerror="this.src='https://placehold.co/200x50/2563eb/ffffff?text=Vulcan+Academy';">
+                <!-- Desktop Dark -->
+                <img src="assets/VulcanAcademy_ Full_Dark.png" alt="Vulcan Academy" class="hidden dark:md:block h-9 w-auto" onerror="this.src='https://placehold.co/200x50/111827/ffffff?text=Vulcan+Academy';">
+                <!-- Mobile Light -->
+                <img src="assets/VulcanAcademy_ icon.png" alt="Vulcan Academy" class="block md:hidden dark:hidden h-10 w-auto" onerror="this.src='https://placehold.co/50x50/2563eb/ffffff?text=VA';">
+                <!-- Mobile Dark -->
+                <img src="assets/VulcanAcademy_ icon_Dark.png" alt="Vulcan Academy" class="hidden dark:block dark:md:hidden h-10 w-auto" onerror="this.src='https://placehold.co/50x50/111827/ffffff?text=VA';">
+            </a>
+
+            <!-- Menu -->
+            <nav class="hidden lg:flex gap-6 text-sm font-semibold text-slate-600 items-center" aria-label="เมนูหลัก">
+                <a href="#session1" class="hover:text-blue-600 transition" data-i18n="nav_1">1. Mindset & Prompt</a>
+                <a href="#session2" class="hover:text-blue-600 transition" data-i18n="nav_2">2. Lesson Design</a>
+                <a href="#session3" class="hover:text-blue-600 transition" data-i18n="nav_3">3. Creative Lab</a>
+                <a href="#session4" class="hover:text-blue-600 transition" data-i18n="nav_4">4. Future Skills</a>
+                <a href="#session5" class="hover:text-blue-600 transition" data-i18n="nav_5">5. Wrap-up</a>
+            </nav>
+
+            <div class="bg-indigo-50 border border-indigo-100 text-indigo-700 px-4 py-1.5 rounded-full text-xs font-bold flex items-center gap-2" role="status" aria-live="polite">
+                <div class="w-2 h-2 rounded-full bg-red-500 animate-pulse" aria-hidden="true"></div>
+                <span data-i18n="live_status">Live Workshop</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-24 relative z-20" role="main">
+
+        <!-- Hero Section -->
+        <section class="text-center pt-8" aria-labelledby="hero-title">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 text-blue-700 font-semibold text-sm mb-6 shadow-sm">
+                <i class="fas fa-lightbulb text-yellow-500" aria-hidden="true"></i>
+                <span data-i18n="hero_badge">ออกแบบมาเพื่อครูสายอาชีพและวิชาสามัญทุกคน!</span>
+            </div>
+            <h1 id="hero-title" class="text-5xl md:text-6xl font-extrabold mb-6 leading-tight text-slate-900">
+                <span data-i18n="hero_title_1">เปลี่ยน AI ให้เป็น</span> <br>
+                <span class="gradient-text" data-i18n="hero_title_2">"เด็กฝึกงานคู่ใจครู"</span>
+            </h1>
+            <p class="text-slate-600 text-lg md:text-xl mb-10 leading-relaxed max-w-2xl mx-auto" data-i18n="hero_desc">
+                ทลายข้อจำกัดเรื่องเวลา! ไม่ต้องกลัวใช้ผิด ไม่ห่วงงบประมาณ มาร่วมเรียนรู้วิธีสั่งงานผู้ช่วยคนใหม่ เพื่อลุยงานสอนเด็กยุคดิจิทัล
+            </p>
+            <div class="flex justify-center">
+                <a href="#session1" class="btn-primary bg-blue-600 text-white px-8 py-4 rounded-2xl font-bold hover:bg-blue-700 transition shadow-lg flex items-center gap-2">
+                    <i class="fas fa-play" aria-hidden="true"></i> 
+                    <span data-i18n="btn_start">เริ่มต้น Workshop (90 นาที)</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Session 1: Mindset & Prompting -->
+        <section id="session1" class="scroll-mt-32" aria-labelledby="heading-s1">
+            <div class="flex flex-col lg:flex-row gap-12 items-start">
+                <div class="lg:w-5/12">
+                    <div class="inline-block bg-indigo-100 text-indigo-700 px-3 py-1 rounded-lg text-sm font-bold mb-4">Session 1 • 15 Mins</div>
+                    <h2 id="heading-s1" class="text-3xl font-bold mb-6 text-slate-900" data-i18n="s1_title">Getting Started <br>AI Literacy & Mindset</h2>
+                    
+                    <div class="bg-amber-50 border-l-4 border-amber-400 p-5 rounded-r-xl mb-8" role="note" aria-label="เคล็ดลับ">
+                        <h3 class="font-bold text-amber-800 flex items-center gap-2 mb-2">
+                            <i class="fas fa-quote-left" aria-hidden="true"></i> 
+                            <span data-i18n="s1_note_title">AI is your Intern!</span>
+                        </h3>
+                        <p class="text-amber-900 text-sm" data-i18n="s1_note_desc">"มอง AI เป็นเด็กฝึกงานที่มีประสบการณ์น้อย มันเดาคำเก่ง แต่เราต้องสั่งงานให้ชัดเจน และ **เน้นย้ำเรื่องการตรวจสอบความถูกต้องเสมอ**"</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-slate-800 text-lg" data-i18n="s1_pillars_title">โครงสร้าง The 4 Pillars of Prompting</h4>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm"><span class="block text-blue-600 font-bold mb-1">1. Role</span> <span data-i18n="s1_p1">สวมบทบาทให้ AI</span></div>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm"><span class="block text-blue-600 font-bold mb-1">2. Context</span> <span data-i18n="s1_p2">บอกบริบท/ข้อจำกัด</span></div>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm"><span class="block text-blue-600 font-bold mb-1">3. Task</span> <span data-i18n="s1_p3">สั่งภารกิจให้ชัดเจน</span></div>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm"><span class="block text-blue-600 font-bold mb-1">4. Format</span> <span data-i18n="s1_p4">กำหนดรูปแบบผลลัพธ์</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Prompt Builder -->
+                <div class="lg:w-7/12 w-full bg-white p-8 rounded-3xl shadow-lg border border-slate-200">
+                    <h3 class="text-2xl font-bold mb-6 text-slate-800 flex items-center gap-3">
+                        <div class="bg-blue-100 text-blue-600 p-2 rounded-lg" aria-hidden="true"><i class="fas fa-wand-magic-sparkles"></i></div>
+                        <span data-i18n="builder_title">ลองสร้างคำสั่งแรกของคุณ</span>
+                    </h3>
+                    
+                    <form class="space-y-6" aria-label="ฟอร์มสร้างคำสั่ง AI">
+                        <div>
+                            <label for="builder-role" class="block text-sm font-bold text-slate-800 mb-2" data-i18n="label_role">บทบาท (Role)</label>
+                            <select id="builder-role" class="w-full border border-slate-300 rounded-xl p-3 bg-slate-50 text-slate-800 focus:ring-2 focus:ring-blue-500 outline-none" onchange="updateLivePrompt()">
+                                <option value="ครูเชี่ยวชาญด้านการโรงแรมและการท่องเที่ยว">ครูเชี่ยวชาญด้านการโรงแรมและการท่องเที่ยว</option>
+                                <option value="ผู้เชี่ยวชาญด้านไอทีและเทคโนโลยีดิจิทัล">ผู้เชี่ยวชาญด้านไอทีและเทคโนโลยีดิจิทัล</option>
+                                <option value="อาจารย์แผนกบัญชีและการตลาด">อาจารย์แผนกบัญชีและการตลาด</option>
+                                <option value="ช่างเครื่องยนต์และช่างเทคนิคอาวุโส">ช่างเครื่องยนต์และช่างเทคนิคอาวุโส</option>
+                                <option value="ครูผู้สอนวิชาสามัญ">ครูผู้สอนวิชาสามัญ</option>
+                            </select>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                                <label for="builder-context" class="block text-sm font-bold text-slate-800 mb-2" data-i18n="label_context">บริบท (Context)</label>
+                                <input type="text" id="builder-context" placeholder="เช่น สำหรับเด็ก ปวช.1" class="w-full border border-slate-300 rounded-xl p-3 bg-slate-50 text-slate-800 focus:ring-2 focus:ring-blue-500 outline-none" onkeyup="updateLivePrompt()" value="สำหรับเด็ก ปวช. ที่ชอบเรียนแบบลงมือปฏิบัติ">
+                            </div>
+                            <div>
+                                <label for="builder-format" class="block text-sm font-bold text-slate-800 mb-2" data-i18n="label_format">รูปแบบ (Format)</label>
+                                <select id="builder-format" class="w-full border border-slate-300 rounded-xl p-3 bg-slate-50 text-slate-800 focus:ring-2 focus:ring-blue-500 outline-none" onchange="updateLivePrompt()">
+                                    <option value="อธิบายเป็นขั้นตอน 1-2-3 เข้าใจง่าย">อธิบายเป็นขั้นตอน 1-2-3</option>
+                                    <option value="จัดรูปแบบเป็นตาราง">จัดรูปแบบเป็นตาราง</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="builder-task" class="block text-sm font-bold text-slate-800 mb-2" data-i18n="label_task">ภารกิจ (Task)</label>
+                            <textarea id="builder-task" rows="2" placeholder="เช่น ออกแบบกิจกรรมละลายพฤติกรรม..." class="w-full border border-slate-300 rounded-xl p-3 bg-slate-50 text-slate-800 resize-none focus:ring-2 focus:ring-blue-500 outline-none" onkeyup="updateLivePrompt()">ออกแบบกิจกรรมการแก้ปัญหาเฉพาะหน้า (Problem Solving) 1 กิจกรรม ใช้เวลา 15 นาที</textarea>
+                        </div>
+                    </form>
+
+                    <div class="mt-8 bg-slate-900 rounded-2xl p-6 relative">
+                        <div class="absolute top-3 right-4 text-[10px] font-bold text-slate-500 uppercase" aria-hidden="true">Live Output</div>
+                        <div class="overflow-x-auto prompt-scroll" role="region" aria-live="polite">
+                            <p id="live-prompt-text" class="text-emerald-400 font-mono text-sm leading-relaxed whitespace-pre-wrap mt-2">...</p>
+                        </div>
+                        <button onclick="copyElementText('live-prompt-text', 'คำสั่งของคุณ')" class="mt-4 w-full bg-white/10 hover:bg-white/20 text-white border border-white/30 py-3 rounded-xl font-bold transition flex items-center justify-center gap-2">
+                            <i class="fas fa-copy" aria-hidden="true"></i> <span data-i18n="btn_copy">คัดลอกคำสั่ง</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Session 2: AI-Powered Lesson Design -->
+        <section id="session2" class="scroll-mt-32" aria-labelledby="heading-s2">
+            <div class="bg-white rounded-[3rem] p-8 md:p-12 shadow-xl border border-slate-200 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"></div>
+                
+                <div class="text-center mb-10">
+                    <div class="inline-block bg-blue-100 text-blue-700 px-3 py-1 rounded-lg text-sm font-bold mb-4">Session 2 • 30 Mins</div>
+                    <h2 id="heading-s2" class="text-3xl font-bold mb-4 text-slate-900" data-i18n="s2_title">AI-Powered Lesson Design</h2>
+                    <p class="text-slate-600 max-w-2xl mx-auto text-lg" data-i18n="s2_desc">
+                        ใช้ AI ลดงานเอกสาร ทั้งร่างแผนการสอน, สร้างใบงาน (Smart Handouts), และวิเคราะห์ศักยภาพเด็ก (Inclusive)
+                    </p>
+                </div>
+
+                <!-- Mode Switcher (A11y Compliant Tablist) -->
+                <div class="flex justify-center mb-10" role="tablist" aria-label="เลือกสายการสอน">
+                    <div class="bg-slate-100 p-1.5 rounded-2xl flex shadow-inner">
+                        <button onclick="switchMode('vocational')" id="btn-vocational" role="tab" aria-selected="true" aria-controls="template-container" class="px-6 py-2 rounded-xl font-bold transition-all text-sm md:text-base bg-white text-blue-600 shadow-sm border border-slate-200">⚙️ สายอาชีวะ/วิชาชีพ</button>
+                        <button onclick="switchMode('general')" id="btn-general" role="tab" aria-selected="false" aria-controls="template-container" class="px-6 py-2 rounded-xl font-bold transition-all text-sm md:text-base text-slate-500 hover:text-slate-700 border border-transparent">🎓 สายสามัญ</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="template-container" role="tabpanel">
+                    <!-- Cards will be injected by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Session 3: Creative Lab -->
+        <section id="session3" class="scroll-mt-32" aria-labelledby="heading-s3">
+            <div class="mb-12 text-center">
+                <div class="inline-block bg-purple-100 text-purple-700 px-3 py-1 rounded-lg text-sm font-bold mb-4">Session 3 • 30 Mins</div>
+                <h2 id="heading-s3" class="text-3xl font-bold mb-4 text-slate-900" data-i18n="s3_title">Creative Classroom Lab</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto text-lg" data-i18n="s3_desc">Turn Ideas into Media & Gamification: ใช้ AI เปลี่ยนเนื้อหาให้สนุก สร้างสื่อแบบประหยัดงบ</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Idea Generator -->
+                <div class="lg:col-span-5 bg-gradient-to-br from-purple-600 to-indigo-700 rounded-3xl p-8 text-white shadow-xl">
+                    <h3 class="text-2xl font-bold mb-2" data-i18n="s3_idea_title">Gamification <br>Idea Generator</h3>
+                    <p class="text-purple-100 text-sm mb-6" data-i18n="s3_idea_desc">ให้ AI ช่วยออกแบบเกมการศึกษาหรือสถานการณ์จำลอง</p>
+                    
+                    <form class="bg-white/10 backdrop-blur-md border border-white/20 p-5 rounded-2xl" onsubmit="event.preventDefault();">
+                        <label for="topic-input" class="block text-sm font-bold mb-2" data-i18n="label_topic">ฉันกำลังจะสอนวิชา/เรื่อง:</label>
+                        <input type="text" id="topic-input" placeholder="เช่น บริการส่วนหน้า, ภาษีเบื้องต้น..." class="w-full bg-white/20 border border-white/30 rounded-xl p-3 text-white placeholder-purple-200 mb-4 focus:ring-2 focus:ring-yellow-400 outline-none">
+                        <button onclick="generateIdeaPrompt()" class="w-full bg-white text-purple-700 font-bold py-3 rounded-xl shadow-lg hover:bg-slate-50 transition">
+                            <i class="fas fa-magic mr-2" aria-hidden="true"></i> <span data-i18n="btn_gen_game">สร้าง Prompt ออกแบบเกมส์</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Tools Grid -->
+                <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <a href="https://gamma.app" target="_blank" class="bg-white p-6 rounded-3xl border border-slate-200 hover:border-purple-400 hover:shadow-lg transition group relative">
+                        <div class="absolute top-4 right-4 bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded">Free Plan</div>
+                        <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center mb-4"><i class="fas fa-presentation-screen text-xl"></i></div>
+                        <h4 class="font-bold text-lg mb-1 text-slate-800">Gamma.app</h4>
+                        <p class="text-sm text-slate-500">พิมพ์แค่หัวข้อ AI เจนสไลด์พร้อมรูปภาพภายใน 1 นาที</p>
+                    </a>
+                    <a href="https://canva.com" target="_blank" class="bg-white p-6 rounded-3xl border border-slate-200 hover:border-blue-400 hover:shadow-lg transition group relative">
+                        <div class="absolute top-4 right-4 bg-green-100 text-green-700 text-[10px] font-bold px-2 py-1 rounded">ฟรี (เมล รร.)</div>
+                        <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-4"><i class="fas fa-paint-brush text-xl"></i></div>
+                        <h4 class="font-bold text-lg mb-1 text-slate-800">Canva for Edu</h4>
+                        <p class="text-sm text-slate-500">สร้างรูปภาพประกอบสื่อการสอนกราฟิกสวยๆ (Text-to-Image)</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Session 4: Assessment & Future Skills -->
+        <section id="session4" class="scroll-mt-32" aria-labelledby="heading-s4">
+            <div class="bg-slate-900 text-white rounded-[3rem] p-8 md:p-14 shadow-2xl flex flex-col md:flex-row gap-12 items-center">
+                <div class="md:w-5/12">
+                    <div class="inline-block bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 px-3 py-1 rounded-lg text-sm font-bold mb-6">Session 4 • 10 Mins</div>
+                    <h2 id="heading-s4" class="text-3xl md:text-4xl font-bold mb-4 text-white" data-i18n="s4_title">Future Skills & <br>Authentic Assessment</h2>
+                    <p class="text-slate-300 mb-6 font-light leading-relaxed" data-i18n="s4_desc">
+                        ปัญหา "เด็กเอา AI มาส่ง" แก้ได้ด้วยการสอบปฏิบัติ (Oral Test) <br><br>
+                        <span class="text-blue-300 font-bold">Reflective Skills:</span> ใช้ AI ช่วยสะท้อนจุดแข็งเด็ก ทำ Resume เตรียมพร้อมสู่โลกการทำงาน
+                    </p>
+                </div>
+
+                <div class="md:w-7/12 space-y-4">
+                    <button onclick="copyToClipboard('สวมบทบาทเป็นครูผู้เชี่ยวชาญ นักเรียนส่งรายงานโดยใช้ AI เขียนมาทั้งหมด ช่วยตั้งคำถามสัมภาษณ์ปากเปล่า (Oral Test) 3 ข้อ ที่ต้องใช้การคิดวิเคราะห์ประยุกต์ใช้จริง เพื่อเช็กว่านักเรียนเข้าใจสิ่งที่ส่งมาจริงๆ หรือไม่ พร้อมระบุธงคำตอบ', 'Prompt สอบปากเปล่า')" class="w-full text-left bg-slate-800 border border-slate-700 p-5 rounded-2xl hover:bg-slate-700 focus:ring-2 focus:ring-rose-400 transition" aria-label="คัดลอกคำสั่ง: สอบปากเปล่า แก้เด็กลอก AI">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-white"><i class="fas fa-shield-alt text-rose-400 mr-2"></i> สอบปากเปล่า (แก้เด็กลอก AI)</h4>
+                            <span class="text-xs bg-slate-700 px-2 py-1 rounded text-slate-300" aria-hidden="true">Copy</span>
+                        </div>
+                        <p class="text-slate-400 text-xs font-mono line-clamp-2">"ช่วยตั้งคำถามสัมภาษณ์ปากเปล่า 3 ข้อ ที่ต้องใช้การคิดประยุกต์ใช้ เพื่อเช็กว่านักเรียนเข้าใจสิ่งที่ใช้ AI เขียนมาจริงๆ หรือไม่..."</p>
+                    </button>
+
+                    <button onclick="copyToClipboard('สวมบทบาทเป็น HR / Career Coach ระดับมืออาชีพ นำข้อมูลทักษะของนักเรียนอาชีวะต่อไปนี้ [พิมพ์ทักษะ/เกรด/กิจกรรม] มาวิเคราะห์จุดแข็ง (Reflective Skills) และช่วยร่างโครงสร้าง Resume เพื่อใช้สมัครงานในตำแหน่ง [ระบุตำแหน่งงาน] ให้โดดเด่นที่สุด', 'Prompt ทำ Resume')" class="w-full text-left bg-slate-800 border border-slate-700 p-5 rounded-2xl hover:bg-slate-700 focus:ring-2 focus:ring-amber-400 transition" aria-label="คัดลอกคำสั่ง: Reflective Skills ทำ Resume">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-bold text-white"><i class="fas fa-file-signature text-amber-400 mr-2"></i> Reflective Skills (ทำ Resume)</h4>
+                            <span class="text-xs bg-slate-700 px-2 py-1 rounded text-slate-300" aria-hidden="true">Copy</span>
+                        </div>
+                        <p class="text-slate-400 text-xs font-mono line-clamp-2">"นำข้อมูลทักษะของนักเรียนมาวิเคราะห์จุดแข็ง (Reflective Skills) และช่วยร่างโครงสร้าง Resume เพื่อใช้สมัครงาน..."</p>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Session 5: Wrap-up -->
+        <section id="session5" class="scroll-mt-32" aria-labelledby="heading-s5">
+            <div class="bg-blue-50 border border-blue-100 rounded-[3rem] p-8 md:p-12 text-center">
+                <div class="inline-block bg-blue-600 text-white px-3 py-1 rounded-lg text-sm font-bold mb-4">Session 5 • 5 Mins</div>
+                <h2 id="heading-s5" class="text-3xl font-bold mb-8 text-slate-900" data-i18n="s5_title">Wrap-up & Key Takeaways</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 text-left">
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                        <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mb-4"><i class="fas fa-1" aria-hidden="true"></i></div>
+                        <h4 class="font-bold text-lg mb-2 text-slate-800" data-i18n="s5_k1_title">AI is your Intern</h4>
+                        <p class="text-slate-600 text-sm" data-i18n="s5_k1_desc">AI คือเด็กฝึกงานที่เดาคำเก่ง ครูต้องเป็นผู้ตรวจสอบความถูกต้อง (Verify) เสมอ</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                        <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mb-4"><i class="fas fa-2" aria-hidden="true"></i></div>
+                        <h4 class="font-bold text-lg mb-2 text-slate-800" data-i18n="s5_k2_title">Context is King</h4>
+                        <p class="text-slate-600 text-sm" data-i18n="s5_k2_desc">การสั่งงานด้วย 4 Pillars จะช่วยให้ได้ผลลัพธ์ที่ตรงบริบทและนำไปใช้ได้จริง</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                        <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mb-4"><i class="fas fa-3" aria-hidden="true"></i></div>
+                        <h4 class="font-bold text-lg mb-2 text-slate-800" data-i18n="s5_k3_title">Process over Product</h4>
+                        <p class="text-slate-600 text-sm" data-i18n="s5_k3_desc">เปลี่ยนการประเมินจาก "ผลงานสำเร็จ" เป็นการประเมิน "กระบวนการคิด"</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl inline-block border border-slate-200">
+                    <h4 class="font-bold text-slate-800 mb-4 text-left"><i class="fas fa-book-open text-blue-600 mr-2" aria-hidden="true"></i> แหล่งเรียนรู้ต่อยอด</h4>
+                    <ul class="text-left space-y-3 text-sm text-slate-600">
+                        <li><a href="https://www.youtube.com/@TDRI_Thailand" target="_blank" class="hover:text-blue-600 underline focus-visible:ring-2 rounded"><i class="fab fa-youtube text-red-500 mr-2" aria-hidden="true"></i> ซีรีส์ "AI ในห้องเรียน" โดย TDRI (5 ตอน)</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-white border-t border-slate-200 py-12 mt-10" role="contentinfo">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="font-bold text-lg text-slate-800 mb-2">"ครูที่ใช้ AI จะมาแทนที่ครูที่ไม่ใช้ AI"</p>
+            <p class="text-sm text-slate-500">สร้างด้วยความตั้งใจ โดย อิน & เจน (AI Teaching Assistant) © 2026</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification (A11y Alert) -->
+    <div id="toast" role="alert" aria-live="assertive" class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-slate-800 text-white px-6 py-4 rounded-2xl shadow-2xl transition-all duration-300 opacity-0 translate-y-4 pointer-events-none z-[100] flex items-center gap-3 font-bold border-2 border-transparent">
+        <i class="fas fa-check-circle text-emerald-400 text-2xl" aria-hidden="true"></i>
+        <span id="toast-message" data-i18n="toast_copied">คัดลอกเรียบร้อยแล้ว!</span>
+    </div>
+
+    <!-- Script Logic -->
+    <script>
+        // Data for Lesson Design Templates
+        const templates = {
+            vocational: [
+                { icon: "fa-map", color: "text-blue-500", bg: "bg-blue-50", title: "1. Lesson Design (SOP)", desc: "ร่างขั้นตอนปฏิบัติงาน (SOP) & Safety", prompt: "สวมบทบาทหัวหน้าช่าง/ผู้เชี่ยวชาญ ร่างแผนการสอนปฏิบัติงาน (SOP) เรื่อง [ระบุเรื่อง] อย่างละเอียด พร้อมระบุจุดอันตราย" },
+                { icon: "fa-chart-pie", color: "text-purple-500", bg: "bg-purple-50", title: "2. Data Insight (คนพิการ)", desc: "วิเคราะห์ศักยภาพเด็กพิการ/พิเศษ", prompt: "สวมบทบาทนักจิตวิทยาการศึกษา ฉันมีนักเรียนบกพร่องทาง [ระบุ] ช่วยวิเคราะห์ Data Insight และแนะนำการจัดสภาพแวดล้อมให้ปลอดภัย" },
+                { icon: "fa-hands-holding-child", color: "text-amber-500", bg: "bg-amber-50", title: "3. Inclusive Classroom", desc: "ปรับเนื้อหาให้เด็ก LD เข้าใจง่าย", prompt: "ฉันมีเนื้อหาเรื่อง [ทฤษฎี] ช่วยปรับภาษาทฤษฎีให้เป็น 'ภาษาช่าง' ที่เข้าใจง่าย สำหรับเด็ก LD และเสนอไอเดียอธิบายด้วยภาพ" },
+                { icon: "fa-file-lines", color: "text-emerald-500", bg: "bg-emerald-50", title: "4. Smart Handouts", desc: "สร้างใบงาน & เกณฑ์ให้คะแนน (Rubric)", prompt: "ออกแบบใบงานปฏิบัติเรื่อง [ระบุ] แบ่งเป็น 1.ทฤษฎี 2.ลงมือทำ 3.คำถามทบทวน พร้อมสร้างตาราง Rubric แนบท้าย" }
+            ],
+            general: [
+                { icon: "fa-map", color: "text-blue-500", bg: "bg-blue-50", title: "1. Lesson Design (5E)", desc: "ร่างแผนการสอนสไตล์ 5E", prompt: "สวมบทบาทครูเชี่ยวชาญ ร่างกิจกรรมสอน 5E เรื่อง [หัวข้อ] ชั้น [ระดับ] ใช้เวลา 50 นาที เน้นให้เด็กได้ลงมือทำ" },
+                { icon: "fa-chart-pie", color: "text-purple-500", bg: "bg-purple-50", title: "2. Data Insight (ซ่อมเสริม)", desc: "วิเคราะห์ศักยภาพเด็กเพื่อซ่อมเสริม", prompt: "สวมบทบาทนักประเมิน นักเรียน 60% สอบเรื่อง [เรื่อง] ตก ช่วยวิเคราะห์ Data Insight หาจุดอ่อน และเสนอวิธีสอนซ่อมเสริม" },
+                { icon: "fa-hands-holding-child", color: "text-amber-500", bg: "bg-amber-50", title: "3. Inclusive Classroom", desc: "ปรับเนื้อหาให้เด็กเรียนช้าเข้าใจง่าย", prompt: "กำลังสอนเรื่อง [หัวข้อ] ช่วยปรับภาษาให้ง่ายที่สุด สำหรับเด็กต้องการพิเศษ/LD และเสนอวิธีอธิบายด้วยสื่อของจริง" },
+                { icon: "fa-file-lines", color: "text-emerald-500", bg: "bg-emerald-50", title: "4. Smart Handouts", desc: "สร้างใบงาน & เกณฑ์ให้คะแนน (Rubric)", prompt: "ออกแบบใบงานเรื่อง [เรื่อง] มีคำถามไล่ระดับจากง่ายไปยาก 5 ข้อ พร้อมเกณฑ์ให้คะแนน (Rubric)" }
+            ]
+        };
+
+        let currentMode = 'vocational';
+        let isHighContrast = false;
+
+        window.onload = () => {
+            updateLivePrompt();
+            renderTemplates();
+        };
+
+        // Accessibility Functions
+        function toggleHighContrast() {
+            isHighContrast = !isHighContrast;
+            const body = document.getElementById('main-body');
+            const btn = document.getElementById('btn-contrast');
+            if (isHighContrast) {
+                body.classList.add('high-contrast');
+                btn.setAttribute('aria-pressed', 'true');
+            } else {
+                body.classList.remove('high-contrast');
+                btn.setAttribute('aria-pressed', 'false');
+            }
+        }
+
+        function changeTextSize(size) {
+            const body = document.getElementById('main-body');
+            body.classList.remove('text-large', 'text-xlarge');
+            if (size === 'large') body.classList.add('text-large');
+            if (size === 'xlarge') body.classList.add('text-xlarge');
+        }
+
+        // Logic Functions
+        function updateLivePrompt() {
+            const role = document.getElementById('builder-role');
+            const roleText = role.options[role.selectedIndex]?.text || '';
+            const context = document.getElementById('builder-context').value;
+            const format = document.getElementById('builder-format').value;
+            const task = document.getElementById('builder-task').value || '...';
+            
+            const promptText = `สวมบทบาทเป็น ${roleText}\n\nภารกิจ: ${task}\n\nบริบท: ${context}\n\nรูปแบบผลลัพธ์: ${format}`;
+            document.getElementById('live-prompt-text').innerText = promptText;
+        }
+
+        function switchMode(mode) {
+            currentMode = mode;
+            const btnGen = document.getElementById('btn-general');
+            const btnVoc = document.getElementById('btn-vocational');
+            
+            btnGen.setAttribute('aria-selected', mode === 'general' ? 'true' : 'false');
+            btnVoc.setAttribute('aria-selected', mode === 'vocational' ? 'true' : 'false');
+            
+            if (mode === 'general') {
+                btnGen.className = "px-6 py-2 rounded-xl font-bold transition-all text-sm md:text-base bg-white text-blue-600 shadow-sm border border-slate-200";
+                btnVoc.className = "px-6 py-2 rounded-xl font-bold transition-all text-sm md:text-base text-slate-500 hover:text-slate-700 border border-transparent";
+            } else {
+                btnVoc.className = "px-6 py-2 rounded-xl font-bold transition-all text-sm md:text-base bg-white text-blue-600 shadow-sm border border-slate-200";
+                btnGen.className = "px-6 py-2 rounded-xl font-bold transition-all text-sm md:text-base text-slate-500 hover:text-slate-700 border border-transparent";
+            }
+            renderTemplates();
+        }
+
+        function renderTemplates() {
+            const container = document.getElementById('template-container');
+            container.innerHTML = templates[currentMode].map((item, index) => `
+                <div class="bg-white p-5 rounded-3xl border border-slate-200 flex flex-col justify-between prompt-card">
+                    <div>
+                        <div class="w-12 h-12 ${item.bg} ${item.color} rounded-2xl flex items-center justify-center mb-4" aria-hidden="true">
+                            <i class="fas ${item.icon} text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-2 text-slate-800">${item.title}</h4>
+                        <p class="text-slate-500 text-sm mb-6">${item.desc}</p>
+                    </div>
+                    <button onclick="copyToClipboard('${item.prompt}', '${item.title}')" class="w-full py-2.5 bg-slate-50 hover:bg-blue-600 hover:text-white border border-slate-200 rounded-xl text-sm font-bold focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="คัดลอกคำสั่ง ${item.title}">
+                        Copy Prompt
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function generateIdeaPrompt() {
+            const topic = document.getElementById('topic-input').value;
+            if(!topic) {
+                showToast("กรุณาใส่หัวข้อ/วิชาที่ต้องการสอนก่อนค่ะ", "warning");
+                return;
+            }
+            const prompt = `สวมบทบาทเป็นนักออกแบบ Gamification ฉันกำลังจะสอนเรื่อง "${topic}" ช่วยเสนอไอเดียเกมการศึกษาหรือสถานการณ์จำลอง 3 รูปแบบ (Gamification) พร้อมอธิบายกติกาการเล่นสั้นๆ`;
+            copyToClipboard(prompt, 'คำสั่งขอไอเดียเกม');
+        }
+
+        function copyElementText(elementId, name) {
+            const text = document.getElementById(elementId).innerText;
+            copyToClipboard(text, name);
+        }
+
+        function copyToClipboard(text, name) {
+            const textArea = document.createElement("textarea");
+            textArea.setAttribute('aria-hidden', 'true');
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast(`คัดลอก ${name} สำเร็จ!`, "success");
+            } catch (err) {
+                console.error('Failed to copy', err);
+            }
+            document.body.removeChild(textArea);
+        }
+
+        function showToast(message, type = "success") {
+            const toast = document.getElementById('toast');
+            if(isHighContrast) toast.style.borderColor = '#FFFF00';
+            
+            document.getElementById('toast-message').innerText = message;
+            toast.classList.remove('opacity-0', 'translate-y-4', 'pointer-events-none');
+            
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-4', 'pointer-events-none');
+            }, 3000);
+        }
+        
+        // Multi-language dummy function (just to show functionality)
+        function changeLanguage() {
+            document.documentElement.lang = document.getElementById('lang-select').value;
+            console.log("Language changed to: " + document.documentElement.lang);
+            // In a real app, i18n logic goes here.
+        }
+    </script>
+</body>
+</html>
