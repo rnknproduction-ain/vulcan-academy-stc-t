@@ -71,19 +71,19 @@
     <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-lg border-b border-slate-200 shadow-sm" role="banner">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
             
-            <!-- Vulcan Academy Logo (Responsive & Accessible) -->
-            <a href="#" class="flex items-center transition-transform hover:scale-105 rounded-lg outline-none" aria-label="หน้าแรก Vulcan Academy">
-                <!-- Desktop Light -->
-                <img src="assets/VulcanAcademy_ Full.png" alt="Vulcan Academy" class="hidden md:block dark:hidden h-9 w-auto" onerror="this.src='https://placehold.co/200x50/2563eb/ffffff?text=Vulcan+Academy';">
-                <!-- Desktop Dark -->
-                <img src="assets/VulcanAcademy_ Full_Dark.png" alt="Vulcan Academy" class="hidden dark:md:block h-9 w-auto" onerror="this.src='https://placehold.co/200x50/111827/ffffff?text=Vulcan+Academy';">
-                <!-- Mobile Light -->
-                <img src="assets/VulcanAcademy_ icon.png" alt="Vulcan Academy" class="block md:hidden dark:hidden h-10 w-auto" onerror="this.src='https://placehold.co/50x50/2563eb/ffffff?text=VA';">
-                <!-- Mobile Dark -->
-                <img src="assets/VulcanAcademy_ icon_Dark.png" alt="Vulcan Academy" class="hidden dark:block dark:md:hidden h-10 w-auto" onerror="this.src='https://placehold.co/50x50/111827/ffffff?text=VA';">
-            </a>
+            <div class="flex items-center gap-4">
+                <a href="#" class="flex items-center transition-transform hover:scale-105 rounded-lg outline-none" aria-label="หน้าแรก Vulcan Academy">
+                    <img src="assets/VulcanAcademy_ Full.png" alt="Vulcan Academy" class="hidden md:block dark:hidden h-9 w-auto" onerror="this.src='https://placehold.co/200x50/2563eb/ffffff?text=Vulcan+Academy';">
+                    <img src="assets/VulcanAcademy_ Full_Dark.png" alt="Vulcan Academy" class="hidden dark:md:block h-9 w-auto" onerror="this.src='https://placehold.co/200x50/111827/ffffff?text=Vulcan+Academy';">
+                    <img src="assets/VulcanAcademy_ icon.png" alt="Vulcan Academy" class="block md:hidden dark:hidden h-10 w-auto" onerror="this.src='https://placehold.co/50x50/2563eb/ffffff?text=VA';">
+                    <img src="assets/VulcanAcademy_ icon_Dark.png" alt="Vulcan Academy" class="hidden dark:block dark:md:hidden h-10 w-auto" onerror="this.src='https://placehold.co/50x50/111827/ffffff?text=VA';">
+                </a>
+                
+                <div class="hidden sm:flex items-center gap-2 border-l-2 border-slate-200 pl-4">
+                    <span class="font-bold text-lg tracking-tight text-slate-900">AI Educator <span class="text-blue-600">Hub</span></span>
+                </div>
+            </div>
 
-            <!-- Menu -->
             <nav class="hidden lg:flex gap-6 text-sm font-semibold text-slate-600 items-center" aria-label="เมนูหลัก">
                 <a href="#session1" class="hover:text-blue-600 transition" data-i18n="nav_1">1. Mindset & Prompt</a>
                 <a href="#session2" class="hover:text-blue-600 transition" data-i18n="nav_2">2. Lesson Design</a>
@@ -96,6 +96,7 @@
                 <div class="w-2 h-2 rounded-full bg-red-500 animate-pulse" aria-hidden="true"></div>
                 <span data-i18n="live_status">Live Workshop</span>
             </div>
+            
         </div>
     </nav>
 
