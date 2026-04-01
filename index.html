@@ -1424,9 +1424,23 @@
                             </h4>
                             <div class="space-y-3">
                                 <div>
-                                    <label class="block text-xs font-semibold text-slate-300 mb-1">รายวิชา</label>
-                                    <input type="text" id="h-subject" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition" placeholder="เช่น การบัญชีเบื้องต้น">
-                                </div>
+  <label class="block text-xs font-semibold text-slate-300 mb-1">รายวิชา</label>
+  
+  <div class="flex gap-2">
+    <input 
+      type="text" 
+      id="h-subject" 
+      class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition" 
+      placeholder="เช่น การบัญชีเบื้องต้น">
+
+    <button 
+      type="button"
+      onclick="autoFillHandout(event)" 
+      class="bg-cyan-500 hover:bg-cyan-400 text-slate-900 px-3 py-2 rounded-lg text-sm font-bold transition whitespace-nowrap">
+      ⚡ Auto
+    </button>
+  </div>
+</div>
                                 <div class="flex gap-3">
                                     <div class="w-1/2">
                                         <label class="block text-xs font-semibold text-slate-300 mb-1">ระดับชั้น</label>
@@ -1681,6 +1695,71 @@ C. Teacher Notes ซึ่งประกอบด้วย
     hTypes.forEach(input => input.addEventListener('change', generateHandoutPrompt));
 
     generateHandoutPrompt();
+</script>
+
+        <script>
+function autoFillHandout(e) {
+  const btn = e.target;
+  const subjectInput = document.getElementById('h-subject');
+  const subject = subjectInput.value.trim().toLowerCase();
+
+  if (!subject) {
+    alert("กรุณาใส่รายวิชาก่อน");
+    return;
+  }
+
+  // loading effect
+  btn.innerText = "กำลังคิด...";
+  btn.disabled = true;
+
+  setTimeout(() => {
+    let topic = "";
+    let objective = "";
+    let extra = "";
+
+    // 🔥 Smart mapping ตามสายอาชีวะ
+    if (subject.includes("บัญชี")) {
+      topic = "การแยกหมวดหมู่บัญชีและการบันทึกรายการทางการเงิน";
+      objective = "ให้นักเรียนสามารถแยกรายการทางการเงินและบันทึกบัญชีได้อย่างถูกต้องตามหลักการบัญชี";
+      extra = "เน้นการฝึกปฏิบัติทีละขั้น และลดความซับซ้อนของตัวเลข";
+    } 
+    else if (subject.includes("คอม") || subject.includes("ไอที")) {
+      topic = "การแก้ปัญหาด้วยแนวคิดเชิงคำนวณ";
+      objective = "ให้นักเรียนสามารถวิเคราะห์ปัญหาและออกแบบขั้นตอนการแก้ปัญหาได้อย่างเป็นระบบ";
+      extra = "ควรมีตัวอย่างจริง และกิจกรรมแบบลงมือทำ";
+    } 
+    else if (subject.includes("โรงแรม") || subject.includes("ท่องเที่ยว")) {
+      topic = "การให้บริการลูกค้าในสถานการณ์จริง";
+      objective = "ให้นักเรียนสามารถสื่อสารและจัดการสถานการณ์ลูกค้าได้อย่างเหมาะสม";
+      extra = "เน้น role play และสถานการณ์จำลอง";
+    } 
+    else if (subject.includes("ช่าง")) {
+      topic = "การตรวจสอบและวิเคราะห์ปัญหาเครื่องยนต์";
+      objective = "ให้นักเรียนสามารถวิเคราะห์ปัญหาและเลือกวิธีแก้ไขได้อย่างถูกต้อง";
+      extra = "เน้นความปลอดภัยและการปฏิบัติจริง";
+    } 
+    else {
+      topic = "หัวข้อพื้นฐานตามรายวิชา";
+      objective = "ให้นักเรียนเข้าใจเนื้อหาและสามารถนำไปประยุกต์ใช้ได้";
+      extra = "ปรับระดับให้เหมาะกับผู้เรียน";
+    }
+
+    // ใส่ค่าเข้า input
+    document.getElementById('h-topic').value = topic;
+    document.getElementById('h-objective').value = objective;
+    document.getElementById('h-extra').value = extra;
+
+    // update prompt
+    if (typeof generateHandoutPrompt === "function") {
+      generateHandoutPrompt();
+    }
+
+    // reset ปุ่ม
+    btn.innerText = "⚡ Auto";
+    btn.disabled = false;
+
+  }, 500);
+}
 </script>
         <!-- Session 2.2: Smart Handouts -->
 
