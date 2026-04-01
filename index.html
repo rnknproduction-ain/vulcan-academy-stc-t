@@ -938,7 +938,7 @@
                                 <option value="ช่วยวิเคราะห์และเปรียบเทียบข้อดี-ข้อเสียของ 2 เทคโนโลยี/ทฤษฎีที่กำลังเป็นที่นิยม">เปรียบเทียบข้อดี-ข้อเสียของทฤษฎี/เทคโนโลยี</option>
                                 <option value="ร่างโครงสร้างแผนธุรกิจ (Business Model Canvas) สำหรับธุรกิจจำลอง">ร่างโครงสร้างแผนธุรกิจ (Business Model Canvas)</option>
                                 <option value="ออกแบบ rubric ประเมินชิ้นงานภาคปฏิบัติ 4 ระดับคะแนน">ออกแบบ Rubric ประเมินชิ้นงานภาคปฏิบัติ</option>
-                                <option value="custom">-- พิมพ์ภารกิจของคุณเอง --</option>
+                
                             </select>
                             <textarea id="builder-task-custom" rows="2" placeholder="พิมพ์ภารกิจที่ต้องการให้ AI ทำ..." class="hidden w-full border border-slate-300 rounded-lg p-3 bg-white text-slate-800 resize-none focus:ring-2 focus:ring-indigo-500 outline-none text-sm transition" onkeyup="updateLivePrompt()"></textarea>
                         </div>
@@ -951,7 +951,7 @@
                                     <option value="สำหรับนักศึกษา ปวส. ปี 2 ที่เตรียมตัวออกฝึกงานในสถานประกอบการจริง">สำหรับเด็ก ปวส. 2 (เตรียมฝึกงาน)</option>
                                     <option value="เน้นนำไปประยุกต์ใช้ในอุตสาหกรรมยุค 4.0 ทันสมัยและใช้ได้จริง">เน้นอุตสาหกรรมยุค 4.0 / ทันสมัย</option>
                                     <option value="โดยมีข้อจำกัดคือ อุปกรณ์ในห้องเรียนมีจำกัด ต้องเน้นการประยุกต์ใช้วัสดุรอบตัว">ข้อจำกัด: อุปกรณ์น้อย เน้นประยุกต์</option>
-                                    <option value="custom">-- พิมพ์บริบทของคุณเอง --</option>
+                                    
                                 </select>
                                 <input type="text" id="builder-context-custom" placeholder="เช่น สำหรับเด็กสมาธิสั้น" class="hidden w-full border border-slate-300 rounded-lg p-3 bg-white text-slate-800 focus:ring-2 focus:ring-emerald-500 outline-none text-sm transition" onkeyup="updateLivePrompt()">
                             </div>
@@ -959,13 +959,20 @@
                             <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
                                 <label for="builder-format" class="block text-sm font-bold text-amber-600 mb-2"><i class="fas fa-file-alt mr-1"></i> 4. รูปแบบ (Format)</label>
                                 <select id="builder-format" class="w-full border border-slate-300 rounded-lg p-3 bg-white text-slate-800 focus:ring-2 focus:ring-amber-500 outline-none text-sm transition mb-3" onchange="updateLivePrompt()">
-                                    <option value="จัดรูปแบบเป็นหัวข้อย่อย (Bullet points) พร้อมเน้นตัวหนาในคำสำคัญ">เป็นข้อๆ (Bullet points) เข้าใจง่าย</option>
-                                    <option value="นำเสนอข้อมูลในรูปแบบตารางเปรียบเทียบที่ชัดเจนและอ่านง่าย">เป็นตารางเปรียบเทียบ (Table)</option>
-                                    <option value="เขียนอธิบายเป็นขั้นตอน 1-2-3 (Step-by-step) ที่สามารถทำตามได้ทันที">เป็นขั้นตอน 1-2-3 (Step-by-step)</option>
-                                    <option value="อธิบายสั้นๆ กระชับ ได้ใจความ ไม่เกิน 3 ย่อหน้า">สรุปกระชับ ไม่เกิน 3 ย่อหน้า</option>
-                                    <option value="custom">-- พิมพ์รูปแบบของคุณเอง --</option>
+                                    <optgroup label="รูปแบบสรุปและนำเสนอ">
+                                        <option value="จัดรูปแบบเป็นหัวข้อย่อย (Bullet points) พร้อมเน้นตัวหนาในคำสำคัญ">เป็นข้อๆ (Bullet points) เข้าใจง่าย</option>
+                                        <option value="นำเสนอข้อมูลในรูปแบบตารางเปรียบเทียบที่ชัดเจนและอ่านง่าย">เป็นตารางเปรียบเทียบ (Table)</option>
+                                        <option value="สรุปเป็นโครงร่างสำหรับทำสไลด์นำเสนอ (Presentation) พร้อมสคริปต์คำพูด">โครงร่างสไลด์นำเสนอ (Presentation)</option>
+                                        <option value="สรุปเป็นโครงสร้างเพื่อนำไปทำ Mind Map หรือ Infographic">โครงสร้าง Mind Map / Infographic</option>
+                                    </optgroup>
+                                    <optgroup label="รูปแบบเอกสารและรายงาน">
+                                        <option value="สรุปเป็นรายงานความยาว 1 หน้ากระดาษ A4 แบบกระชับ ได้ใจความสำคัญครบถ้วน">รายงาน 1 หน้ากระดาษ A4</option>
+                                        <option value="เขียนในรูปแบบรายงานเชิงวิชาการ มีการใช้ภาษาทางการและน่าเชื่อถือ">รายงานเชิงวิชาการ (Academic Report)</option>
+                                        <option value="เขียนในรูปแบบหนังสือราชการ หรือบันทึกข้อความตามระเบียบงานสารบรรณ">รูปแบบเอกสารราชการ / บันทึกข้อความ</option>
+                                        <option value="เขียนในรูปแบบคู่มือปฏิบัติงาน (SOP) ที่ระบุขั้นตอนชัดเจน นำไปใช้ได้ทันที">คู่มือปฏิบัติงานมาตรฐาน (SOP)</option>
+                                    </optgroup>
                                 </select>
-                                <input type="text" id="builder-format-custom" placeholder="เช่น ทำเป็น Mind Map" class="hidden w-full border border-slate-300 rounded-lg p-3 bg-white text-slate-800 focus:ring-2 focus:ring-amber-500 outline-none text-sm transition" onkeyup="updateLivePrompt()">
+                                <input type="text" id="builder-format-custom" placeholder="เช่น เขียนเป็นกลอนแปด 2 บท" class="hidden w-full border border-slate-300 rounded-lg p-3 bg-white text-slate-800 focus:ring-2 focus:ring-amber-500 outline-none text-sm transition" onkeyup="updateLivePrompt()">
                             </div>
                         </div>
                     </form>
@@ -976,7 +983,7 @@
                             <p id="live-prompt-text" class="text-emerald-400 font-mono text-[15px] leading-relaxed whitespace-pre-wrap mt-2 min-h-[100px]">...</p>
                         </div>
                         <button onclick="copyElementText('live-prompt-text', 'คำสั่งของคุณ')" class="mt-6 w-full bg-blue-600 hover:bg-blue-500 text-white py-3 rounded-xl font-bold transition flex items-center justify-center gap-2 shadow-lg shadow-blue-500/30 active:scale-95">
-                            <i class="far fa-copy" aria-hidden="true"></i> <span data-i18n="btn_copy">คัดลอกคำสั่งเพื่อไปวางใน AI</span>
+                            <i class="far fa-copy" aria-hidden="true"></i> <span data-i18n="btn_copy">คัดลอกคำสั่ง</span>
                         </button>
                     </div>
                 </div>
