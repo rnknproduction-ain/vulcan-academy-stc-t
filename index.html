@@ -587,158 +587,161 @@
         </section>
 
         <script>
-        // ⚠️ สำคัญมาก: เอา API Key จาก Google AI Studio มาใส่ในเครื่องหมายคำพูดด้านล่างนี้
-        const geminiApiKey = "AIzaSyCztp0Ft-Q6hneAM92n5kK57anHfw2aYRw"; 
-        
-        // UI Elements
-        const s1 = document.getElementById('step-1');
-        const sLoad = document.getElementById('step-loading');
-        const s2 = document.getElementById('step-2');
-        const sRefine = document.getElementById('step-refine');
-        const sSuccess = document.getElementById('step-success');
-        
-        const taskInput = document.getElementById('task-input');
-        const refineInput = document.getElementById('refine-input');
-        const resultOutcome = document.getElementById('result-outcome');
-        const finalOutcomeText = document.getElementById('final-outcome-text');
-        const ruleAllow = document.getElementById('rule-allow');
-        const ruleDisallow = document.getElementById('rule-disallow');
-        const loadingText = document.getElementById('loading-text');
-
-        let currentAnalysis = null;
-
-        // ฟังก์ชันเรียก Gemini API จริง (ใช้รุ่น gemini-1.5-flash)
-        async function fetchAIAnalysis(task, refine = "") {
-            if(geminiApiKey === "ใส่_API_KEY_ของคุณที่นี่" || geminiApiKey === "") {
-                throw new Error("ลืมใส่ API Key หรือเปล่าคะ? กรุณาเอา Key มาใส่ในโค้ดบรรทัดที่ 11 ก่อนค่ะ");
-            }
-
-            let promptText = `คุณคือผู้เชี่ยวชาญด้านวิชาการและการออกแบบการประเมินผล (Instructional Design) จงสกัด 'แก่นการเรียนรู้ (Outcome)' ออกมาให้ชัดเจน\n\nโจทย์/การบ้าน: "${task}"\n`;
-            if (refine) {
-                promptText += `\nข้อเสนอแนะเพิ่มเติมจากครูเพื่อปรับแก่นให้ตรงใจ: "${refine}"\n`;
-            }
+            // ⚠️ จุดสำคัญที่ 1: ใส่ API Key ในเครื่องหมายคำพูดด้านล่างนี้ (ระวังอย่าให้มีเคาะเว้นวรรคนะคะ)
+            const geminiApiKey = "AIzaSyCztp0Ft-Q6hneAM92n5kK57anHfw2aYRw"; 
             
-            promptText += `\nกรุณาวิเคราะห์และตอบกลับเป็นรูปแบบ JSON เท่านั้น โดยใช้โครงสร้างนี้เป๊ะๆ:
-            {
-                "outcome": "ระบุเป้าหมายการเรียนรู้ที่แท้จริง หรือทักษะแก่นแท้ที่เด็กต้องได้ 1 ประโยคสั้นๆ กระชับ",
-                "allow": "สิ่งที่อนุญาตให้นักเรียนใช้ AI ทำได้ เพื่อเป็นผู้ช่วยในงานนี้ (อธิบายสั้นๆ)",
-                "disallow": "สิ่งที่ห้าม AI ทำแทนเด็ดขาด เพราะเป็นหัวใจที่นักเรียนต้องลงมือคิดและทำเอง (อธิบายสั้นๆ)"
-            }`;
+            // UI Elements
+            const s1 = document.getElementById('step-1');
+            const sLoad = document.getElementById('step-loading');
+            const s2 = document.getElementById('step-2');
+            const sRefine = document.getElementById('step-refine');
+            const sSuccess = document.getElementById('step-success');
+            
+            const taskInput = document.getElementById('task-input');
+            const refineInput = document.getElementById('refine-input');
+            const resultOutcome = document.getElementById('result-outcome');
+            const finalOutcomeText = document.getElementById('final-outcome-text');
+            const ruleAllow = document.getElementById('rule-allow');
+            const ruleDisallow = document.getElementById('rule-disallow');
+            const loadingText = document.getElementById('loading-text');
 
-            const payload = {
-                contents: [{ parts: [{ text: promptText }] }],
-                generationConfig: {
-                    temperature: 0.7,
-                    responseMimeType: "application/json"
+            let currentAnalysis = null;
+
+            // ฟังก์ชันเรียก API หลัก
+            async function fetchAIAnalysis(task, refine = "") {
+                if(!geminiApiKey || geminiApiKey === "ใส่_API_KEY_ของคุณที่นี่") {
+                    throw new Error("ยังไม่ได้ระบุ API Key ในโค้ดค่ะ");
                 }
-            };
 
-            // ⚠️ จุดที่แก้ไข: เปลี่ยนเป็น gemini-1.5-flash
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`;
-            
-            try {
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
+                let promptText = `คุณคือผู้เชี่ยวชาญด้าน Instructional Design จงสกัด 'แก่นการเรียนรู้ (Outcome)' ออกมาให้ชัดเจน\n\nโจทย์/การบ้าน: "${task}"\n`;
+                if (refine) {
+                    promptText += `\nข้อเสนอแนะเพิ่มเติมจากครูเพื่อปรับแก่นให้ตรงใจ: "${refine}"\n`;
+                }
+                
+                promptText += `\nกรุณาวิเคราะห์และตอบกลับเป็นรูปแบบ JSON เท่านั้น โดยใช้โครงสร้างนี้เป๊ะๆ:
+                {
+                    "outcome": "ระบุเป้าหมายการเรียนรู้ที่แท้จริง หรือทักษะแก่นแท้ที่เด็กต้องได้ 1 ประโยคสั้นๆ กระชับ",
+                    "allow": "สิ่งที่อนุญาตให้นักเรียนใช้ AI ทำได้ เพื่อเป็นผู้ช่วยในงานนี้ (อธิบายสั้นๆ)",
+                    "disallow": "สิ่งที่ห้าม AI ทำแทนเด็ดขาด เพราะเป็นหัวใจที่นักเรียนต้องลงมือคิดและทำเอง (อธิบายสั้นๆ)"
+                }`;
+
+                const payload = {
+                    contents: [{ parts: [{ text: promptText }] }],
+                    generationConfig: {
+                        temperature: 0.7,
+                        responseMimeType: "application/json"
+                    }
+                };
+
+                // ใช้ gemini-1.5-flash แน่นอนสุด
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey.trim()}`;
+                
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    
+                    if (!response.ok) {
+                        const errData = await response.json();
+                        const errorMsg = errData.error?.message || "ไม่ทราบสาเหตุ";
+                        throw new Error(`Google Error: ${errorMsg}`);
+                    }
+                    
+                    const result = await response.json();
+                    const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                    if(!text) throw new Error("AI ส่งค่ากลับมาว่างเปล่าค่ะ");
+                    
+                    let cleanText = text.replace(/```json/gi, '').replace(/```/g, '').trim();
+                    return JSON.parse(cleanText);
+                    
+                } catch (e) {
+                    throw e; // โยนไปให้ UI จัดการ Alert
+                }
+            }
+
+            // --- ส่วนของ UI Transitions ---
+            function showStep(el) {
+                [s1, s2, sRefine, sSuccess].forEach(step => {
+                    step.classList.remove('translate-x-0', 'translate-x-[-100%]');
+                    step.classList.add('translate-x-full'); 
+                    step.style.opacity = '0';
+                    step.style.pointerEvents = 'none';
                 });
-                
-                if (!response.ok) {
-                    const errText = await response.text();
-                    console.error("API Error:", errText);
-                    throw new Error(`(Error ${response.status}) เช็กใน Console (F12) เพื่อดูรายละเอียดค่ะ`);
-                }
-                
-                const result = await response.json();
-                const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
-                if(!text) throw new Error("AI ส่งค่ากลับมาว่างเปล่าค่ะ");
-                
-                let cleanText = text.replace(/```json/gi, '').replace(/```/g, '').trim();
-                return JSON.parse(cleanText);
-                
-            } catch (e) {
-                throw e;
+                setTimeout(() => {
+                    el.classList.remove('translate-x-full');
+                    el.classList.add('translate-x-0');
+                    el.style.opacity = '1';
+                    el.style.pointerEvents = 'auto';
+                }, 50); 
             }
-        }
 
-        function showStep(el) {
-            [s1, s2, sRefine, sSuccess].forEach(step => {
-                step.classList.remove('translate-x-0', 'translate-x-[-100%]');
-                step.classList.add('translate-x-full'); 
-                step.style.opacity = '0';
-                step.style.pointerEvents = 'none';
+            function showLoading(msg, hideEl) {
+                hideEl.style.opacity = '0'; hideEl.style.pointerEvents = 'none'; hideEl.classList.add('translate-x-[-100%]');
+                loadingText.innerText = msg; sLoad.style.opacity = '1'; sLoad.style.pointerEvents = 'auto';
+            }
+
+            function hideLoading() { sLoad.style.opacity = '0'; sLoad.style.pointerEvents = 'none'; }
+
+            // --- ส่วนของปุ่มกดต่างๆ ---
+            document.getElementById('btn-analyze').addEventListener('click', async () => {
+                const task = taskInput.value.trim();
+                if(!task) { alert("กรุณาพิมพ์รายละเอียดการบ้านก่อนครับ"); return; }
+                
+                showLoading("AI กำลังวิเคราะห์ความคิดของคุณครู...", s1);
+                
+                try {
+                    currentAnalysis = await fetchAIAnalysis(task);
+                    resultOutcome.innerText = `"${currentAnalysis.outcome}"`;
+                    hideLoading();
+                    showStep(s2);
+                } catch (error) {
+                    hideLoading();
+                    alert("⚠️ ตรวจพบข้อผิดพลาด:\n" + error.message);
+                    showStep(s1);
+                }
             });
-            setTimeout(() => {
-                el.classList.remove('translate-x-full');
-                el.classList.add('translate-x-0');
-                el.style.opacity = '1';
-                el.style.pointerEvents = 'auto';
-            }, 50); 
-        }
 
-        function showLoading(msg, hideEl) {
-            hideEl.style.opacity = '0'; hideEl.style.pointerEvents = 'none'; hideEl.classList.add('translate-x-[-100%]');
-            loadingText.innerText = msg; sLoad.style.opacity = '1'; sLoad.style.pointerEvents = 'auto';
-        }
+            document.getElementById('btn-reject').addEventListener('click', () => { showStep(sRefine); });
 
-        function hideLoading() { sLoad.style.opacity = '0'; sLoad.style.pointerEvents = 'none'; }
+            document.getElementById('btn-reanalyze').addEventListener('click', async () => {
+                const refine = refineInput.value.trim();
+                if(!refine) { alert("กรุณาพิมพ์ข้อเสนอแนะให้ AI ก่อนครับ"); return; }
+                
+                showLoading("AI กำลังปรับจูนมุมมองใหม่...", sRefine);
+                
+                try {
+                    currentAnalysis = await fetchAIAnalysis(taskInput.value, refine);
+                    resultOutcome.innerText = `"${currentAnalysis.outcome}"`;
+                    hideLoading();
+                    showStep(s2);
+                } catch (error) {
+                    hideLoading();
+                    alert("⚠️ ตรวจพบข้อผิดพลาด:\n" + error.message);
+                    showStep(sRefine);
+                }
+            });
 
-        document.getElementById('btn-analyze').addEventListener('click', async () => {
-            const task = taskInput.value.trim();
-            if(!task) { alert("กรุณาพิมพ์รายละเอียดการบ้านก่อนครับ"); return; }
-            
-            showLoading("AI กำลังวิเคราะห์ความคิดของคุณครู...", s1);
-            
-            try {
-                currentAnalysis = await fetchAIAnalysis(task);
-                resultOutcome.innerText = `"${currentAnalysis.outcome}"`;
-                hideLoading();
-                showStep(s2);
-            } catch (error) {
-                hideLoading();
-                alert("ระบบขัดข้อง: " + error.message);
+            document.getElementById('btn-accept').addEventListener('click', () => {
+                if(currentAnalysis) {
+                    finalOutcomeText.innerText = currentAnalysis.outcome;
+                    ruleAllow.innerText = currentAnalysis.allow;
+                    ruleDisallow.innerText = currentAnalysis.disallow;
+                    showStep(sSuccess);
+                }
+            });
+
+            document.getElementById('btn-back-1').addEventListener('click', () => { showStep(s2); });
+
+            window.resetDistiller = function() {
+                taskInput.value = ''; refineInput.value = ''; currentAnalysis = null;
                 showStep(s1);
             }
-        });
-
-        document.getElementById('btn-reject').addEventListener('click', () => { showStep(sRefine); });
-
-        document.getElementById('btn-reanalyze').addEventListener('click', async () => {
-            const refine = refineInput.value.trim();
-            if(!refine) { alert("กรุณาพิมพ์ข้อเสนอแนะให้ AI ก่อนครับ"); return; }
             
-            showLoading("AI กำลังปรับจูนมุมมองใหม่...", sRefine);
-            
-            try {
-                currentAnalysis = await fetchAIAnalysis(taskInput.value, refine);
-                resultOutcome.innerText = `"${currentAnalysis.outcome}"`;
-                hideLoading();
-                showStep(s2);
-            } catch (error) {
-                hideLoading();
-                alert("ระบบขัดข้อง: " + error.message);
-                showStep(sRefine);
-            }
-        });
-
-        document.getElementById('btn-accept').addEventListener('click', () => {
-            if(currentAnalysis) {
-                finalOutcomeText.innerText = currentAnalysis.outcome;
-                ruleAllow.innerText = currentAnalysis.allow;
-                ruleDisallow.innerText = currentAnalysis.disallow;
-                showStep(sSuccess);
-            }
-        });
-
-        document.getElementById('btn-back-1').addEventListener('click', () => { showStep(s2); });
-
-        window.resetDistiller = function() {
-            taskInput.value = ''; refineInput.value = ''; currentAnalysis = null;
-            showStep(s1);
-        }
-        
-        setTimeout(() => { showStep(s1); }, 100);
-    </script>
+            // โหลดหน้าแรกสุดตอนเปิดเว็บ
+            setTimeout(() => { showStep(s1); }, 100);
+        </script>
         <!-- Session 2.2: The Outcome -->
         
         <!-- Session 2: AI-Powered Lesson Design -->
