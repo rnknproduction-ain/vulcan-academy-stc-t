@@ -107,7 +107,7 @@
             <div class="flex flex-col lg:flex-row gap-8 items-start">
                 
                 <div class="lg:w-4/12">
-                    <div class="inline-block bg-indigo-100 text-indigo-700 px-3 py-1 rounded-lg text-sm font-bold mb-4">Session 1 • 15 Mins</div>
+                    <div class="inline-block bg-indigo-100 text-indigo-700 px-3 py-1 rounded-lg text-sm font-bold mb-4">Session 0</div>
                     <h2 class="text-3xl font-bold mb-6 text-slate-900">Check-up</h2>
                     
                     <div class="bg-amber-50 border-l-4 border-amber-400 p-5 rounded-r-xl mb-6">
@@ -851,10 +851,6 @@
         
          <!-- Hero Section -->
         <section class="text-center pt-8" aria-labelledby="hero-title">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 text-blue-700 font-semibold text-sm mb-6 shadow-sm">
-                <i class="fas fa-lightbulb text-yellow-500" aria-hidden="true"></i>
-                <span data-i18n="hero_badge">Getting Started with AI in Education</span>
-            </div>
             <h1 id="hero-title" class="text-5xl md:text-6xl font-extrabold mb-6 leading-tight text-slate-900">
                 <span data-i18n="hero_title_1">เปลี่ยน AI ให้เป็น</span> <br>
                 <span class="gradient-text" data-i18n="hero_title_2">"เด็กฝึกงานคู่ใจ"</span>
@@ -865,78 +861,187 @@
         <!-- Session 1: Mindset & Prompting -->
         <section id="session1" class="scroll-mt-32" aria-labelledby="heading-s1">
             <div class="flex flex-col lg:flex-row gap-12 items-start">
+                
                 <div class="lg:w-5/12">
-                    <div class="inline-block bg-indigo-100 text-indigo-700 px-3 py-1 rounded-lg text-sm font-bold mb-4">Session 1 • 15 Mins</div>
-                    <h2 id="heading-s1" class="text-3xl font-bold mb-6 text-slate-900" data-i18n="s1_title">Getting Started <br>AI Literacy & Mindset</h2>
+                    <div class="inline-block bg-blue-100 text-blue-700 px-3 py-1 rounded-lg text-sm font-bold mb-4">Session 1 • 20 Mins</div>
+                    <h2 id="heading-s1" class="text-3xl font-bold mb-6 text-slate-900" data-i18n="s1_title">หลักการสั่งงาน AI พื้นฐาน</h2>
                     
                     <div class="bg-amber-50 border-l-4 border-amber-400 p-5 rounded-r-xl mb-8" role="note" aria-label="เคล็ดลับ">
                         <h3 class="font-bold text-amber-800 flex items-center gap-2 mb-2">
                             <i class="fas fa-quote-left" aria-hidden="true"></i> 
                             <span data-i18n="s1_note_title">AI is your Intern!</span>
                         </h3>
-                        <p class="text-amber-900 text-sm" data-i18n="s1_note_desc">"มอง AI เป็นเด็กฝึกงานที่มีประสบการณ์น้อย มันเดาคำเก่ง แต่เราต้องสั่งงานให้ชัดเจน และ **เน้นย้ำเรื่องการตรวจสอบความถูกต้องเสมอ**"</p>
+                        <p class="text-amber-900 text-sm leading-relaxed" data-i18n="s1_note_desc">"มอง AI เป็นเด็กฝึกงานที่หัวไวแต่ไม่มีประสบการณ์ มันเดาคำเก่ง แต่เราต้องสั่งงานให้เป็นระบบ (4 Pillars) และ <b>เน้นย้ำเรื่องการตรวจสอบความถูกต้อง (Fact-checking) เสมอ</b>"</p>
                     </div>
 
                     <div class="space-y-4">
                         <h4 class="font-bold text-slate-800 text-lg" data-i18n="s1_pillars_title">โครงสร้าง The 4 Pillars of Prompting</h4>
                         <div class="grid grid-cols-2 gap-4">
-                            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm"><span class="block text-blue-600 font-bold mb-1">1. Role</span> <span data-i18n="s1_p1">สวมบทบาทให้ AI</span></div>
-                            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm"><span class="block text-blue-600 font-bold mb-1">2. Context</span> <span data-i18n="s1_p2">บอกบริบท/ข้อจำกัด</span></div>
-                            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm"><span class="block text-blue-600 font-bold mb-1">3. Task</span> <span data-i18n="s1_p3">สั่งภารกิจให้ชัดเจน</span></div>
-                            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm"><span class="block text-blue-600 font-bold mb-1">4. Format</span> <span data-i18n="s1_p4">กำหนดรูปแบบผลลัพธ์</span></div>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden">
+                                <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+                                <span class="block text-blue-600 font-bold mb-1">1. Role</span> <span class="text-sm text-slate-600" data-i18n="s1_p1">สวมบทบาทให้ AI เป็นผู้เชี่ยวชาญ</span>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden">
+                                <div class="absolute top-0 left-0 w-1 h-full bg-indigo-500"></div>
+                                <span class="block text-indigo-600 font-bold mb-1">2. Task</span> <span class="text-sm text-slate-600" data-i18n="s1_p3">ระบุภารกิจให้ชัดเจนว่าให้ทำอะไร</span>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden">
+                                <div class="absolute top-0 left-0 w-1 h-full bg-emerald-500"></div>
+                                <span class="block text-emerald-600 font-bold mb-1">3. Context</span> <span class="text-sm text-slate-600" data-i18n="s1_p2">บอกบริบท ข้อจำกัด หรือกลุ่มเป้าหมาย</span>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden">
+                                <div class="absolute top-0 left-0 w-1 h-full bg-amber-500"></div>
+                                <span class="block text-amber-600 font-bold mb-1">4. Format</span> <span class="text-sm text-slate-600" data-i18n="s1_p4">กำหนดรูปแบบผลลัพธ์ที่ต้องการ</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Interactive Prompt Builder -->
                 <div class="lg:w-7/12 w-full bg-white p-8 rounded-3xl shadow-lg border border-slate-200">
                     <h3 class="text-2xl font-bold mb-6 text-slate-800 flex items-center gap-3">
-                        <div class="bg-blue-100 text-blue-600 p-2 rounded-lg" aria-hidden="true"><i class="fas fa-wand-magic-sparkles"></i></div>
+                        <div class="bg-gradient-to-r from-blue-500 to-indigo-500 text-white p-2 rounded-lg" aria-hidden="true"><i class="fas fa-wand-magic-sparkles"></i></div>
                         <span data-i18n="builder_title">ลองสร้างคำสั่งแรกของคุณ</span>
                     </h3>
                     
-                    <form class="space-y-6" aria-label="ฟอร์มสร้างคำสั่ง AI">
-                        <div>
-                            <label for="builder-role" class="block text-sm font-bold text-slate-800 mb-2" data-i18n="label_role">บทบาท (Role)</label>
-                            <select id="builder-role" class="w-full border border-slate-300 rounded-xl p-3 bg-slate-50 text-slate-800 focus:ring-2 focus:ring-blue-500 outline-none" onchange="updateLivePrompt()">
-                                <option value="ครูเชี่ยวชาญด้านการโรงแรมและการท่องเที่ยว">ครูเชี่ยวชาญด้านการโรงแรมและการท่องเที่ยว</option>
-                                <option value="ผู้เชี่ยวชาญด้านไอทีและเทคโนโลยีดิจิทัล">ผู้เชี่ยวชาญด้านไอทีและเทคโนโลยีดิจิทัล</option>
-                                <option value="อาจารย์แผนกบัญชีและการตลาด">อาจารย์แผนกบัญชีและการตลาด</option>
-                                <option value="ช่างเครื่องยนต์และช่างเทคนิคอาวุโส">ช่างเครื่องยนต์และช่างเทคนิคอาวุโส</option>
-                                <option value="ครูผู้สอนวิชาสามัญ">ครูผู้สอนวิชาสามัญ</option>
+                    <form class="space-y-5" aria-label="ฟอร์มสร้างคำสั่ง AI">
+                        
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <label for="builder-role" class="block text-sm font-bold text-blue-700 mb-2"><i class="fas fa-user-tie mr-1"></i> 1. บทบาท (Role)</label>
+                            <select id="builder-role" class="w-full border border-slate-300 rounded-lg p-3 bg-white text-slate-800 focus:ring-2 focus:ring-blue-500 outline-none text-sm transition" onchange="updateLivePrompt()">
+                                <optgroup label="สายเทคโนโลยีและอุตสาหกรรม">
+                                    <option value="ผู้เชี่ยวชาญด้านไอทีและเทคโนโลยีดิจิทัล">ผู้เชี่ยวชาญด้านไอทีและเทคโนโลยีดิจิทัล</option>
+                                    <option value="วิศวกรผู้เชี่ยวชาญด้านเครื่องยนต์และยานยนต์">วิศวกรผู้เชี่ยวชาญด้านเครื่องยนต์และยานยนต์</option>
+                                    <option value="โปรแกรมเมอร์และนักพัฒนาซอฟต์แวร์อาวุโส">โปรแกรมเมอร์และนักพัฒนาซอฟต์แวร์อาวุโส</option>
+                                    <option value="วิศวกรเมคคาทรอนิกส์และนิวเมติกส์">วิศวกรเมคคาทรอนิกส์และนิวเมติกส์</option>
+                                </optgroup>
+                                <optgroup label="สายบริการและพาณิชยกรรม">
+                                    <option value="ครูเชี่ยวชาญด้านการโรงแรมและการท่องเที่ยว">ครูเชี่ยวชาญด้านการโรงแรมและการท่องเที่ยว</option>
+                                    <option value="เชฟมืออาชีพและผู้เชี่ยวชาญด้านอาหาร/โภชนาการ">เชฟมืออาชีพและผู้เชี่ยวชาญด้านอาหาร/โภชนาการ</option>
+                                    <option value="ที่ปรึกษาด้านการตลาดและโลจิสติกส์">ที่ปรึกษาด้านการตลาดและโลจิสติกส์</option>
+                                    <option value="ผู้สอบบัญชีรับอนุญาตและที่ปรึกษาการเงิน">ผู้สอบบัญชีรับอนุญาตและที่ปรึกษาการเงิน</option>
+                                </optgroup>
+                                <optgroup label="สายศิลปกรรมและวิชาสามัญ">
+                                    <option value="อาร์ตไดเรกเตอร์และนักออกแบบกราฟิกมืออาชีพ">อาร์ตไดเรกเตอร์และนักออกแบบกราฟิกมืออาชีพ</option>
+                                    <option value="ครูผู้สอนวิชาสามัญ (ภาษาไทย/คณิต/วิทยาศาสตร์)">ครูผู้สอนวิชาสามัญ (ภาษา/คณิต/วิทยาศาสตร์)</option>
+                                    <option value="ผู้เชี่ยวชาญด้านการวิจัยและโครงงาน">ผู้เชี่ยวชาญด้านการวิจัยและโครงงาน</option>
+                                </optgroup>
                             </select>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <div>
-                                <label for="builder-context" class="block text-sm font-bold text-slate-800 mb-2" data-i18n="label_context">บริบท (Context)</label>
-                                <input type="text" id="builder-context" placeholder="เช่น สำหรับเด็ก ปวช.1" class="w-full border border-slate-300 rounded-xl p-3 bg-slate-50 text-slate-800 focus:ring-2 focus:ring-blue-500 outline-none" onkeyup="updateLivePrompt()" value="สำหรับเด็ก ปวช. ที่ชอบเรียนแบบลงมือปฏิบัติ">
-                            </div>
-                            <div>
-                                <label for="builder-format" class="block text-sm font-bold text-slate-800 mb-2" data-i18n="label_format">รูปแบบ (Format)</label>
-                                <select id="builder-format" class="w-full border border-slate-300 rounded-xl p-3 bg-slate-50 text-slate-800 focus:ring-2 focus:ring-blue-500 outline-none" onchange="updateLivePrompt()">
-                                    <option value="อธิบายเป็นขั้นตอน 1-2-3 เข้าใจง่าย">อธิบายเป็นขั้นตอน 1-2-3</option>
-                                    <option value="จัดรูปแบบเป็นตาราง">จัดรูปแบบเป็นตาราง</option>
-                                </select>
-                            </div>
+
+                        <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                            <label for="builder-task" class="block text-sm font-bold text-indigo-700 mb-2"><i class="fas fa-bullseye mr-1"></i> 2. ภารกิจ (Task)</label>
+                            <select id="builder-task" class="w-full border border-slate-300 rounded-lg p-3 bg-white text-slate-800 focus:ring-2 focus:ring-indigo-500 outline-none text-sm transition mb-3" onchange="updateLivePrompt()">
+                                <option value="ช่วยคิดไอเดียหัวข้อโครงงานหรือโปรเจกต์จบคอร์ส จำนวน 5 หัวข้อ">คิดไอเดียหัวข้อโครงงาน/โปรเจกต์ 5 หัวข้อ</option>
+                                <option value="ออกแบบสถานการณ์จำลอง (Roleplay) สำหรับฝึกแก้ปัญหาเฉพาะหน้า">ออกแบบสถานการณ์จำลอง (Roleplay) เพื่อแก้ปัญหา</option>
+                                <option value="ช่วยร่างแบบทดสอบปรนัย (Multiple Choice) จำนวน 10 ข้อ พร้อมเฉลยอธิบาย">ร่างแบบทดสอบปรนัย 10 ข้อ พร้อมเฉลย</option>
+                                <option value="สรุปเนื้อหายากๆ ให้กลายเป็นนิทานหรือเรื่องเล่าที่เข้าใจง่าย (Storytelling)">สรุปเนื้อหายากๆ ให้เป็นเรื่องเล่าเข้าใจง่าย</option>
+                                <option value="ช่วยวิเคราะห์และเปรียบเทียบข้อดี-ข้อเสียของ 2 เทคโนโลยี/ทฤษฎีที่กำลังเป็นที่นิยม">เปรียบเทียบข้อดี-ข้อเสียของทฤษฎี/เทคโนโลยี</option>
+                                <option value="ร่างโครงสร้างแผนธุรกิจ (Business Model Canvas) สำหรับธุรกิจจำลอง">ร่างโครงสร้างแผนธุรกิจ (Business Model Canvas)</option>
+                                <option value="ออกแบบ rubric ประเมินชิ้นงานภาคปฏิบัติ 4 ระดับคะแนน">ออกแบบ Rubric ประเมินชิ้นงานภาคปฏิบัติ</option>
+                                <option value="custom">-- พิมพ์ภารกิจของคุณเอง --</option>
+                            </select>
+                            <textarea id="builder-task-custom" rows="2" placeholder="พิมพ์ภารกิจที่ต้องการให้ AI ทำ..." class="hidden w-full border border-slate-300 rounded-lg p-3 bg-white text-slate-800 resize-none focus:ring-2 focus:ring-indigo-500 outline-none text-sm transition" onkeyup="updateLivePrompt()"></textarea>
                         </div>
-                        <div>
-                            <label for="builder-task" class="block text-sm font-bold text-slate-800 mb-2" data-i18n="label_task">ภารกิจ (Task)</label>
-                            <textarea id="builder-task" rows="2" placeholder="เช่น ออกแบบกิจกรรมละลายพฤติกรรม..." class="w-full border border-slate-300 rounded-xl p-3 bg-slate-50 text-slate-800 resize-none focus:ring-2 focus:ring-blue-500 outline-none" onkeyup="updateLivePrompt()">ออกแบบกิจกรรมการแก้ปัญหาเฉพาะหน้า (Problem Solving) 1 กิจกรรม ใช้เวลา 15 นาที</textarea>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                                <label for="builder-context" class="block text-sm font-bold text-emerald-700 mb-2"><i class="fas fa-users mr-1"></i> 3. บริบท (Context)</label>
+                                <select id="builder-context" class="w-full border border-slate-300 rounded-lg p-3 bg-white text-slate-800 focus:ring-2 focus:ring-emerald-500 outline-none text-sm transition mb-3" onchange="updateLivePrompt()">
+                                    <option value="เนื้อหานี้สำหรับนักศึกษา ปวช. ปี 1 ที่เพิ่งเริ่มเรียนวิชานี้เป็นครั้งแรก ยังไม่มีพื้นฐาน">สำหรับเด็ก ปวช. 1 (เพิ่งเริ่มเรียน)</option>
+                                    <option value="สำหรับนักศึกษา ปวส. ปี 2 ที่เตรียมตัวออกฝึกงานในสถานประกอบการจริง">สำหรับเด็ก ปวส. 2 (เตรียมฝึกงาน)</option>
+                                    <option value="เน้นนำไปประยุกต์ใช้ในอุตสาหกรรมยุค 4.0 ทันสมัยและใช้ได้จริง">เน้นอุตสาหกรรมยุค 4.0 / ทันสมัย</option>
+                                    <option value="โดยมีข้อจำกัดคือ อุปกรณ์ในห้องเรียนมีจำกัด ต้องเน้นการประยุกต์ใช้วัสดุรอบตัว">ข้อจำกัด: อุปกรณ์น้อย เน้นประยุกต์</option>
+                                    <option value="custom">-- พิมพ์บริบทของคุณเอง --</option>
+                                </select>
+                                <input type="text" id="builder-context-custom" placeholder="เช่น สำหรับเด็กสมาธิสั้น" class="hidden w-full border border-slate-300 rounded-lg p-3 bg-white text-slate-800 focus:ring-2 focus:ring-emerald-500 outline-none text-sm transition" onkeyup="updateLivePrompt()">
+                            </div>
+
+                            <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+                                <label for="builder-format" class="block text-sm font-bold text-amber-600 mb-2"><i class="fas fa-file-alt mr-1"></i> 4. รูปแบบ (Format)</label>
+                                <select id="builder-format" class="w-full border border-slate-300 rounded-lg p-3 bg-white text-slate-800 focus:ring-2 focus:ring-amber-500 outline-none text-sm transition mb-3" onchange="updateLivePrompt()">
+                                    <option value="จัดรูปแบบเป็นหัวข้อย่อย (Bullet points) พร้อมเน้นตัวหนาในคำสำคัญ">เป็นข้อๆ (Bullet points) เข้าใจง่าย</option>
+                                    <option value="นำเสนอข้อมูลในรูปแบบตารางเปรียบเทียบที่ชัดเจนและอ่านง่าย">เป็นตารางเปรียบเทียบ (Table)</option>
+                                    <option value="เขียนอธิบายเป็นขั้นตอน 1-2-3 (Step-by-step) ที่สามารถทำตามได้ทันที">เป็นขั้นตอน 1-2-3 (Step-by-step)</option>
+                                    <option value="อธิบายสั้นๆ กระชับ ได้ใจความ ไม่เกิน 3 ย่อหน้า">สรุปกระชับ ไม่เกิน 3 ย่อหน้า</option>
+                                    <option value="custom">-- พิมพ์รูปแบบของคุณเอง --</option>
+                                </select>
+                                <input type="text" id="builder-format-custom" placeholder="เช่น ทำเป็น Mind Map" class="hidden w-full border border-slate-300 rounded-lg p-3 bg-white text-slate-800 focus:ring-2 focus:ring-amber-500 outline-none text-sm transition" onkeyup="updateLivePrompt()">
+                            </div>
                         </div>
                     </form>
 
-                    <div class="mt-8 bg-slate-900 rounded-2xl p-6 relative">
-                        <div class="absolute top-3 right-4 text-[10px] font-bold text-slate-500 uppercase" aria-hidden="true">Live Output</div>
+                    <div class="mt-8 bg-[#0d1117] rounded-2xl p-6 relative shadow-inner border border-slate-800">
+                        <div class="absolute top-3 right-4 text-[10px] font-bold text-slate-500 uppercase tracking-wider" aria-hidden="true">Live Output</div>
                         <div class="overflow-x-auto prompt-scroll" role="region" aria-live="polite">
-                            <p id="live-prompt-text" class="text-emerald-400 font-mono text-sm leading-relaxed whitespace-pre-wrap mt-2">...</p>
+                            <p id="live-prompt-text" class="text-emerald-400 font-mono text-[15px] leading-relaxed whitespace-pre-wrap mt-2 min-h-[100px]">...</p>
                         </div>
-                        <button onclick="copyElementText('live-prompt-text', 'คำสั่งของคุณ')" class="mt-4 w-full bg-white/10 hover:bg-white/20 text-white border border-white/30 py-3 rounded-xl font-bold transition flex items-center justify-center gap-2">
-                            <i class="fas fa-copy" aria-hidden="true"></i> <span data-i18n="btn_copy">คัดลอกคำสั่ง</span>
+                        <button onclick="copyElementText('live-prompt-text', 'คำสั่งของคุณ')" class="mt-6 w-full bg-blue-600 hover:bg-blue-500 text-white py-3 rounded-xl font-bold transition flex items-center justify-center gap-2 shadow-lg shadow-blue-500/30 active:scale-95">
+                            <i class="far fa-copy" aria-hidden="true"></i> <span data-i18n="btn_copy">คัดลอกคำสั่งเพื่อไปวางใน AI</span>
                         </button>
                     </div>
                 </div>
             </div>
         </section>
+
+        <script>
+            function updateLivePrompt() {
+                // 1. Role
+                const roleEl = document.getElementById('builder-role');
+                const role = roleEl.value;
+
+                // 2. Task
+                const taskSelect = document.getElementById('builder-task');
+                const taskCustom = document.getElementById('builder-task-custom');
+                let task = taskSelect.value;
+                if (task === 'custom') {
+                    taskCustom.classList.remove('hidden');
+                    task = taskCustom.value || '[ระบุภารกิจที่ต้องการ]';
+                } else {
+                    taskCustom.classList.add('hidden');
+                }
+
+                // 3. Context
+                const contextSelect = document.getElementById('builder-context');
+                const contextCustom = document.getElementById('builder-context-custom');
+                let context = contextSelect.value;
+                if (context === 'custom') {
+                    contextCustom.classList.remove('hidden');
+                    context = contextCustom.value || '[ระบุบริบท/กลุ่มเป้าหมาย]';
+                } else {
+                    contextCustom.classList.add('hidden');
+                }
+
+                // 4. Format
+                const formatSelect = document.getElementById('builder-format');
+                const formatCustom = document.getElementById('builder-format-custom');
+                let format = formatSelect.value;
+                if (format === 'custom') {
+                    formatCustom.classList.remove('hidden');
+                    format = formatCustom.value || '[ระบุรูปแบบผลลัพธ์]';
+                } else {
+                    formatCustom.classList.add('hidden');
+                }
+
+                // การประกอบร่าง Prompt
+                const finalPrompt = `สวมบทบาทเป็น: ${role}\n\nภารกิจของคุณคือ: ${task}\n\nบริบทและข้อจำกัด: ${context}\n\nรูปแบบผลลัพธ์: ${format}`;
+                
+                document.getElementById('live-prompt-text').innerText = finalPrompt;
+            }
+
+            // เรียกใช้งานครั้งแรกตอนโหลดหน้าเว็บ
+            setTimeout(updateLivePrompt, 100);
+
+            // ฟังก์ชัน Copy
+            function copyElementText(id, name) {
+                var text = document.getElementById(id).innerText;
+                navigator.clipboard.writeText(text).then(function() {
+                    alert('คัดลอก ' + name + ' เรียบร้อยแล้ว!\nสามารถนำไปกด Paste (วาง) ใน Gemini หรือ ChatGPT ได้เลยครับ');
+                }, function(err) {
+                    alert('ไม่สามารถคัดลอกได้ กรุณากด Ctrl+C / Cmd+C เองครับ');
+                });
+            }
+        </script>
+        <!-- Session 1: Mindset & Prompting -->
         
         <!-- Session 2.1: AI-Powered Lesson Design -->
        <section id="session3" class="scroll-mt-32 pt-16 pb-16">
