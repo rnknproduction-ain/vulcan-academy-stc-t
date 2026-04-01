@@ -293,27 +293,57 @@
 
             // --- แสดงผล Word Cloud ---
             onValue(wordsRef, (snapshot) => {
-                const data = snapshot.val();
-                cloudContainer.innerHTML = ''; 
-                if(!data) {
-                    waitingText.style.display = 'block';
-                    return;
-                }
-                waitingText.style.display = 'none';
-                const wordCounts = {};
-                Object.values(data).forEach(item => {
-                    const w = item.text.toUpperCase();
-                    wordCounts[w] = (wordCounts[w] || 0) + 1;
-                });
-                const colors = ['text-emerald-300', 'text-blue-300', 'text-purple-300', 'text-pink-300', 'text-yellow-300', 'text-cyan-300'];
-                Object.entries(wordCounts).forEach(([word, count]) => {
-                    const span = document.createElement('span');
-                    span.innerText = word;
-                    let sizeClass = count >= 4 ? 'text-5xl md:text-7xl font-extrabold drop-shadow-lg' : (count === 3 ? 'text-3xl md:text-4xl font-bold' : (count === 2 ? 'text-xl font-semibold' : 'text-base'));
-                    span.className = `${sizeClass} ${colors[Math.floor(Math.random() * colors.length)]} m-2 transition-all duration-500 hover:scale-110 cursor-default`;
-                    cloudContainer.appendChild(span);
-                });
-            });
+    const data = snapshot.val();
+    cloudContainer.innerHTML = ''; 
+    if(!data) {
+        waitingText.style.display = 'block';
+        return;
+    }
+    waitingText.style.display = 'none';
+    const wordCounts = {};
+    
+    // 1. นับจำนวนคำ
+    Object.values(data).forEach(item => {
+        const w = item.text.toUpperCase();
+        wordCounts[w] = (wordCounts[w] || 0) + 1;
+    });
+
+    const colors = ['text-emerald-300', 'text-blue-300', 'text-purple-300', 'text-pink-300', 'text-yellow-300', 'text-cyan-300'];
+    
+    // 2. หาค่า count ที่มากที่สุด (เพื่อเอาไปเทียบสัดส่วน ถ้าต้องการ)
+    const counts = Object.values(wordCounts);
+    const maxCount = Math.max(...counts);
+
+    // 3. สร้าง Span
+    Object.entries(wordCounts).forEach(([word, count]) => {
+        const span = document.createElement('span');
+        span.innerText = word;
+        
+        // --- ส่วนที่ปรับใหม่: คำนวณขนาดแบบขยายได้เรื่อยๆ ---
+        
+        // Base size คือ 1rem (16px) 
+        // ทุกๆ 1 count จะบวกเพิ่ม 0.5rem (ปรับเลข 0.5 นี้ได้ตามต้องการให้ใหญ่เร็ว/ช้า)
+        const calculatedSize = 1 + ((count - 1) * 0.5); 
+        
+        // จำกัดขนาดสูงสุดไว้สักนิด เผื่อคนพิมพ์ซ้ำ 1000 ครั้งเว็บจะได้ไม่พัง (สมมติจำกัดที่ 15rem)
+        // ถ้าไม่อยากจำกัดเลย ให้ลบ Math.min ออกเหลือแค่ calculatedSize
+        const finalSize = Math.min(calculatedSize, 15); 
+        
+        // ใส่ขนาดตรงๆ ผ่าน Inline Style
+        span.style.fontSize = `${finalSize}rem`;
+        span.style.lineHeight = '1.1'; // บังคับให้บรรทัดไม่ห่างเกินไปเวลาคำใหญ่ๆ
+
+        // จัดการความหนาของตัวอักษร (Weight) ตามจำนวน count
+        let weightClass = 'font-normal';
+        if (count >= 2 && count <= 3) weightClass = 'font-semibold';
+        else if (count > 3 && count <= 5) weightClass = 'font-bold';
+        else if (count > 5) weightClass = 'font-extrabold drop-shadow-lg';
+
+        span.className = `${weightClass} ${colors[Math.floor(Math.random() * colors.length)]} m-2 transition-all duration-500 hover:scale-110 cursor-default inline-block`;
+        
+        cloudContainer.appendChild(span);
+    });
+});
 
             // --- Emoji Animation ---
             onChildAdded(emojisRef, (data) => {
