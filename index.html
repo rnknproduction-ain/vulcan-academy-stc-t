@@ -458,334 +458,285 @@
             </div>
         </section>
         <!-- Session 2.2: The Outcome -->
-        <!DOCTYPE html>
-<html lang="th">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The AI Outcome Distiller</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Kanit', sans-serif;
-            background-color: #f8fafc;
-        }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-    </style>
-</head>
-<body class="p-4 md:p-8">
-
-    <section id="session2" class="max-w-7xl mx-auto">
-        <div class="flex flex-col lg:flex-row gap-8 items-start">
-            
-            <!-- ฝั่งซ้าย: ทฤษฎี & คำอธิบาย -->
-            <div class="lg:w-4/12">
-                <div class="inline-block bg-indigo-100 text-indigo-700 px-3 py-1 rounded-lg text-sm font-bold mb-4">Session 2 • 30 Mins</div>
-                <h2 class="text-3xl font-bold mb-6 text-slate-900">The Outcome Distiller</h2>
+        <section id="session2" class="scroll-mt-32">
+            <div class="flex flex-col lg:flex-row gap-8 items-start">
                 
-                <div class="bg-amber-50 border-l-4 border-amber-400 p-5 rounded-r-xl mb-6">
-                    <h3 class="font-bold text-amber-800 flex items-center gap-2 mb-2">
-                        <i class="fas fa-lightbulb"></i> 
-                        <span>แก่นชัด กติกาก็ชัด!</span>
-                    </h3>
-                    <p class="text-amber-900 text-sm">"ถ้านักเรียนเห็นแก่นของการเรียนรู้ เขาจะรู้เองว่าควรใช้ AI แค่ไหน โดยที่เราไม่ต้องไปนั่งจับผิด"</p>
-                </div>
-                
-                <div class="space-y-3">
-                    <h4 class="font-bold text-slate-800 text-lg">3 ขั้นตอนสู่ AI Integration</h4>
-                    <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm text-sm"><span class="text-blue-600 font-bold">1. Outcome:</span> สกัดทักษะที่เป็นเป้าหมายที่แท้จริง</div>
-                    <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm text-sm"><span class="text-blue-600 font-bold">2. Boundary:</span> กำหนดขอบเขตการใช้ AI ให้ชัดเจน</div>
-                    <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm text-sm"><span class="text-blue-600 font-bold">3. Verification:</span> วิธีพิสูจน์ความเข้าใจของนักเรียน</div>
-                </div>
-            </div>
-
-            <!-- ฝั่งขวา: Interactive Tool -->
-            <div class="lg:w-8/12 w-full">
-                <div class="bg-white p-6 md:p-8 rounded-3xl shadow-lg border border-slate-200 relative overflow-hidden min-h-[480px] flex flex-col">
+                <div class="lg:w-4/12">
+                    <div class="inline-block bg-indigo-100 text-indigo-700 px-3 py-1 rounded-lg text-sm font-bold mb-4">Session 2 • 30 Mins</div>
+                    <h2 class="text-3xl font-bold mb-6 text-slate-900">The Outcome Distiller</h2>
                     
-                    <div class="mb-6 border-b border-slate-100 pb-4">
-                        <h3 class="text-2xl font-bold text-slate-800 flex items-center gap-3">
-                            <div class="bg-gradient-to-r from-blue-500 to-indigo-500 text-white p-2 rounded-lg"><i class="fas fa-brain"></i></div>
-                            เครื่องมือกระเทาะแก่นด้วย AI
+                    <div class="bg-amber-50 border-l-4 border-amber-400 p-5 rounded-r-xl mb-6">
+                        <h3 class="font-bold text-amber-800 flex items-center gap-2 mb-2">
+                            <i class="fas fa-lightbulb"></i> 
+                            <span>แก่นชัด กติกาก็ชัด!</span>
                         </h3>
-                        <p class="text-slate-500 text-sm mt-2">พิมพ์รายละเอียดการบ้าน แล้วให้ AI ช่วยสกัด "เป้าหมายที่แท้จริง" พร้อมร่างกติกาให้</p>
+                        <p class="text-amber-900 text-sm">"ถ้านักเรียนเห็นแก่นของการเรียนรู้ เขาจะรู้เองว่าควรใช้ AI แค่ไหน โดยที่เราไม่ต้องไปนั่งจับผิด"</p>
                     </div>
-
-                    <div class="relative flex-1">
-                        <!-- Step 1: Input -->
-                        <div id="step-1" class="transition-all duration-500 absolute inset-0 bg-white z-10 flex flex-col h-full">
-                            <label class="block text-sm font-bold text-slate-700 mb-2">พิมพ์คำสั่งการบ้าน หรือเนื้อหาที่สอน:</label>
-                            <textarea id="task-input" class="w-full flex-1 border border-slate-300 rounded-xl p-4 bg-slate-50 text-slate-800 resize-none focus:ring-2 focus:ring-blue-500 outline-none transition-all" placeholder="ตัวอย่าง: ให้นักเรียนเขียนเรียงความประวัติศาสตร์อยุธยา 3 หน้ากระดาษ พร้อมวิเคราะห์สาเหตุการเสียกรุง..."></textarea>
-                            
-                            <button id="btn-analyze" class="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition flex items-center justify-center gap-2 shadow-md">
-                                <i class="fas fa-magic"></i> ให้ AI ช่วยสกัดแก่นแท้
-                            </button>
-                        </div>
-
-                        <!-- Processing Animation -->
-                        <div id="step-loading" class="transition-all duration-500 opacity-0 pointer-events-none absolute inset-0 flex flex-col items-center justify-center bg-white z-20">
-                            <div class="w-12 h-12 border-4 border-blue-100 border-t-blue-600 rounded-full animate-spin mb-4"></div>
-                            <p class="text-slate-600 font-bold animate-pulse" id="loading-text">AI กำลังวิเคราะห์ความคิดของคุณครู...</p>
-                        </div>
-
-                        <!-- Step 2: Result -->
-                        <div id="step-2" class="transition-all duration-500 transform translate-x-full absolute inset-0 bg-white z-10 flex flex-col">
-                            <div class="flex-1 bg-indigo-50 border border-indigo-100 rounded-2xl p-6 mb-6 flex items-center justify-center text-center relative overflow-hidden">
-                                <i class="fas fa-bullseye absolute text-indigo-100 text-8xl -right-4 -bottom-4 -z-0"></i>
-                                <div class="relative z-10 w-full">
-                                    <p class="text-indigo-600 text-sm font-bold uppercase tracking-wider mb-2">เป้าหมายที่แท้จริง (Core Outcome)</p>
-                                    <p id="result-outcome" class="text-xl md:text-2xl font-bold text-slate-800 leading-tight">
-                                        ...
-                                    </p>
-                                </div>
-                            </div>
-
-                            <p class="text-center font-bold text-slate-700 mb-4">แก่นการเรียนรู้นี้ ตรงกับความตั้งใจของคุณครูหรือไม่?</p>
-                            
-                            <div class="flex flex-col sm:flex-row gap-3 mt-auto">
-                                <button id="btn-reject" class="flex-1 bg-white border border-rose-300 text-rose-600 hover:bg-rose-50 font-bold py-3 rounded-xl transition flex items-center justify-center gap-2">
-                                    <i class="fas fa-times"></i> ไม่ตรง (อยากปรับโฟกัส)
-                                </button>
-                                <button id="btn-accept" class="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 rounded-xl transition shadow-md flex items-center justify-center gap-2">
-                                    <i class="fas fa-check"></i> ใช่เลย! (ดูกติกาการใช้ AI)
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Step 3: Refine Loop -->
-                        <div id="step-refine" class="transition-all duration-500 transform translate-x-full absolute inset-0 bg-white z-10 flex flex-col">
-                            <h4 class="font-bold text-slate-800 mb-2"><i class="fas fa-sliders-h text-blue-500 mr-2"></i> ปรับสมการให้ AI คิดใหม่</h4>
-                            <p class="text-slate-500 text-sm mb-4">ไกด์ไลน์ให้ AI รู้ว่าคุณครูอยากเน้นไปที่ทักษะด้านไหนเป็นพิเศษ</p>
-                            
-                            <textarea id="refine-input" class="w-full flex-1 border border-slate-300 rounded-xl p-4 bg-slate-50 text-slate-800 resize-none focus:ring-2 focus:ring-blue-500 outline-none mb-4" placeholder="เช่น ไม่ได้อยากให้จำประวัติศาสตร์ แต่อยากให้วิเคราะห์เปรียบเทียบกับสังคมปัจจุบันมากกว่า..."></textarea>
-                            
-                            <div class="flex gap-2 mt-auto">
-                                <button id="btn-back-1" class="text-slate-600 bg-slate-100 hover:bg-slate-200 font-bold px-4 py-3 rounded-xl transition flex items-center gap-2">
-                                    <i class="fas fa-arrow-left"></i> กลับ
-                                </button>
-                                <button id="btn-reanalyze" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition shadow-md flex items-center justify-center gap-2">
-                                    <i class="fas fa-sync-alt"></i> วิเคราะห์อีกครั้ง
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Step 4: Success & Output -->
-                        <div id="step-success" class="transition-all duration-500 transform translate-x-full absolute inset-0 bg-white z-10 flex flex-col h-full overflow-y-auto pr-2">
-                            <div class="flex items-center gap-3 mb-4">
-                                <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-xl shrink-0">
-                                    <i class="fas fa-check"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-slate-800">แก่นการเรียนรู้:</h4>
-                                    <p class="text-emerald-600 font-bold text-sm" id="final-outcome-text">...</p>
-                                </div>
-                            </div>
-                            
-                            <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl mb-4">
-                                <h5 class="text-xs font-bold text-slate-500 uppercase mb-3"><i class="fas fa-robot text-blue-500 mr-1"></i> กติกาการใช้ AI (AI Boundary)</h5>
-                                <ul class="text-sm text-slate-700 space-y-3">
-                                    <li class="flex items-start gap-2">
-                                        <i class="fas fa-check-circle text-emerald-500 mt-1 shrink-0"></i>
-                                        <div>
-                                            <span class="font-bold text-emerald-700">อนุญาตให้ AI:</span>
-                                            <p id="rule-allow" class="text-slate-600 mt-1">...</p>
-                                        </div>
-                                    </li>
-                                    <li class="flex items-start gap-2 pt-2 border-t border-slate-200">
-                                        <i class="fas fa-ban text-rose-500 mt-1 shrink-0"></i>
-                                        <div>
-                                            <span class="font-bold text-rose-700">ห้าม AI ทำแทนเด็ดขาด:</span>
-                                            <p id="rule-disallow" class="text-slate-600 mt-1">...</p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <button onclick="resetDistiller()" class="mt-auto text-blue-600 hover:text-blue-800 font-bold text-sm transition flex items-center justify-center gap-2 w-full py-3 bg-blue-50 rounded-xl hover:bg-blue-100">
-                                <i class="fas fa-redo"></i> วิเคราะห์การบ้านชิ้นอื่น
-                            </button>
-                        </div>
+                    
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-slate-800 text-lg">3 ขั้นตอนสู่ AI Integration</h4>
+                        <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm text-sm"><span class="text-blue-600 font-bold">1. Outcome:</span> สกัดทักษะที่เป็นเป้าหมายที่แท้จริง</div>
+                        <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm text-sm"><span class="text-blue-600 font-bold">2. Boundary:</span> กำหนดขอบเขตการใช้ AI ให้ชัดเจน</div>
+                        <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm text-sm"><span class="text-blue-600 font-bold">3. Verification:</span> วิธีพิสูจน์ความเข้าใจของนักเรียน</div>
                     </div>
+                </div>
 
+                <div class="lg:w-8/12 w-full">
+                    <div class="bg-white p-6 md:p-8 rounded-3xl shadow-lg border border-slate-200 relative overflow-hidden min-h-[480px] flex flex-col">
+                        
+                        <div class="mb-6 border-b border-slate-100 pb-4">
+                            <h3 class="text-2xl font-bold text-slate-800 flex items-center gap-3">
+                                <div class="bg-gradient-to-r from-blue-500 to-indigo-500 text-white p-2 rounded-lg"><i class="fas fa-brain"></i></div>
+                                เครื่องมือกระเทาะแก่นด้วย AI
+                            </h3>
+                            <p class="text-slate-500 text-sm mt-2">พิมพ์รายละเอียดการบ้าน แล้วให้ AI ช่วยวิเคราะห์ "เป้าหมายที่แท้จริง" พร้อมร่างกติกาให้</p>
+                        </div>
+
+                        <div class="relative flex-1">
+                            <div id="step-1" class="transition-all duration-500 absolute inset-0 bg-white z-10 flex flex-col h-full">
+                                <label class="block text-sm font-bold text-slate-700 mb-2">พิมพ์คำสั่งการบ้าน หรือเนื้อหาที่สอน:</label>
+                                <textarea id="task-input" class="w-full flex-1 border border-slate-300 rounded-xl p-4 bg-slate-50 text-slate-800 resize-none focus:ring-2 focus:ring-blue-500 outline-none transition-all" placeholder="ตัวอย่าง: ให้นักเรียนเขียนเรียงความประวัติศาสตร์อยุธยา 3 หน้ากระดาษ พร้อมวิเคราะห์สาเหตุการเสียกรุง..."></textarea>
+                                
+                                <button id="btn-analyze" class="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition flex items-center justify-center gap-2 shadow-md">
+                                    <i class="fas fa-magic"></i> ให้ AI ช่วยสกัดแก่นแท้
+                                </button>
+                            </div>
+
+                            <div id="step-loading" class="transition-all duration-500 opacity-0 pointer-events-none absolute inset-0 flex flex-col items-center justify-center bg-white z-20">
+                                <div class="w-12 h-12 border-4 border-blue-100 border-t-blue-600 rounded-full animate-spin mb-4"></div>
+                                <p class="text-slate-600 font-bold animate-pulse" id="loading-text">AI กำลังวิเคราะห์ความคิดของคุณครู...</p>
+                            </div>
+
+                            <div id="step-2" class="transition-all duration-500 transform translate-x-full absolute inset-0 bg-white z-10 flex flex-col">
+                                <div class="flex-1 bg-indigo-50 border border-indigo-100 rounded-2xl p-6 mb-6 flex items-center justify-center text-center relative overflow-hidden">
+                                    <i class="fas fa-bullseye absolute text-indigo-100 text-8xl -right-4 -bottom-4 -z-0"></i>
+                                    <div class="relative z-10 w-full">
+                                        <p class="text-indigo-600 text-sm font-bold uppercase tracking-wider mb-2">เป้าหมายที่แท้จริง (Core Outcome)</p>
+                                        <p id="result-outcome" class="text-xl md:text-2xl font-bold text-slate-800 leading-tight">...</p>
+                                    </div>
+                                </div>
+
+                                <p class="text-center font-bold text-slate-700 mb-4">แก่นการเรียนรู้นี้ ตรงกับความตั้งใจของคุณครูหรือไม่?</p>
+                                
+                                <div class="flex flex-col sm:flex-row gap-3 mt-auto">
+                                    <button id="btn-reject" class="flex-1 bg-white border border-rose-300 text-rose-600 hover:bg-rose-50 font-bold py-3 rounded-xl transition flex items-center justify-center gap-2">
+                                        <i class="fas fa-times"></i> ไม่ตรง (อยากปรับโฟกัส)
+                                    </button>
+                                    <button id="btn-accept" class="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 rounded-xl transition shadow-md flex items-center justify-center gap-2">
+                                        <i class="fas fa-check"></i> ใช่เลย! (ดูกติกาการใช้ AI)
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div id="step-refine" class="transition-all duration-500 transform translate-x-full absolute inset-0 bg-white z-10 flex flex-col">
+                                <h4 class="font-bold text-slate-800 mb-2"><i class="fas fa-sliders-h text-blue-500 mr-2"></i> ปรับสมการให้ AI คิดใหม่</h4>
+                                <p class="text-slate-500 text-sm mb-4">ไกด์ไลน์ให้ AI รู้ว่าคุณครูอยากเน้นไปที่ทักษะด้านไหนเป็นพิเศษ</p>
+                                
+                                <textarea id="refine-input" class="w-full flex-1 border border-slate-300 rounded-xl p-4 bg-slate-50 text-slate-800 resize-none focus:ring-2 focus:ring-blue-500 outline-none mb-4" placeholder="เช่น ไม่ได้อยากให้จำประวัติศาสตร์ แต่อยากให้วิเคราะห์เปรียบเทียบกับสังคมปัจจุบันมากกว่า..."></textarea>
+                                
+                                <div class="flex gap-2 mt-auto">
+                                    <button id="btn-back-1" class="text-slate-600 bg-slate-100 hover:bg-slate-200 font-bold px-4 py-3 rounded-xl transition flex items-center gap-2">
+                                        <i class="fas fa-arrow-left"></i> กลับ
+                                    </button>
+                                    <button id="btn-reanalyze" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition shadow-md flex items-center justify-center gap-2">
+                                        <i class="fas fa-sync-alt"></i> วิเคราะห์อีกครั้ง
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div id="step-success" class="transition-all duration-500 transform translate-x-full absolute inset-0 bg-white z-10 flex flex-col h-full overflow-y-auto pr-2">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-xl shrink-0">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-slate-800">แก่นการเรียนรู้:</h4>
+                                        <p class="text-emerald-600 font-bold text-sm" id="final-outcome-text">...</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl mb-4">
+                                    <h5 class="text-xs font-bold text-slate-500 uppercase mb-3"><i class="fas fa-robot text-blue-500 mr-1"></i> กติกาการใช้ AI (AI Boundary)</h5>
+                                    <ul class="text-sm text-slate-700 space-y-3">
+                                        <li class="flex items-start gap-2">
+                                            <i class="fas fa-check-circle text-emerald-500 mt-1 shrink-0"></i>
+                                            <div>
+                                                <span class="font-bold text-emerald-700">อนุญาตให้ AI:</span>
+                                                <p id="rule-allow" class="text-slate-600 mt-1">...</p>
+                                            </div>
+                                        </li>
+                                        <li class="flex items-start gap-2 pt-2 border-t border-slate-200">
+                                            <i class="fas fa-ban text-rose-500 mt-1 shrink-0"></i>
+                                            <div>
+                                                <span class="font-bold text-rose-700">ห้าม AI ทำแทนเด็ดขาด:</span>
+                                                <p id="rule-disallow" class="text-slate-600 mt-1">...</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <button onclick="resetDistiller()" class="mt-auto text-blue-600 hover:text-blue-800 font-bold text-sm transition flex items-center justify-center gap-2 w-full py-3 bg-blue-50 rounded-xl hover:bg-blue-100">
+                                    <i class="fas fa-redo"></i> วิเคราะห์การบ้านชิ้นอื่น
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Logic ของ The Outcome Distiller (พร้อมเชื่อมต่อ AI) -->
-    <script>
-        const apiKey = "AIzaSyCztp0Ft-Q6hneAM92n5kK57anHfw2aYRw"; // API Key จาก aistudio.google.com
-        
-        // UI Elements
-        const s1 = document.getElementById('step-1');
-        const sLoad = document.getElementById('step-loading');
-        const s2 = document.getElementById('step-2');
-        const sRefine = document.getElementById('step-refine');
-        const sSuccess = document.getElementById('step-success');
-        
-        const taskInput = document.getElementById('task-input');
-        const refineInput = document.getElementById('refine-input');
-        const resultOutcome = document.getElementById('result-outcome');
-        const finalOutcomeText = document.getElementById('final-outcome-text');
-        const ruleAllow = document.getElementById('rule-allow');
-        const ruleDisallow = document.getElementById('rule-disallow');
-        const loadingText = document.getElementById('loading-text');
-
-        // เก็บข้อมูลชั่วคราวจาก AI
-        let currentAnalysis = null;
-
-        // ฟังก์ชันเรียก API (พร้อม Exponential Backoff ตามมาตรฐาน)
-        async function fetchAIAnalysis(task, refine = "") {
-            let prompt = `หน้าที่ของคุณคือเป็นผู้เชี่ยวชาญด้านวิชาการและการประเมินผล วิเคราะห์การบ้านต่อไปนี้:\n\nโจทย์/การบ้าน: "${task}"\n`;
-            if (refine) {
-                prompt += `\nข้อเสนอแนะเพิ่มเติมจากครูเพื่อปรับแก่นให้ตรงใจ: "${refine}"\n`;
-            }
-
-            const payload = {
-                contents: [{ parts: [{ text: prompt }] }],
-                systemInstruction: {
-                    parts: [{ text: "คุณคือผู้เชี่ยวชาญด้าน Instructional Design จงสกัด 'แก่นการเรียนรู้ (Outcome)' ที่แท้จริงออกมาเป็นประโยคสั้นๆ พร้อมระบุสิ่งที่อนุญาตให้ AI ช่วยได้ และสิ่งที่ห้าม AI ทำแทนเด็ดขาด เพื่อให้บรรลุแก่นนั้น" }]
-                },
-                generationConfig: {
-                    responseMimeType: "application/json",
-                    responseSchema: {
-                        type: "OBJECT",
-                        properties: {
-                            outcome: { type: "STRING", description: "เป้าหมายการเรียนรู้ที่แท้จริง 1 ประโยคสั้นๆ กระชับ (เช่น ทักษะการคิดวิเคราะห์เชิงวิพากษ์, ทักษะการประยุกต์ใช้ทฤษฎี)" },
-                            allow: { type: "STRING", description: "อนุญาตให้นักเรียนใช้ AI ทำอะไรได้บ้างในงานนี้ (อธิบายสั้นๆ)" },
-                            disallow: { type: "STRING", description: "ห้าม AI ทำอะไรแทนเด็ดขาด เพราะเป็นหัวใจที่นักเรียนต้องลงมือเอง (อธิบายสั้นๆ)" }
-                        }
-                    }
-                }
-            };
-
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-            const delays = [1000, 2000, 4000, 8000, 16000];
+        <script>
+            // ⚠️ สำคัญมาก: เอา API Key จาก Google AI Studio มาใส่ในเครื่องหมายคำพูดด้านล่างนี้
+            const geminiApiKey = "AIzaSyCztp0Ft-Q6hneAM92n5kK57anHfw2aYRw"; 
             
-            for (let i = 0; i < 5; i++) {
+            // UI Elements
+            const s1 = document.getElementById('step-1');
+            const sLoad = document.getElementById('step-loading');
+            const s2 = document.getElementById('step-2');
+            const sRefine = document.getElementById('step-refine');
+            const sSuccess = document.getElementById('step-success');
+            
+            const taskInput = document.getElementById('task-input');
+            const refineInput = document.getElementById('refine-input');
+            const resultOutcome = document.getElementById('result-outcome');
+            const finalOutcomeText = document.getElementById('final-outcome-text');
+            const ruleAllow = document.getElementById('rule-allow');
+            const ruleDisallow = document.getElementById('rule-disallow');
+            const loadingText = document.getElementById('loading-text');
+
+            let currentAnalysis = null;
+
+            // ฟังก์ชันเรียก Gemini API จริง
+            async function fetchAIAnalysis(task, refine = "") {
+                if(geminiApiKey === "ใส่_API_KEY_ของคุณที่นี่" || geminiApiKey === "") {
+                    throw new Error("คุณยังไม่ได้ใส่ API Key ในโค้ดครับ กรุณาใส่รหัสก่อนใช้งาน");
+                }
+
+                let promptText = `คุณคือผู้เชี่ยวชาญด้านวิชาการและการออกแบบการประเมินผล (Instructional Design) จงสกัด 'แก่นการเรียนรู้ (Outcome)' ออกมาให้ชัดเจน\n\nโจทย์/การบ้าน: "${task}"\n`;
+                if (refine) {
+                    promptText += `\nข้อเสนอแนะเพิ่มเติมจากครูเพื่อปรับแก่นให้ตรงใจ: "${refine}"\n`;
+                }
+                
+                promptText += `\nกรุณาวิเคราะห์และตอบกลับเป็นรูปแบบ JSON เท่านั้น โดยใช้โครงสร้างนี้เป๊ะๆ:
+                {
+                    "outcome": "ระบุเป้าหมายการเรียนรู้ที่แท้จริง หรือทักษะแก่นแท้ที่เด็กต้องได้ 1 ประโยคสั้นๆ กระชับ",
+                    "allow": "สิ่งที่อนุญาตให้นักเรียนใช้ AI ทำได้ เพื่อเป็นผู้ช่วยในงานนี้ (อธิบายสั้นๆ)",
+                    "disallow": "สิ่งที่ห้าม AI ทำแทนเด็ดขาด เพราะเป็นหัวใจที่นักเรียนต้องลงมือคิดและทำเอง (อธิบายสั้นๆ)"
+                }`;
+
+                const payload = {
+                    contents: [{ parts: [{ text: promptText }] }],
+                    generationConfig: {
+                        responseMimeType: "application/json"
+                    }
+                };
+
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiApiKey}`;
+                
                 try {
                     const response = await fetch(url, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(payload)
                     });
-                    if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+                    
+                    if (!response.ok) {
+                        const errText = await response.text();
+                        throw new Error(`เชื่อมต่อไม่สำเร็จ (HTTP ${response.status})`);
+                    }
+                    
                     const result = await response.json();
                     const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
-                    if(!text) throw new Error("Empty response");
-                    return JSON.parse(text);
+                    if(!text) throw new Error("AI ไม่สามารถสร้างคำตอบได้");
+                    
+                    // ทำความสะอาด JSON เผื่อ AI ใส่ ```json มาให้
+                    let cleanText = text.replace(/```json/gi, '').replace(/```/g, '').trim();
+                    return JSON.parse(cleanText);
+                    
                 } catch (e) {
-                    if (i === 4) throw e;
-                    await new Promise(res => setTimeout(res, delays[i]));
+                    throw e;
                 }
             }
-        }
 
-        // ฟังก์ชันจัดการ UI (Slide)
-        function showStep(el) {
-            [s1, s2, sRefine, sSuccess].forEach(step => {
-                step.classList.remove('translate-x-0', 'translate-x-[-100%]');
-                step.classList.add('translate-x-full'); 
-                step.style.opacity = '0';
-                step.style.pointerEvents = 'none';
+            function showStep(el) {
+                [s1, s2, sRefine, sSuccess].forEach(step => {
+                    step.classList.remove('translate-x-0', 'translate-x-[-100%]');
+                    step.classList.add('translate-x-full'); 
+                    step.style.opacity = '0';
+                    step.style.pointerEvents = 'none';
+                });
+                setTimeout(() => {
+                    el.classList.remove('translate-x-full');
+                    el.classList.add('translate-x-0');
+                    el.style.opacity = '1';
+                    el.style.pointerEvents = 'auto';
+                }, 50); 
+            }
+
+            function showLoading(msg, hideEl) {
+                hideEl.style.opacity = '0'; hideEl.style.pointerEvents = 'none'; hideEl.classList.add('translate-x-[-100%]');
+                loadingText.innerText = msg; sLoad.style.opacity = '1'; sLoad.style.pointerEvents = 'auto';
+            }
+
+            function hideLoading() { sLoad.style.opacity = '0'; sLoad.style.pointerEvents = 'none'; }
+
+            document.getElementById('btn-analyze').addEventListener('click', async () => {
+                const task = taskInput.value.trim();
+                if(!task) { alert("กรุณาพิมพ์รายละเอียดการบ้านก่อนครับ"); return; }
+                
+                showLoading("AI กำลังวิเคราะห์ความคิดของคุณครู...", s1);
+                
+                try {
+                    currentAnalysis = await fetchAIAnalysis(task);
+                    resultOutcome.innerText = `"${currentAnalysis.outcome}"`;
+                    hideLoading();
+                    showStep(s2);
+                } catch (error) {
+                    hideLoading();
+                    alert("ข้อผิดพลาด: " + error.message);
+                    showStep(s1);
+                }
             });
 
-            setTimeout(() => {
-                el.classList.remove('translate-x-full');
-                el.classList.add('translate-x-0');
-                el.style.opacity = '1';
-                el.style.pointerEvents = 'auto';
-            }, 50); 
-        }
+            document.getElementById('btn-reject').addEventListener('click', () => { showStep(sRefine); });
 
-        function showLoading(msg, hideEl) {
-            hideEl.style.opacity = '0';
-            hideEl.style.pointerEvents = 'none';
-            hideEl.classList.add('translate-x-[-100%]');
-            
-            loadingText.innerText = msg;
-            sLoad.style.opacity = '1';
-            sLoad.style.pointerEvents = 'auto';
-        }
+            document.getElementById('btn-reanalyze').addEventListener('click', async () => {
+                const refine = refineInput.value.trim();
+                if(!refine) { alert("กรุณาพิมพ์ข้อเสนอแนะให้ AI ก่อนครับ"); return; }
+                
+                showLoading("AI กำลังปรับจูนมุมมองใหม่...", sRefine);
+                
+                try {
+                    currentAnalysis = await fetchAIAnalysis(taskInput.value, refine);
+                    resultOutcome.innerText = `"${currentAnalysis.outcome}"`;
+                    hideLoading();
+                    showStep(s2);
+                } catch (error) {
+                    hideLoading();
+                    alert("ข้อผิดพลาด: " + error.message);
+                    showStep(sRefine);
+                }
+            });
 
-        function hideLoading() {
-            sLoad.style.opacity = '0';
-            sLoad.style.pointerEvents = 'none';
-        }
+            document.getElementById('btn-accept').addEventListener('click', () => {
+                if(currentAnalysis) {
+                    finalOutcomeText.innerText = currentAnalysis.outcome;
+                    ruleAllow.innerText = currentAnalysis.allow;
+                    ruleDisallow.innerText = currentAnalysis.disallow;
+                    showStep(sSuccess);
+                }
+            });
 
-        // กดปุ่มกระเทาะแก่นรอบแรก
-        document.getElementById('btn-analyze').addEventListener('click', async () => {
-            const task = taskInput.value.trim();
-            if(!task) { alert("กรุณาพิมพ์รายละเอียดการบ้านก่อนครับ"); return; }
-            
-            showLoading("AI กำลังวิเคราะห์เจตนารมณ์ของคุณครู...", s1);
-            
-            try {
-                currentAnalysis = await fetchAIAnalysis(task);
-                resultOutcome.innerText = `"${currentAnalysis.outcome}"`;
-                hideLoading();
-                showStep(s2);
-            } catch (error) {
-                hideLoading();
-                alert("ระบบ AI ขัดข้องชั่วคราว กรุณาลองใหม่อีกครั้ง");
+            document.getElementById('btn-back-1').addEventListener('click', () => { showStep(s2); });
+
+            window.resetDistiller = function() {
+                taskInput.value = ''; refineInput.value = ''; currentAnalysis = null;
                 showStep(s1);
             }
-        });
-
-        // ไม่ตรงใจ (ไปหน้าปรับจูน)
-        document.getElementById('btn-reject').addEventListener('click', () => { showStep(sRefine); });
-
-        // วิเคราะห์ใหม่ด้วยคำแนะนำจากครู
-        document.getElementById('btn-reanalyze').addEventListener('click', async () => {
-            const refine = refineInput.value.trim();
-            if(!refine) { alert("กรุณาพิมพ์ข้อเสนอแนะให้ AI ก่อนครับ"); return; }
             
-            showLoading("AI กำลังปรับจูนมุมมองใหม่...", sRefine);
-            
-            try {
-                currentAnalysis = await fetchAIAnalysis(taskInput.value, refine);
-                resultOutcome.innerText = `"${currentAnalysis.outcome}"`;
-                hideLoading();
-                showStep(s2);
-            } catch (error) {
-                hideLoading();
-                alert("ระบบ AI ขัดข้องชั่วคราว กรุณาลองใหม่อีกครั้ง");
-                showStep(sRefine);
-            }
-        });
-
-        // ตรงใจแล้ว! (ไปดูหน้ากติกา)
-        document.getElementById('btn-accept').addEventListener('click', () => {
-            if(currentAnalysis) {
-                finalOutcomeText.innerText = currentAnalysis.outcome;
-                ruleAllow.innerText = currentAnalysis.allow;
-                ruleDisallow.innerText = currentAnalysis.disallow;
-                showStep(sSuccess);
-            }
-        });
-
-        document.getElementById('btn-back-1').addEventListener('click', () => { showStep(s2); });
-
-        // ล้างระบบเริ่มใหม่
-        window.resetDistiller = function() {
-            taskInput.value = '';
-            refineInput.value = '';
-            currentAnalysis = null;
-            showStep(s1);
-        }
-        
-        setTimeout(() => { showStep(s1); }, 100);
-    </script>
-</body>
-</html>
+            setTimeout(() => { showStep(s1); }, 100);
+        </script>
         <!-- Session 2.2: The Outcome -->
         
         <!-- Session 2: AI-Powered Lesson Design -->
