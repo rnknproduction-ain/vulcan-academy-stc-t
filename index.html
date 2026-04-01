@@ -99,7 +99,8 @@
 
     <!-- Main Content -->
     <main id="main-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-24 relative z-20" role="main">
-        <!-- Word cloud Section -->
+        
+         <!-- Hero Section -->
         <section class="text-center pt-8" aria-labelledby="hero-title">
             <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-100 text-blue-700 font-semibold text-sm mb-6 shadow-sm">
                 <i class="fas fa-lightbulb text-yellow-500" aria-hidden="true"></i>
@@ -119,56 +120,74 @@
                 </a>
             </div>
         </section>
-
-        <section id="session1" class="scroll-mt-32" aria-labelledby="heading-s1">
+        <!-- Hero Section -->
+        
+        <!-- Word cloud Section -->
+        <section id="session1" class="scroll-mt-32">
             <div class="flex flex-col lg:flex-row gap-8 items-start">
                 
                 <div class="lg:w-4/12">
                     <div class="inline-block bg-indigo-100 text-indigo-700 px-3 py-1 rounded-lg text-sm font-bold mb-4">Session 1 • 15 Mins</div>
-                    <h2 id="heading-s1" class="text-3xl font-bold mb-6 text-slate-900" data-i18n="s1_title">AI Literacy & Mindset</h2>
+                    <h2 class="text-3xl font-bold mb-6 text-slate-900">AI Literacy & Mindset</h2>
                     
-                    <div class="bg-amber-50 border-l-4 border-amber-400 p-5 rounded-r-xl mb-6" role="note" aria-label="เคล็ดลับ">
+                    <div class="bg-amber-50 border-l-4 border-amber-400 p-5 rounded-r-xl mb-6">
                         <h3 class="font-bold text-amber-800 flex items-center gap-2 mb-2">
-                            <i class="fas fa-quote-left" aria-hidden="true"></i> 
+                            <i class="fas fa-quote-left"></i> 
                             <span>AI is your Intern!</span>
                         </h3>
-                        <p class="text-amber-900 text-sm">"มอง AI เป็นเด็กฝึกงานที่มีประสบการณ์น้อย มันเดาคำเก่ง แต่เราต้องสั่งงานให้ชัดเจน และตรวจสอบความถูกต้องเสมอ"</p>
+                        <p class="text-amber-900 text-sm">"มอง AI เป็นเด็กฝึกงานที่เดาคำเก่ง ครูต้องเป็นผู้ตรวจสอบความถูกต้องเสมอ"</p>
                     </div>
 
-                    <div class="space-y-3">
-                        <h4 class="font-bold text-slate-800 text-lg">สูตร 4 Pillars of Prompting</h4>
-                        <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm text-sm"><span class="text-blue-600 font-bold">1. Role:</span> สวมบทบาทให้ AI</div>
-                        <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm text-sm"><span class="text-blue-600 font-bold">2. Context:</span> บอกบริบท/ข้อจำกัด</div>
-                        <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm text-sm"><span class="text-blue-600 font-bold">3. Task:</span> สั่งภารกิจให้ชัดเจน</div>
-                        <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm text-sm"><span class="text-blue-600 font-bold">4. Format:</span> กำหนดรูปแบบผลลัพธ์</div>
+                    <div class="bg-slate-800 p-4 rounded-2xl text-white">
+                        <h4 class="text-xs font-bold text-slate-400 uppercase mb-3 flex items-center gap-2">
+                            <i class="fas fa-user-shield"></i> สำหรับผู้ควบคุม (Admin)
+                        </h4>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button id="btn-reset-data" class="bg-rose-600 hover:bg-rose-700 py-2 px-3 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2">
+                                <i class="fas fa-trash"></i> ล้างข้อมูล
+                            </button>
+                            <button id="btn-lock-toggle" class="bg-slate-600 hover:bg-slate-500 py-2 px-3 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2">
+                                <i id="lock-icon" class="fas fa-unlock"></i> <span id="lock-text">ล็อกการส่ง</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
                 <div class="lg:w-8/12 w-full">
                     <div class="bg-white p-6 md:p-8 rounded-3xl shadow-lg border border-slate-200">
-                        <h3 class="text-2xl font-bold mb-2 text-slate-800 flex items-center gap-3">
-                            <div class="bg-gradient-to-r from-blue-500 to-purple-500 text-white p-2 rounded-lg" aria-hidden="true"><i class="fas fa-cloud"></i></div>
-                            ความรู้สึกแรกที่มีต่อ AI?
-                        </h3>
-                        <p class="text-slate-500 text-sm mb-4">พิมพ์ความรู้สึกของคุณ แล้วกดส่งขึ้นจอได้เลย! (Live Word Cloud)</p>
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-slate-800 flex items-center gap-3">
+                                    <div class="bg-gradient-to-r from-blue-500 to-purple-500 text-white p-2 rounded-lg"><i class="fas fa-cloud"></i></div>
+                                    ความรู้สึกแรกที่มีต่อ AI?
+                                </h3>
+                            </div>
+                            <div id="status-badge" class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold">เปิดรับคำตอบ</div>
+                        </div>
                         
-                        <div id="live-board" class="relative w-full h-64 bg-slate-900 rounded-2xl overflow-hidden mb-6 border-4 border-slate-800 shadow-inner flex items-center justify-center">
-                            <div id="word-cloud-container" class="absolute inset-0 p-4 flex flex-wrap content-center justify-center gap-2 overflow-hidden"></div>
+                        <div id="live-board" class="relative w-full h-64 bg-slate-900 rounded-2xl overflow-hidden mb-6 border-4 border-slate-800 shadow-inner flex items-center justify-center group">
+                            
+                            <button id="btn-fullscreen" class="absolute top-3 right-3 z-50 bg-white/10 hover:bg-white/30 text-white p-2 rounded-lg backdrop-blur-sm transition opacity-0 group-hover:opacity-100" title="ขยายเต็มจอ">
+                                <i id="fullscreen-icon" class="fas fa-expand"></i>
+                            </button>
+
+                            <div id="word-cloud-container" class="absolute inset-0 p-8 flex flex-wrap content-center justify-center gap-3 overflow-hidden"></div>
                             <span id="waiting-text" class="text-slate-500 font-mono animate-pulse">รอรับข้อความจากคุณครู...</span>
                         </div>
 
-                        <div class="flex flex-col sm:flex-row gap-4">
+                        <div id="input-area" class="flex flex-col sm:flex-row gap-4">
                             <div class="flex-1 flex gap-2">
-                                <input type="text" id="feeling-input" maxlength="25" placeholder="เช่น ตื่นเต้น, กลัวตกงาน, อยากลอง..." class="w-full border border-slate-300 rounded-xl p-3 bg-slate-50 text-slate-800 focus:ring-2 focus:ring-purple-500 outline-none">
-                                <button id="btn-send-feeling" class="bg-purple-600 hover:bg-purple-700 text-white px-6 font-bold rounded-xl transition shadow-md">ส่ง</button>
+                                <input type="text" id="feeling-input" maxlength="25" placeholder="พิมพ์ความรู้สึกที่นี่..." class="w-full border border-slate-300 rounded-xl p-3 bg-slate-50 text-slate-800 focus:ring-2 focus:ring-purple-500 outline-none disabled:bg-slate-200 disabled:cursor-not-allowed">
+                                <button id="btn-send-feeling" class="bg-purple-600 hover:bg-purple-700 text-white px-6 font-bold rounded-xl transition shadow-md disabled:bg-slate-400">ส่ง</button>
                             </div>
                             <div class="flex gap-2 justify-center bg-slate-100 p-2 rounded-xl border border-slate-200">
-                                <button class="emoji-btn text-2xl hover:scale-125 transition-transform" data-emoji="🚀">🚀</button>
-                                <button class="emoji-btn text-2xl hover:scale-125 transition-transform" data-emoji="💡">💡</button>
-                                <button class="emoji-btn text-2xl hover:scale-125 transition-transform" data-emoji="😲">😲</button>
-                                <button class="emoji-btn text-2xl hover:scale-125 transition-transform" data-emoji="💖">💖</button>
+                                <button class="emoji-btn text-2xl hover:scale-125 transition-transform disabled:opacity-50" data-emoji="🚀">🚀</button>
+                                <button class="emoji-btn text-2xl hover:scale-125 transition-transform disabled:opacity-50" data-emoji="💡">💡</button>
+                                <button class="emoji-btn text-2xl hover:scale-125 transition-transform disabled:opacity-50" data-emoji="😲">😲</button>
+                                <button class="emoji-btn text-2xl hover:scale-125 transition-transform disabled:opacity-50" data-emoji="💖">💖</button>
                             </div>
                         </div>
+                        <p id="lock-msg" class="hidden text-center text-rose-600 font-bold mt-4 animate-bounce"><i class="fas fa-lock mr-2"></i> ปิดรับคำตอบชั่วคราว</p>
                     </div>
                 </div>
             </div>
@@ -176,9 +195,8 @@
 
         <script type="module">
             import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-            import { getDatabase, ref, push, onValue, onChildAdded } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+            import { getDatabase, ref, push, onValue, onChildAdded, remove, set } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
 
-            // กุญแจของอิน
             const firebaseConfig = {
                 apiKey: "AIzaSyBobhdPkqOoIY1fpZq6AAkipLC30QMiSgE",
                 authDomain: "vulcan-academy.firebaseapp.com",
@@ -192,99 +210,155 @@
 
             const app = initializeApp(firebaseConfig);
             const db = getDatabase(app);
-            
-            // อ้างอิงฐานข้อมูล
             const wordsRef = ref(db, 'workshop/words');
             const emojisRef = ref(db, 'workshop/emojis');
+            const settingsRef = ref(db, 'workshop/settings');
 
             const wordInput = document.getElementById('feeling-input');
             const sendBtn = document.getElementById('btn-send-feeling');
             const cloudContainer = document.getElementById('word-cloud-container');
             const waitingText = document.getElementById('waiting-text');
             const board = document.getElementById('live-board');
+            
+            // ปุ่ม Admin และ Fullscreen
+            const btnReset = document.getElementById('btn-reset-data');
+            const btnLockToggle = document.getElementById('btn-lock-toggle');
+            const btnFullscreen = document.getElementById('btn-fullscreen');
+            const fullscreenIcon = document.getElementById('fullscreen-icon');
+            let isLocked = false;
 
-            // 1. ส่งคำ (Word)
+            // --- ระบบ Fullscreen ---
+            btnFullscreen.addEventListener('click', () => {
+                if (!document.fullscreenElement) {
+                    board.requestFullscreen().catch(err => {
+                        console.error(`Error attempting to enable fullscreen: ${err.message}`);
+                    });
+                } else {
+                    document.exitFullscreen();
+                }
+            });
+
+            // ตรวจจับเมื่อมีการเข้า/ออก Fullscreen เพื่อเปลี่ยนไอคอนและปรับสไตล์
+            document.addEventListener('fullscreenchange', () => {
+                if (document.fullscreenElement) {
+                    fullscreenIcon.classList.replace('fa-expand', 'fa-compress');
+                    board.classList.replace('rounded-2xl', 'rounded-none');
+                    board.classList.replace('border-4', 'border-0');
+                    board.classList.replace('h-64', 'h-screen'); // ให้เต็มความสูงจอ
+                } else {
+                    fullscreenIcon.classList.replace('fa-compress', 'fa-expand');
+                    board.classList.replace('rounded-none', 'rounded-2xl');
+                    board.classList.replace('border-0', 'border-4');
+                    board.classList.replace('h-screen', 'h-64'); // กลับมาสูงเท่าเดิม
+                }
+            });
+
+            // --- ระบบ Lock / Unlock ---
+            onValue(settingsRef, (snapshot) => {
+                const settings = snapshot.val();
+                isLocked = settings?.isLocked || false;
+                
+                wordInput.disabled = isLocked;
+                sendBtn.disabled = isLocked;
+                document.querySelectorAll('.emoji-btn').forEach(b => b.disabled = isLocked);
+                
+                const statusBadge = document.getElementById('status-badge');
+                const lockMsg = document.getElementById('lock-msg');
+                const lockIcon = document.getElementById('lock-icon');
+                const lockText = document.getElementById('lock-text');
+
+                if (isLocked) {
+                    statusBadge.innerText = "ปิดรับคำตอบ";
+                    statusBadge.className = "bg-rose-100 text-rose-700 px-3 py-1 rounded-full text-xs font-bold";
+                    lockMsg.classList.remove('hidden');
+                    lockIcon.className = "fas fa-lock-open";
+                    lockText.innerText = "ปลดล็อก";
+                    btnLockToggle.className = "bg-emerald-600 hover:bg-emerald-700 py-2 px-3 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2";
+                } else {
+                    statusBadge.innerText = "เปิดรับคำตอบ";
+                    statusBadge.className = "bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold";
+                    lockMsg.classList.add('hidden');
+                    lockIcon.className = "fas fa-lock";
+                    lockText.innerText = "ล็อกการส่ง";
+                    btnLockToggle.className = "bg-slate-600 hover:bg-slate-500 py-2 px-3 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2";
+                }
+            });
+
+            btnLockToggle.addEventListener('click', () => {
+                set(settingsRef, { isLocked: !isLocked });
+            });
+
+            // --- ระบบ Reset ข้อมูล ---
+            btnReset.addEventListener('click', () => {
+                if(confirm('คุณแน่ใจหรือไม่ว่าต้องการล้างข้อความทั้งหมดบนหน้าจอ?')) {
+                    remove(wordsRef);
+                    remove(emojisRef);
+                    cloudContainer.innerHTML = '';
+                    waitingText.style.display = 'block';
+                }
+            });
+
+            // --- ส่งคำ ---
             sendBtn.addEventListener('click', () => {
+                if(isLocked) return;
                 const word = wordInput.value.trim();
                 if(word.length > 0) {
                     push(wordsRef, { text: word, time: Date.now() });
                     wordInput.value = '';
                 }
             });
+
             wordInput.addEventListener('keypress', (e) => {
                 if(e.key === 'Enter') sendBtn.click();
             });
 
-            // 2. ส่ง Emoji
+            // --- ส่ง Emoji ---
             document.querySelectorAll('.emoji-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
+                    if(isLocked) return;
                     push(emojisRef, { emoji: e.target.dataset.emoji, time: Date.now() });
                 });
             });
 
-            // 3. รับคำมาทำ Word Cloud (นับคำซ้ำแล้วขยายขนาด)
+            // --- แสดงผล Word Cloud ---
             onValue(wordsRef, (snapshot) => {
                 const data = snapshot.val();
                 cloudContainer.innerHTML = ''; 
-                if(!data) return;
-                
+                if(!data) {
+                    waitingText.style.display = 'block';
+                    return;
+                }
                 waitingText.style.display = 'none';
-                
-                // นับความถี่ของคำ
                 const wordCounts = {};
                 Object.values(data).forEach(item => {
-                    const w = item.text.toUpperCase(); // ทำให้ตัวพิมพ์เล็ก/ใหญ่เป็นคำเดียวกัน
+                    const w = item.text.toUpperCase();
                     wordCounts[w] = (wordCounts[w] || 0) + 1;
                 });
-
-                // สร้าง Element บนหน้าจอ
-                const colors = ['text-emerald-300', 'text-blue-300', 'text-purple-300', 'text-pink-300', 'text-yellow-300'];
-                
+                const colors = ['text-emerald-300', 'text-blue-300', 'text-purple-300', 'text-pink-300', 'text-yellow-300', 'text-cyan-300'];
                 Object.entries(wordCounts).forEach(([word, count]) => {
                     const span = document.createElement('span');
                     span.innerText = word;
-                    // ขนาดจะใหญ่ขึ้นตามจำนวนคนพิมพ์ (ขั้นต่ำ text-sm, ใหญ่สุด text-5xl)
-                    let sizeClass = 'text-sm';
-                    if (count === 2) sizeClass = 'text-lg font-semibold';
-                    else if (count === 3) sizeClass = 'text-2xl font-bold';
-                    else if (count >= 4) sizeClass = 'text-4xl md:text-5xl font-extrabold';
-                    
-                    const randomColor = colors[Math.floor(Math.random() * colors.length)];
-                    
-                    span.className = `${sizeClass} ${randomColor} m-1 transition-all duration-500 hover:scale-110 cursor-default`;
+                    // ปรับขนาดให้อลังการขึ้นเวลาแสดงผล
+                    let sizeClass = count >= 4 ? 'text-5xl md:text-7xl font-extrabold drop-shadow-lg' : (count === 3 ? 'text-3xl md:text-4xl font-bold' : (count === 2 ? 'text-xl font-semibold' : 'text-base'));
+                    span.className = `${sizeClass} ${colors[Math.floor(Math.random() * colors.length)]} m-2 transition-all duration-500 hover:scale-110 cursor-default`;
                     cloudContainer.appendChild(span);
                 });
             });
 
-            // 4. รับ Emoji มาทำ Animation ลอยขึ้น
+            // --- Emoji Animation ---
             onChildAdded(emojisRef, (data) => {
-                waitingText.style.display = 'none';
-                const emojiStr = data.val().emoji;
-                
                 const emojiEl = document.createElement('div');
-                emojiEl.innerText = emojiStr;
-                emojiEl.className = 'absolute text-3xl pointer-events-none';
-                
-                // สุ่มตำแหน่งเริ่มต้นด้านล่าง
-                const leftPos = Math.random() * 90; 
-                emojiEl.style.left = `${leftPos}%`;
+                emojiEl.innerText = data.val().emoji;
+                // ให้ Emoji ขนาดใหญ่ขึ้นนิดนึง
+                emojiEl.className = 'absolute text-4xl md:text-5xl pointer-events-none drop-shadow-md';
+                emojiEl.style.left = `${Math.random() * 90}%`;
                 emojiEl.style.bottom = '-20px';
-                
                 board.appendChild(emojiEl);
-                
-                // อนิเมชั่นลอยขึ้นแล้วหายไป
-                let bottomPos = -20;
-                let opacity = 1;
+                let bottom = -20; let opacity = 1;
                 const anim = setInterval(() => {
-                    bottomPos += 2;
-                    opacity -= 0.01;
-                    emojiEl.style.bottom = `${bottomPos}px`;
-                    emojiEl.style.opacity = opacity;
-                    
-                    if(opacity <= 0) {
-                        clearInterval(anim);
-                        emojiEl.remove();
-                    }
+                    bottom += 3; opacity -= 0.008; // ลอยเร็วขึ้นและอยู่นานขึ้นนิดหน่อย
+                    emojiEl.style.bottom = `${bottom}px`; emojiEl.style.opacity = opacity;
+                    if(opacity <= 0) { clearInterval(anim); emojiEl.remove(); }
                 }, 20);
             });
         </script>
