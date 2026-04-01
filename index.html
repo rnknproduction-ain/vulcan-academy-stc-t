@@ -138,31 +138,36 @@
                         <p class="text-amber-900 text-sm">"มอง AI เป็นเด็กฝึกงานที่เดาคำเก่ง ครูต้องเป็นผู้ตรวจสอบความถูกต้องเสมอ"</p>
                     </div>
 
-                    <div class="bg-slate-800 p-4 rounded-2xl text-white">
-                        <h4 class="text-xs font-bold text-slate-400 uppercase mb-3 flex items-center gap-2">
-                            <i class="fas fa-user-shield"></i> สำหรับผู้ควบคุม (Admin)
-                        </h4>
-                        <div class="grid grid-cols-2 gap-2">
-                            <button id="btn-reset-data" class="bg-rose-600 hover:bg-rose-700 py-2 px-3 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2">
-                                <i class="fas fa-trash"></i> ล้างข้อมูล
-                            </button>
-                            <button id="btn-lock-toggle" class="bg-slate-600 hover:bg-slate-500 py-2 px-3 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2">
-                                <i id="lock-icon" class="fas fa-unlock"></i> <span id="lock-text">ล็อกการส่ง</span>
-                            </button>
-                        </div>
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-slate-800 text-lg">สูตร 4 Pillars of Prompting</h4>
+                        <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm text-sm"><span class="text-blue-600 font-bold">1. Role:</span> สวมบทบาทให้ AI</div>
+                        <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm text-sm"><span class="text-blue-600 font-bold">2. Context:</span> บอกบริบท/ข้อจำกัด</div>
+                        <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm text-sm"><span class="text-blue-600 font-bold">3. Task:</span> สั่งภารกิจให้ชัดเจน</div>
+                        <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm text-sm"><span class="text-blue-600 font-bold">4. Format:</span> กำหนดรูปแบบผลลัพธ์</div>
                     </div>
                 </div>
 
                 <div class="lg:w-8/12 w-full">
                     <div class="bg-white p-6 md:p-8 rounded-3xl shadow-lg border border-slate-200">
-                        <div class="flex justify-between items-start mb-4">
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-4">
                             <div>
                                 <h3 class="text-2xl font-bold text-slate-800 flex items-center gap-3">
                                     <div class="bg-gradient-to-r from-blue-500 to-purple-500 text-white p-2 rounded-lg"><i class="fas fa-cloud"></i></div>
                                     ความรู้สึกแรกที่มีต่อ AI?
                                 </h3>
                             </div>
-                            <div id="status-badge" class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold">เปิดรับคำตอบ</div>
+                            
+                            <div class="flex items-center gap-3">
+                                <div class="flex gap-1 border-r border-slate-200 pr-3">
+                                    <button id="btn-reset-data" class="w-8 h-8 rounded-full flex items-center justify-center text-slate-400 hover:text-rose-500 hover:bg-rose-50 transition-colors" title="ล้างข้อมูลทั้งหมด (Admin)">
+                                        <i class="fas fa-trash-alt text-sm"></i>
+                                    </button>
+                                    <button id="btn-lock-toggle" class="w-8 h-8 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors" title="ล็อก/ปลดล็อกการส่ง (Admin)">
+                                        <i id="lock-icon" class="fas fa-unlock text-sm"></i>
+                                    </button>
+                                </div>
+                                <div id="status-badge" class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap">เปิดรับคำตอบ</div>
+                            </div>
                         </div>
                         
                         <div id="live-board" class="relative w-full h-64 bg-slate-900 rounded-2xl overflow-hidden mb-6 border-4 border-slate-800 shadow-inner flex items-center justify-center group">
@@ -238,18 +243,17 @@
                 }
             });
 
-            // ตรวจจับเมื่อมีการเข้า/ออก Fullscreen เพื่อเปลี่ยนไอคอนและปรับสไตล์
             document.addEventListener('fullscreenchange', () => {
                 if (document.fullscreenElement) {
                     fullscreenIcon.classList.replace('fa-expand', 'fa-compress');
                     board.classList.replace('rounded-2xl', 'rounded-none');
                     board.classList.replace('border-4', 'border-0');
-                    board.classList.replace('h-64', 'h-screen'); // ให้เต็มความสูงจอ
+                    board.classList.replace('h-64', 'h-screen');
                 } else {
                     fullscreenIcon.classList.replace('fa-compress', 'fa-expand');
                     board.classList.replace('rounded-none', 'rounded-2xl');
                     board.classList.replace('border-0', 'border-4');
-                    board.classList.replace('h-screen', 'h-64'); // กลับมาสูงเท่าเดิม
+                    board.classList.replace('h-screen', 'h-64');
                 }
             });
 
@@ -265,22 +269,17 @@
                 const statusBadge = document.getElementById('status-badge');
                 const lockMsg = document.getElementById('lock-msg');
                 const lockIcon = document.getElementById('lock-icon');
-                const lockText = document.getElementById('lock-text');
 
                 if (isLocked) {
                     statusBadge.innerText = "ปิดรับคำตอบ";
-                    statusBadge.className = "bg-rose-100 text-rose-700 px-3 py-1 rounded-full text-xs font-bold";
+                    statusBadge.className = "bg-rose-100 text-rose-700 px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap";
                     lockMsg.classList.remove('hidden');
-                    lockIcon.className = "fas fa-lock-open";
-                    lockText.innerText = "ปลดล็อก";
-                    btnLockToggle.className = "bg-emerald-600 hover:bg-emerald-700 py-2 px-3 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2";
+                    lockIcon.className = "fas fa-lock text-rose-500"; // เปลี่ยนไอคอนเป็นรูปล็อคสีแดง
                 } else {
                     statusBadge.innerText = "เปิดรับคำตอบ";
-                    statusBadge.className = "bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold";
+                    statusBadge.className = "bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap";
                     lockMsg.classList.add('hidden');
-                    lockIcon.className = "fas fa-lock";
-                    lockText.innerText = "ล็อกการส่ง";
-                    btnLockToggle.className = "bg-slate-600 hover:bg-slate-500 py-2 px-3 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2";
+                    lockIcon.className = "fas fa-unlock text-sm"; // กลับเป็นรูปปลดล็อคสีเทา
                 }
             });
 
@@ -338,7 +337,6 @@
                 Object.entries(wordCounts).forEach(([word, count]) => {
                     const span = document.createElement('span');
                     span.innerText = word;
-                    // ปรับขนาดให้อลังการขึ้นเวลาแสดงผล
                     let sizeClass = count >= 4 ? 'text-5xl md:text-7xl font-extrabold drop-shadow-lg' : (count === 3 ? 'text-3xl md:text-4xl font-bold' : (count === 2 ? 'text-xl font-semibold' : 'text-base'));
                     span.className = `${sizeClass} ${colors[Math.floor(Math.random() * colors.length)]} m-2 transition-all duration-500 hover:scale-110 cursor-default`;
                     cloudContainer.appendChild(span);
@@ -349,14 +347,13 @@
             onChildAdded(emojisRef, (data) => {
                 const emojiEl = document.createElement('div');
                 emojiEl.innerText = data.val().emoji;
-                // ให้ Emoji ขนาดใหญ่ขึ้นนิดนึง
                 emojiEl.className = 'absolute text-4xl md:text-5xl pointer-events-none drop-shadow-md';
                 emojiEl.style.left = `${Math.random() * 90}%`;
                 emojiEl.style.bottom = '-20px';
                 board.appendChild(emojiEl);
                 let bottom = -20; let opacity = 1;
                 const anim = setInterval(() => {
-                    bottom += 3; opacity -= 0.008; // ลอยเร็วขึ้นและอยู่นานขึ้นนิดหน่อย
+                    bottom += 3; opacity -= 0.008; 
                     emojiEl.style.bottom = `${bottom}px`; emojiEl.style.opacity = opacity;
                     if(opacity <= 0) { clearInterval(anim); emojiEl.remove(); }
                 }, 20);
