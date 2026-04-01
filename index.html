@@ -634,8 +634,8 @@
                 };
 
                 // ใช้ gemini-1.5-flash แน่นอนสุด
-                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey.trim()}`;
-                
+                // เปลี่ยนมาใช้ v1 และ gemini-pro ซึ่งชัวร์ที่สุดสำหรับทุกบัญชี
+                const url = `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${geminiApiKey.trim()}`;
                 try {
                     const response = await fetch(url, {
                         method: 'POST',
