@@ -459,7 +459,7 @@
         </section>
         <!-- Session 2.2: The Outcome -->
         <section id="session2" class="scroll-mt-32">
-            <div class="flex flex-col lg:flex-row gap-8 items-start">
+            <div class="flex flex-col lg:flex-row gap-8 items-start max-w-7xl mx-auto">
                 
                 <div class="lg:w-4/12">
                     <div class="inline-block bg-indigo-100 text-indigo-700 px-3 py-1 rounded-lg text-sm font-bold mb-4">Session 2 • 30 Mins</div>
@@ -484,6 +484,23 @@
                 <div class="lg:w-8/12 w-full">
                     <div class="bg-white p-6 md:p-8 rounded-3xl shadow-lg border border-slate-200 relative overflow-hidden min-h-[480px] flex flex-col">
                         
+                        <div id="security-overlay" class="absolute inset-0 z-50 backdrop-blur-xl bg-slate-900/40 flex flex-col items-center justify-center transition-all duration-500">
+                            <div class="bg-white p-8 rounded-3xl shadow-2xl max-w-sm w-full mx-4 text-center border border-slate-200 transform transition-all">
+                                <div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+                                    <i class="fas fa-lock" id="lock-icon"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-slate-800 mb-2">เฉพาะผู้เข้าร่วม Workshop</h3>
+                                <p class="text-sm text-slate-500 mb-6">กรุณาใส่รหัสผ่านที่คุณครูได้รับจากวิทยากร เพื่อปลดล็อกการใช้งาน AI</p>
+                                
+                                <input type="password" id="workshop-pin" class="w-full border-2 border-slate-200 rounded-xl p-3 text-center text-xl tracking-widest font-bold text-slate-800 focus:border-blue-500 focus:ring-0 outline-none mb-4" placeholder="••••••••">
+                                
+                                <button id="btn-unlock" class="w-full bg-slate-800 hover:bg-blue-600 text-white font-bold py-3 rounded-xl transition shadow-md flex items-center justify-center gap-2">
+                                    ปลดล็อกเครื่องมือ
+                                </button>
+                                <p id="pin-error" class="text-rose-500 text-sm font-bold mt-3 hidden animate-bounce">รหัสผ่านไม่ถูกต้อง!</p>
+                            </div>
+                        </div>
+
                         <div class="mb-6 border-b border-slate-100 pb-4">
                             <h3 class="text-2xl font-bold text-slate-800 flex items-center gap-3">
                                 <div class="bg-gradient-to-r from-blue-500 to-indigo-500 text-white p-2 rounded-lg"><i class="fas fa-brain"></i></div>
@@ -587,10 +604,43 @@
         </section>
 
         <script>
-            // ⚠️ จุดสำคัญที่ 1: ใส่ API Key ในเครื่องหมายคำพูดด้านล่างนี้ (ระวังอย่าให้มีเคาะเว้นวรรคนะคะ)
-            const geminiApiKey = "AIzaSyCztp0Ft-Q6hneAM92n5kK57anHfw2aYRw"; 
+            // ==========================================
+            // 1. ระบบ Lock Screen ป้องกันคนนอก
+            // ==========================================
+            const securityOverlay = document.getElementById('security-overlay');
+            const pinInput = document.getElementById('workshop-pin');
+            const btnUnlock = document.getElementById('btn-unlock');
+            const pinError = document.getElementById('pin-error');
+            const lockIcon = document.getElementById('lock-icon');
+
+            // 🔑 รหัสผ่านสำหรับเข้าใช้งาน (บอกวิทยากรในห้อง)
+            const CORRECT_PIN = "VULCAN2026"; 
+
+            btnUnlock.addEventListener('click', () => {
+                if(pinInput.value.toUpperCase() === CORRECT_PIN) {
+                    lockIcon.classList.replace('fa-lock', 'fa-unlock');
+                    lockIcon.classList.replace('text-blue-600', 'text-emerald-500');
+                    pinError.classList.add('hidden');
+                    setTimeout(() => {
+                        securityOverlay.style.opacity = '0';
+                        setTimeout(() => { securityOverlay.style.display = 'none'; }, 500);
+                    }, 300);
+                } else {
+                    pinError.classList.remove('hidden');
+                    pinInput.value = '';
+                }
+            });
+
+            pinInput.addEventListener('keypress', (e) => {
+                if(e.key === 'Enter') btnUnlock.click();
+            });
+
+
+            // ==========================================
+            // 2. ระบบ AI The Outcome Distiller
+            // ==========================================
+            const geminiApiKey = "AIzaSyCztp0Ft-Q6hneAM92n5kK57anHfw2aYRw"; // API Key ของอิน
             
-            // UI Elements
             const s1 = document.getElementById('step-1');
             const sLoad = document.getElementById('step-loading');
             const s2 = document.getElementById('step-2');
@@ -607,35 +657,27 @@
 
             let currentAnalysis = null;
 
-            // ฟังก์ชันเรียก API หลัก
             async function fetchAIAnalysis(task, refine = "") {
-                if(!geminiApiKey || geminiApiKey === "ใส่_API_KEY_ของคุณที่นี่") {
-                    throw new Error("ยังไม่ได้ระบุ API Key ในโค้ดค่ะ");
-                }
-
                 let promptText = `คุณคือผู้เชี่ยวชาญด้าน Instructional Design จงสกัด 'แก่นการเรียนรู้ (Outcome)' ออกมาให้ชัดเจน\n\nโจทย์/การบ้าน: "${task}"\n`;
                 if (refine) {
-                    promptText += `\nข้อเสนอแนะเพิ่มเติมจากครูเพื่อปรับแก่นให้ตรงใจ: "${refine}"\n`;
+                    promptText += `\nข้อเสนอแนะเพิ่มเติมจากครู: "${refine}"\n`;
                 }
                 
-                promptText += `\nกรุณาวิเคราะห์และตอบกลับเป็นรูปแบบ JSON เท่านั้น โดยใช้โครงสร้างนี้เป๊ะๆ:
+                // บังคับด้วย Prompt เพียวๆ ไม่พึ่งคำสั่งระบบ เพื่อความชัวร์ 100%
+                promptText += `\nกรุณาตอบกลับเป็นรูปแบบ JSON เท่านั้น (ห้ามพิมพ์ข้อความอื่นทักทายเด็ดขาด) โดยใช้โครงสร้างนี้เป๊ะๆ:
                 {
-                    "outcome": "ระบุเป้าหมายการเรียนรู้ที่แท้จริง หรือทักษะแก่นแท้ที่เด็กต้องได้ 1 ประโยคสั้นๆ กระชับ",
-                    "allow": "สิ่งที่อนุญาตให้นักเรียนใช้ AI ทำได้ เพื่อเป็นผู้ช่วยในงานนี้ (อธิบายสั้นๆ)",
-                    "disallow": "สิ่งที่ห้าม AI ทำแทนเด็ดขาด เพราะเป็นหัวใจที่นักเรียนต้องลงมือคิดและทำเอง (อธิบายสั้นๆ)"
+                    "outcome": "เป้าหมายการเรียนรู้ที่แท้จริง 1 ประโยคสั้นๆ",
+                    "allow": "สิ่งที่อนุญาตให้นักเรียนใช้ AI ทำได้ (อธิบายสั้นๆ)",
+                    "disallow": "สิ่งที่ห้าม AI ทำแทนเด็ดขาด (อธิบายสั้นๆ)"
                 }`;
 
                 const payload = {
-                    contents: [{ parts: [{ text: promptText }] }],
-                    generationConfig: {
-                        temperature: 0.7,
-                        responseMimeType: "application/json"
-                    }
+                    contents: [{ parts: [{ text: promptText }] }]
                 };
 
-                // ใช้ gemini-1.5-flash แน่นอนสุด
-                // เปลี่ยนมาใช้ v1 และ gemini-pro ซึ่งชัวร์ที่สุดสำหรับทุกบัญชี
-                const url = `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${geminiApiKey.trim()}`;
+                // ใช้ gemini-pro v1beta ที่ผ่านการทดสอบว่าเสถียรที่สุดสำหรับทุกบัญชี
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${geminiApiKey.trim()}`;
+                
                 try {
                     const response = await fetch(url, {
                         method: 'POST',
@@ -645,23 +687,22 @@
                     
                     if (!response.ok) {
                         const errData = await response.json();
-                        const errorMsg = errData.error?.message || "ไม่ทราบสาเหตุ";
-                        throw new Error(`Google Error: ${errorMsg}`);
+                        throw new Error(errData.error?.message || "ไม่ทราบสาเหตุ");
                     }
                     
                     const result = await response.json();
                     const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
                     if(!text) throw new Error("AI ส่งค่ากลับมาว่างเปล่าค่ะ");
                     
+                    // ทำความสะอาด JSON 
                     let cleanText = text.replace(/```json/gi, '').replace(/```/g, '').trim();
                     return JSON.parse(cleanText);
                     
                 } catch (e) {
-                    throw e; // โยนไปให้ UI จัดการ Alert
+                    throw e; 
                 }
             }
 
-            // --- ส่วนของ UI Transitions ---
             function showStep(el) {
                 [s1, s2, sRefine, sSuccess].forEach(step => {
                     step.classList.remove('translate-x-0', 'translate-x-[-100%]');
@@ -684,7 +725,6 @@
 
             function hideLoading() { sLoad.style.opacity = '0'; sLoad.style.pointerEvents = 'none'; }
 
-            // --- ส่วนของปุ่มกดต่างๆ ---
             document.getElementById('btn-analyze').addEventListener('click', async () => {
                 const task = taskInput.value.trim();
                 if(!task) { alert("กรุณาพิมพ์รายละเอียดการบ้านก่อนครับ"); return; }
@@ -739,10 +779,9 @@
                 showStep(s1);
             }
             
-            // โหลดหน้าแรกสุดตอนเปิดเว็บ
             setTimeout(() => { showStep(s1); }, 100);
         </script>
-        <!-- Session 2.2: The Outcome -->
+          <!-- Session 2.2: The Outcome -->
         
         <!-- Session 2: AI-Powered Lesson Design -->
         <section id="session2" class="scroll-mt-32" aria-labelledby="heading-s2">
