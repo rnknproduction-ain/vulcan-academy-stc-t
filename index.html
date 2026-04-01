@@ -604,42 +604,8 @@
         </section>
 
         <script>
-            // ==========================================
-            // 1. ระบบ Lock Screen ป้องกันคนนอก
-            // ==========================================
-            const securityOverlay = document.getElementById('security-overlay');
-            const pinInput = document.getElementById('workshop-pin');
-            const btnUnlock = document.getElementById('btn-unlock');
-            const pinError = document.getElementById('pin-error');
-            const lockIcon = document.getElementById('lock-icon');
-
-            // 🔑 รหัสผ่านสำหรับเข้าใช้งาน (บอกวิทยากรในห้อง)
-            const CORRECT_PIN = "VULCAN2026"; 
-
-            btnUnlock.addEventListener('click', () => {
-                if(pinInput.value.toUpperCase() === CORRECT_PIN) {
-                    lockIcon.classList.replace('fa-lock', 'fa-unlock');
-                    lockIcon.classList.replace('text-blue-600', 'text-emerald-500');
-                    pinError.classList.add('hidden');
-                    setTimeout(() => {
-                        securityOverlay.style.opacity = '0';
-                        setTimeout(() => { securityOverlay.style.display = 'none'; }, 500);
-                    }, 300);
-                } else {
-                    pinError.classList.remove('hidden');
-                    pinInput.value = '';
-                }
-            });
-
-            pinInput.addEventListener('keypress', (e) => {
-                if(e.key === 'Enter') btnUnlock.click();
-            });
-
-
-            // ==========================================
-            // 2. ระบบ AI The Outcome Distiller
-            // ==========================================
-            const geminiApiKey = "AIzaSyCztp0Ft-Q6hneAM92n5kK57anHfw2aYRw"; // API Key ของอิน
+            // ฝัง API Key ของอินให้เรียบร้อยแล้วค่ะ
+            const geminiApiKey = "AIzaSyCztp0Ft-Q6hneAM92n5kK57anHfw2aYRw"; 
             
             const s1 = document.getElementById('step-1');
             const sLoad = document.getElementById('step-loading');
@@ -663,20 +629,21 @@
                     promptText += `\nข้อเสนอแนะเพิ่มเติมจากครู: "${refine}"\n`;
                 }
                 
-                // บังคับด้วย Prompt เพียวๆ ไม่พึ่งคำสั่งระบบ เพื่อความชัวร์ 100%
-                promptText += `\nกรุณาตอบกลับเป็นรูปแบบ JSON เท่านั้น (ห้ามพิมพ์ข้อความอื่นทักทายเด็ดขาด) โดยใช้โครงสร้างนี้เป๊ะๆ:
+                // บังคับด้วยข้อความล้วนๆ ไม่พึ่งคำสั่งระบบที่ทำให้เกิด Error
+                promptText += `\nกรุณาตอบกลับเป็น JSON เท่านั้น โดยใช้โครงสร้างนี้เป๊ะๆ (ห้ามพิมพ์ข้อความอื่นทักทายเด็ดขาด):
                 {
                     "outcome": "เป้าหมายการเรียนรู้ที่แท้จริง 1 ประโยคสั้นๆ",
                     "allow": "สิ่งที่อนุญาตให้นักเรียนใช้ AI ทำได้ (อธิบายสั้นๆ)",
                     "disallow": "สิ่งที่ห้าม AI ทำแทนเด็ดขาด (อธิบายสั้นๆ)"
                 }`;
 
+                // ถอด generationConfig ออกทั้งหมด เพื่อแก้ปัญหาภาพที่ 2
                 const payload = {
                     contents: [{ parts: [{ text: promptText }] }]
                 };
 
-                // ใช้ gemini-pro v1beta ที่ผ่านการทดสอบว่าเสถียรที่สุดสำหรับทุกบัญชี
-                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${geminiApiKey.trim()}`;
+                // ใช้ v1 (ไม่ใช่ v1beta) รุ่น gemini-pro ที่เสถียรที่สุด แก้ปัญหาภาพที่ 1 และ 3
+                const url = `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${geminiApiKey}`;
                 
                 try {
                     const response = await fetch(url, {
@@ -694,9 +661,13 @@
                     const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
                     if(!text) throw new Error("AI ส่งค่ากลับมาว่างเปล่าค่ะ");
                     
-                    // ทำความสะอาด JSON 
-                    let cleanText = text.replace(/```json/gi, '').replace(/```/g, '').trim();
-                    return JSON.parse(cleanText);
+                    // ระบบค้นหาและสกัดเฉพาะส่วนที่เป็น JSON (กันเหนียวเผื่อ AI พิมพ์น้ำลายหกมาด้วย)
+                    const jsonMatch = text.match(/\{[\s\S]*\}/);
+                    if (jsonMatch) {
+                        return JSON.parse(jsonMatch[0]);
+                    } else {
+                        throw new Error("AI ตอบกลับมาไม่เป็นรูปแบบ JSON ค่ะ");
+                    }
                     
                 } catch (e) {
                     throw e; 
@@ -780,6 +751,34 @@
             }
             
             setTimeout(() => { showStep(s1); }, 100);
+            
+            // ระบบปลดล็อกรหัสผ่าน (VULCAN2026)
+            const securityOverlay = document.getElementById('security-overlay');
+            const pinInput = document.getElementById('workshop-pin');
+            const btnUnlock = document.getElementById('btn-unlock');
+            const pinError = document.getElementById('pin-error');
+            const lockIcon = document.getElementById('lock-icon');
+            const CORRECT_PIN = "VULCAN2026"; 
+
+            if(btnUnlock) {
+                btnUnlock.addEventListener('click', () => {
+                    if(pinInput.value.toUpperCase() === CORRECT_PIN) {
+                        lockIcon.classList.replace('fa-lock', 'fa-unlock');
+                        lockIcon.classList.replace('text-blue-600', 'text-emerald-500');
+                        pinError.classList.add('hidden');
+                        setTimeout(() => {
+                            securityOverlay.style.opacity = '0';
+                            setTimeout(() => { securityOverlay.style.display = 'none'; }, 500);
+                        }, 300);
+                    } else {
+                        pinError.classList.remove('hidden');
+                        pinInput.value = '';
+                    }
+                });
+                pinInput.addEventListener('keypress', (e) => {
+                    if(e.key === 'Enter') btnUnlock.click();
+                });
+            }
         </script>
           <!-- Session 2.2: The Outcome -->
         
