@@ -506,22 +506,22 @@
                                 <div class="bg-gradient-to-r from-blue-500 to-indigo-500 text-white p-2 rounded-lg"><i class="fas fa-brain"></i></div>
                                 เครื่องมือกระเทาะแก่นด้วย AI
                             </h3>
-                            <p class="text-slate-500 text-sm mt-2">พิมพ์รายละเอียดการบ้าน แล้วให้ AI ช่วยวิเคราะห์ "เป้าหมายที่แท้จริง" พร้อมร่างกติกาให้</p>
+                            <p class="text-slate-500 text-sm mt-2">พิมพ์รายละเอียดการบ้าน แล้วให้ระบบช่วยวิเคราะห์ "เป้าหมายที่แท้จริง" พร้อมร่างกติกาให้</p>
                         </div>
 
                         <div class="relative flex-1">
                             <div id="step-1" class="transition-all duration-500 absolute inset-0 bg-white z-10 flex flex-col h-full">
-                                <label class="block text-sm font-bold text-slate-700 mb-2">พิมพ์คำสั่งการบ้าน หรือเนื้อหาที่สอน:</label>
-                                <textarea id="task-input" class="w-full flex-1 border border-slate-300 rounded-xl p-4 bg-slate-50 text-slate-800 resize-none focus:ring-2 focus:ring-blue-500 outline-none transition-all" placeholder="ตัวอย่าง: ให้นักเรียนเขียนเรียงความประวัติศาสตร์อยุธยา 3 หน้ากระดาษ พร้อมวิเคราะห์สาเหตุการเสียกรุง..."></textarea>
+                                <label class="block text-sm font-bold text-slate-700 mb-2">พิมพ์คำสั่งการบ้าน หรือชิ้นงานที่สั่งนักศึกษา:</label>
+                                <textarea id="task-input" class="w-full flex-1 border border-slate-300 rounded-xl p-4 bg-slate-50 text-slate-800 resize-none focus:ring-2 focus:ring-blue-500 outline-none transition-all" placeholder="ตัวอย่าง: ให้นักศึกษาคิดแผนการตลาดสำหรับธุรกิจโรงแรม, เขียนโค้ดแอปพลิเคชัน, หรือทำรายงานวิจัย..."></textarea>
                                 
                                 <button id="btn-analyze" class="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition flex items-center justify-center gap-2 shadow-md">
-                                    <i class="fas fa-magic"></i> ให้ AI ช่วยสกัดแก่นแท้
+                                    <i class="fas fa-magic"></i> ให้ระบบช่วยสกัดแก่นแท้
                                 </button>
                             </div>
 
                             <div id="step-loading" class="transition-all duration-500 opacity-0 pointer-events-none absolute inset-0 flex flex-col items-center justify-center bg-white z-20">
                                 <div class="w-12 h-12 border-4 border-blue-100 border-t-blue-600 rounded-full animate-spin mb-4"></div>
-                                <p class="text-slate-600 font-bold animate-pulse" id="loading-text">AI กำลังวิเคราะห์ความคิดของคุณครู...</p>
+                                <p class="text-slate-600 font-bold animate-pulse" id="loading-text">กำลังวิเคราะห์เจตนารมณ์ของคุณครู...</p>
                             </div>
 
                             <div id="step-2" class="transition-all duration-500 transform translate-x-full absolute inset-0 bg-white z-10 flex flex-col">
@@ -546,10 +546,10 @@
                             </div>
 
                             <div id="step-refine" class="transition-all duration-500 transform translate-x-full absolute inset-0 bg-white z-10 flex flex-col">
-                                <h4 class="font-bold text-slate-800 mb-2"><i class="fas fa-sliders-h text-blue-500 mr-2"></i> ปรับสมการให้ AI คิดใหม่</h4>
-                                <p class="text-slate-500 text-sm mb-4">ไกด์ไลน์ให้ AI รู้ว่าคุณครูอยากเน้นไปที่ทักษะด้านไหนเป็นพิเศษ</p>
+                                <h4 class="font-bold text-slate-800 mb-2"><i class="fas fa-sliders-h text-blue-500 mr-2"></i> ปรับสมการให้ระบบคิดใหม่</h4>
+                                <p class="text-slate-500 text-sm mb-4">ไกด์ไลน์ให้ระบบรู้ว่าคุณครูอยากเน้นทักษะวิชาชีพด้านไหนเป็นพิเศษ</p>
                                 
-                                <textarea id="refine-input" class="w-full flex-1 border border-slate-300 rounded-xl p-4 bg-slate-50 text-slate-800 resize-none focus:ring-2 focus:ring-blue-500 outline-none mb-4" placeholder="เช่น ไม่ได้อยากให้จำประวัติศาสตร์ แต่อยากให้วิเคราะห์เปรียบเทียบกับสังคมปัจจุบันมากกว่า..."></textarea>
+                                <textarea id="refine-input" class="w-full flex-1 border border-slate-300 rounded-xl p-4 bg-slate-50 text-slate-800 resize-none focus:ring-2 focus:ring-blue-500 outline-none mb-4" placeholder="เช่น อยากให้เน้นการประยุกต์ใช้ในการบริการจริง, เน้นการวิเคราะห์ต้นทุน, หรือเน้นจรรยาบรรณวิชาชีพ..."></textarea>
                                 
                                 <div class="flex gap-2 mt-auto">
                                     <button id="btn-back-1" class="text-slate-600 bg-slate-100 hover:bg-slate-200 font-bold px-4 py-3 rounded-xl transition flex items-center gap-2">
@@ -593,7 +593,7 @@
                                 </div>
 
                                 <button onclick="resetDistiller()" class="mt-auto text-blue-600 hover:text-blue-800 font-bold text-sm transition flex items-center justify-center gap-2 w-full py-3 bg-blue-50 rounded-xl hover:bg-blue-100">
-                                    <i class="fas fa-redo"></i> วิเคราะห์การบ้านชิ้นอื่น
+                                    <i class="fas fa-redo"></i> วิเคราะห์ชิ้นงานอื่น
                                 </button>
                             </div>
                         </div>
