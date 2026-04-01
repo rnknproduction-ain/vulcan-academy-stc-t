@@ -1057,7 +1057,7 @@
                 <span data-i18n="hero_badge">AI-Powered Lesson Design</span>
             </div>
             <h1 id="hero-title" class="text-5xl md:text-6xl font-extrabold mb-6 leading-tight text-slate-900">
-                <span data-i18n="hero_title_1">การเตรียมแผนสอนและลดภาระงานเอกสาร"</span> <br>
+                <span data-i18n="hero_title_1">เตรียมการสอนและลดภาระงานเอกสาร"</span> <br>
                 <span class="gradient-text" data-i18n="hero_title_2">"ด้วย AI ได้ง่ายๆ"</span>
             </h1>
         </section>
@@ -1366,6 +1366,324 @@
             generatePrompt();
         </script>
         <!-- Session 2.1: AI-Powered Lesson Design -->
+        
+        <!-- Session 2.2: Smart Handouts -->
+        <!-- Session: Smart Handouts Studio -->
+<section id="session-handouts" class="scroll-mt-32 pt-16 pb-16">
+    <div class="flex flex-col lg:flex-row gap-8 items-start max-w-7xl mx-auto">
+        
+        <div class="lg:w-4/12">
+            <div class="inline-block bg-cyan-100 text-cyan-700 px-3 py-1 rounded-lg text-sm font-bold mb-4">Session • Smart Handouts</div>
+            <h2 class="text-3xl font-bold mb-6 text-slate-900">Smart Handouts Studio</h2>
+            
+            <div class="bg-cyan-50 border-l-4 border-cyan-500 p-5 rounded-r-xl mb-6">
+                <h3 class="font-bold text-cyan-800 flex items-center gap-2 mb-2">
+                    <i class="fas fa-file-lines"></i> 
+                    <span>ใบงานที่ดี ไม่ใช่แค่ “มีคำถาม”</span>
+                </h3>
+                <p class="text-cyan-900 text-sm">
+                    ใบงานที่ดีควรสอดคล้องกับเป้าหมายการเรียนรู้ มีคำชี้แจงชัดเจน และมีเกณฑ์การประเมินที่ทำให้ครูดู “กระบวนการคิด” ของผู้เรียนได้
+                </p>
+            </div>
+            
+            <div class="space-y-3">
+                <h4 class="font-bold text-slate-800 text-lg">องค์ประกอบสำคัญ</h4>
+                <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm text-sm">
+                    <span class="text-cyan-600 font-bold">1. Objective:</span> ใบงานนี้เอาไว้ทำอะไร
+                </div>
+                <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm text-sm">
+                    <span class="text-cyan-600 font-bold">2. Task:</span> ผู้เรียนต้องทำอะไร
+                </div>
+                <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm text-sm">
+                    <span class="text-cyan-600 font-bold">3. Evidence:</span> จะดูจากอะไรว่าเข้าใจ
+                </div>
+                <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm text-sm">
+                    <span class="text-cyan-600 font-bold">4. Rubric:</span> ให้คะแนนอย่างไร
+                </div>
+            </div>
+        </div>
+
+        <div class="lg:w-8/12 w-full">
+            <div class="bg-slate-900 p-6 md:p-8 rounded-3xl shadow-xl border border-slate-800 relative overflow-hidden min-h-[640px]">
+                
+                <div class="absolute -top-20 -right-20 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl -z-0"></div>
+
+                <div class="relative z-10 flex flex-col h-full">
+                    <h3 class="text-2xl font-bold text-white flex items-center gap-3 mb-2">
+                        <i class="fas fa-layer-group text-cyan-400"></i>
+                        Smart Handouts Builder
+                    </h3>
+                    <p class="text-slate-400 text-sm mb-6">
+                        กรอกข้อมูลด้านล่าง ระบบจะช่วยสร้าง “ใบงาน” และ “เกณฑ์การให้คะแนน” ที่พร้อมนำไปใช้ต่อได้ทันที
+                    </p>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-slate-800/50 p-5 rounded-2xl border border-slate-700">
+                            <h4 class="text-cyan-400 font-bold mb-4 text-sm uppercase tracking-wider flex items-center gap-2">
+                                <i class="fas fa-book-open"></i> 1. ข้อมูลใบงาน
+                            </h4>
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1">รายวิชา</label>
+                                    <input type="text" id="h-subject" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition" placeholder="เช่น การบัญชีเบื้องต้น">
+                                </div>
+                                <div class="flex gap-3">
+                                    <div class="w-1/2">
+                                        <label class="block text-xs font-semibold text-slate-300 mb-1">ระดับชั้น</label>
+                                        <input type="text" id="h-grade" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition" placeholder="เช่น ปวช. 1">
+                                    </div>
+                                    <div class="w-1/2">
+                                        <label class="block text-xs font-semibold text-slate-300 mb-1">เวลา</label>
+                                        <input type="text" id="h-duration" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition" placeholder="เช่น 20 นาที">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1">หัวข้อ / เรื่อง</label>
+                                    <input type="text" id="h-topic" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition" placeholder="เช่น การแยกหมวดหมู่บัญชี">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1">เป้าหมายการเรียนรู้</label>
+                                    <textarea id="h-objective" rows="3" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white resize-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition" placeholder="เช่น ให้นักเรียนสามารถแยกรายการทางการเงินเป็นหมวดหมู่ได้อย่างถูกต้อง"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-800/50 p-5 rounded-2xl border border-slate-700 flex flex-col">
+                            <h4 class="text-amber-400 font-bold mb-4 text-sm uppercase tracking-wider flex items-center gap-2">
+                                <i class="fas fa-sliders-h"></i> 2. ปรับแต่งรูปแบบใบงาน
+                            </h4>
+                            
+                            <div class="mb-4">
+                                <label class="block text-xs font-semibold text-slate-300 mb-2">ประเภทใบงาน</label>
+                                <div class="grid grid-cols-1 gap-2 text-sm text-slate-300">
+                                    <label class="flex items-center gap-2 cursor-pointer hover:text-white">
+                                        <input type="radio" name="h-type" class="h-type form-radio text-cyan-500 bg-slate-900 border-slate-600 focus:ring-cyan-500" value="ใบงานทบทวนความเข้าใจ" checked>
+                                        ใบงานทบทวนความเข้าใจ
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer hover:text-white">
+                                        <input type="radio" name="h-type" class="h-type form-radio text-cyan-500 bg-slate-900 border-slate-600 focus:ring-cyan-500" value="ใบงานคิดวิเคราะห์จากสถานการณ์">
+                                        ใบงานคิดวิเคราะห์จากสถานการณ์
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer hover:text-white">
+                                        <input type="radio" name="h-type" class="h-type form-radio text-cyan-500 bg-slate-900 border-slate-600 focus:ring-cyan-500" value="ใบงานภาระงานพร้อมชิ้นงาน">
+                                        ใบงานภาระงานพร้อมชิ้นงาน
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <div class="flex justify-between items-center mb-1">
+                                    <label class="block text-xs font-semibold text-slate-300">ระดับความยาก</label>
+                                    <span id="h-level-label" class="text-xs font-bold text-cyan-400">ปานกลาง</span>
+                                </div>
+                                <input type="range" id="h-level" min="1" max="3" value="2" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-cyan-500">
+                                <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+                                    <span>พื้นฐาน</span>
+                                    <span>ปานกลาง</span>
+                                    <span>ท้าทาย</span>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">นโยบายการใช้ AI ของผู้เรียน</label>
+                                <select id="h-ai-policy" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition">
+                                    <option value="ไม่อนุญาตให้ใช้ AI ในการทำใบงานนี้">ไม่ใช้ AI</option>
+                                    <option value="อนุญาตให้ใช้ AI เพื่อขอคำอธิบายเพิ่มเติมได้ แต่ไม่ให้สร้างคำตอบแทน">ใช้ AI เพื่อขอคำอธิบายได้</option>
+                                    <option value="อนุญาตให้ใช้ AI เพื่อ brainstorm หรือช่วยจัดระเบียบความคิดได้ แต่ผู้เรียนต้องเขียนคำตอบด้วยตนเอง">ใช้ AI เพื่อ brainstorm ได้</option>
+                                    <option value="อนุญาตให้ใช้ AI ได้บางส่วน แต่ผู้เรียนต้องระบุว่าใช้ในขั้นตอนไหน">ใช้ AI ได้บางส่วนและต้องระบุการใช้งาน</option>
+                                </select>
+                            </div>
+
+                            <div class="mt-auto">
+                                <label class="block text-xs font-semibold text-slate-300 mb-1">ข้อกำหนดเพิ่มเติม</label>
+                                <input type="text" id="h-extra" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 outline-none transition" placeholder="เช่น ต้องเหมาะกับเด็กเรียนอ่อน / ใช้ได้ในคาบ 20 นาที">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <button onclick="changeHandoutTab('worksheet')" id="tab-worksheet" class="handout-tab active-handout-tab bg-cyan-500 text-slate-900 px-4 py-2 rounded-lg text-sm font-bold transition shadow-lg shadow-cyan-500/30">
+                            <i class="fas fa-file-alt mr-1"></i> ใบงาน
+                        </button>
+                        <button onclick="changeHandoutTab('rubric')" id="tab-rubric" class="handout-tab bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-600 px-4 py-2 rounded-lg text-sm font-bold transition">
+                            <i class="fas fa-table mr-1"></i> Rubric
+                        </button>
+                        <button onclick="changeHandoutTab('bundle')" id="tab-bundle" class="handout-tab bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-600 px-4 py-2 rounded-lg text-sm font-bold transition">
+                            <i class="fas fa-box-open mr-1"></i> ชุดพร้อมใช้
+                        </button>
+                    </div>
+
+                    <div class="relative group flex-1">
+                        <div class="absolute top-3 right-3 z-20">
+                            <button onclick="copyHandoutPrompt()" id="btn-copy-handout" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg transition text-sm font-bold flex items-center gap-2 shadow-lg active:scale-95">
+                                <i class="far fa-copy" id="copy-handout-icon"></i> <span id="copy-handout-text">คัดลอก Prompt</span>
+                            </button>
+                        </div>
+                        <textarea id="generated-handout-prompt" readonly class="w-full h-full min-h-[260px] bg-[#0d1117] border border-slate-700 rounded-xl p-5 text-cyan-300 font-mono text-sm resize-none outline-none leading-relaxed shadow-inner overflow-y-auto" spellcheck="false"></textarea>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const hSubject = document.getElementById('h-subject');
+    const hGrade = document.getElementById('h-grade');
+    const hDuration = document.getElementById('h-duration');
+    const hTopic = document.getElementById('h-topic');
+    const hObjective = document.getElementById('h-objective');
+    const hTypes = document.querySelectorAll('.h-type');
+    const hLevel = document.getElementById('h-level');
+    const hLevelLabel = document.getElementById('h-level-label');
+    const hAiPolicy = document.getElementById('h-ai-policy');
+    const hExtra = document.getElementById('h-extra');
+    const handoutResultBox = document.getElementById('generated-handout-prompt');
+    const handoutTabs = document.querySelectorAll('.handout-tab');
+
+    let currentHandoutTab = 'worksheet';
+
+    const handoutLevels = {
+        "1": { label: "พื้นฐาน", desc: "ใช้ภาษาง่าย ชัดเจน เน้นทบทวนความเข้าใจพื้นฐาน" },
+        "2": { label: "ปานกลาง", desc: "มีคำถามที่ให้คิดและประยุกต์ใช้ในสถานการณ์ทั่วไป" },
+        "3": { label: "ท้าทาย", desc: "เน้นการคิดวิเคราะห์ อธิบายเหตุผล และเชื่อมโยงกับสถานการณ์จริง" }
+    };
+
+    hLevel.addEventListener('input', (e) => {
+        hLevelLabel.innerText = handoutLevels[e.target.value].label;
+        generateHandoutPrompt();
+    });
+
+    function getSelectedHandoutType() {
+        const selected = Array.from(hTypes).find(r => r.checked);
+        return selected ? selected.value : "ใบงานทบทวนความเข้าใจ";
+    }
+
+    function generateHandoutPrompt() {
+        const subject = hSubject.value.trim() || "[ระบุวิชา]";
+        const grade = hGrade.value.trim() || "[ระบุระดับชั้น]";
+        const duration = hDuration.value.trim() || "[ระบุเวลา]";
+        const topic = hTopic.value.trim() || "[ระบุหัวข้อ]";
+        const objective = hObjective.value.trim() || "[ระบุเป้าหมายการเรียนรู้]";
+        const handoutType = getSelectedHandoutType();
+        const levelDesc = handoutLevels[hLevel.value].desc;
+        const aiPolicy = hAiPolicy.value;
+        const extra = hExtra.value.trim();
+        const extraText = extra ? `\nข้อกำหนดเพิ่มเติม: ${extra}` : "";
+
+        let prompt = "";
+
+        if (currentHandoutTab === 'worksheet') {
+            prompt = `สวมบทบาทเป็นผู้เชี่ยวชาญด้านการออกแบบใบงานการเรียนรู้
+
+ช่วยสร้าง "${handoutType}" สำหรับใช้ในห้องเรียน โดยมีข้อมูลดังนี้
+- รายวิชา: ${subject}
+- ระดับชั้น: ${grade}
+- หัวข้อ: ${topic}
+- เวลา: ${duration}
+- เป้าหมายการเรียนรู้: ${objective}
+- ระดับความยาก: ${levelDesc}
+- นโยบายการใช้ AI ของผู้เรียน: ${aiPolicy}${extraText}
+
+กรุณาสร้างผลลัพธ์ในรูปแบบดังนี้:
+1. ชื่อใบงาน
+2. จุดประสงค์ของใบงาน
+3. คำชี้แจงสำหรับนักเรียน
+4. คำถามหรือภาระงาน 4-6 ข้อ
+5. หมายเหตุเกี่ยวกับการใช้ AI
+6. ข้อเสนอแนะสำหรับครูในการใช้ใบงานนี้ในชั้นเรียน
+
+ขอให้ใช้ภาษากระชับ ชัดเจน และพร้อมนำไปใช้จริง`;
+        } else if (currentHandoutTab === 'rubric') {
+            prompt = `สวมบทบาทเป็นผู้เชี่ยวชาญด้านการประเมินผลการเรียนรู้
+
+ช่วยสร้างเกณฑ์การให้คะแนน (Rubric) สำหรับ "${handoutType}" โดยมีข้อมูลดังนี้
+- รายวิชา: ${subject}
+- ระดับชั้น: ${grade}
+- หัวข้อ: ${topic}
+- เป้าหมายการเรียนรู้: ${objective}
+- ระดับความยาก: ${levelDesc}
+- นโยบายการใช้ AI ของผู้เรียน: ${aiPolicy}${extraText}
+
+กรุณาสร้าง Rubric แบบ 4 ระดับคะแนน โดยให้ประเมินจาก:
+1. ความเข้าใจเนื้อหา
+2. ความถูกต้องของคำตอบหรือชิ้นงาน
+3. การอธิบายเหตุผล / กระบวนการคิด
+4. ความรับผิดชอบต่อการใช้งาน AI ตามกติกา
+
+ขอผลลัพธ์ในรูปแบบตารางที่อ่านง่าย พร้อมคำอธิบายแต่ละระดับคะแนน`;
+        } else if (currentHandoutTab === 'bundle') {
+            prompt = `สวมบทบาทเป็นผู้ช่วยครูในการออกแบบชุดการเรียนรู้แบบพร้อมใช้
+
+ช่วยสร้าง “ชุดพร้อมใช้” สำหรับ "${handoutType}" โดยมีข้อมูลดังนี้
+- รายวิชา: ${subject}
+- ระดับชั้น: ${grade}
+- หัวข้อ: ${topic}
+- เวลา: ${duration}
+- เป้าหมายการเรียนรู้: ${objective}
+- ระดับความยาก: ${levelDesc}
+- นโยบายการใช้ AI ของผู้เรียน: ${aiPolicy}${extraText}
+
+กรุณาสร้างผลลัพธ์เป็น 3 ส่วน:
+A. ใบงานสำหรับนักเรียน
+B. Rubric แบบ 4 ระดับ
+C. Teacher Notes ซึ่งประกอบด้วย
+- วิธีใช้ในคาบเรียน
+- จุดที่ครูควรถามต่อเพื่อ validate ความเข้าใจ
+- สิ่งที่ควรสังเกตระหว่างทำกิจกรรม
+- วิธีปรับใช้สำหรับผู้เรียนที่ต้องการความช่วยเหลือเพิ่มเติม
+
+ขอให้ทั้งหมดกระชับ ชัดเจน และพร้อมใช้ในบริบทห้องเรียนไทย`;
+        }
+
+        handoutResultBox.value = prompt;
+    }
+
+    function changeHandoutTab(type) {
+        currentHandoutTab = type;
+
+        handoutTabs.forEach(tab => {
+            tab.className = "handout-tab bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-600 px-4 py-2 rounded-lg text-sm font-bold transition";
+        });
+
+        const activeTab = document.getElementById(`tab-${type}`);
+        activeTab.className = "handout-tab active-handout-tab bg-cyan-500 text-slate-900 px-4 py-2 rounded-lg text-sm font-bold transition shadow-lg shadow-cyan-500/30";
+
+        generateHandoutPrompt();
+    }
+
+    async function copyHandoutPrompt() {
+        try {
+            await navigator.clipboard.writeText(handoutResultBox.value);
+            const icon = document.getElementById('copy-handout-icon');
+            const text = document.getElementById('copy-handout-text');
+            const btn = document.getElementById('btn-copy-handout');
+
+            btn.classList.remove('bg-blue-600', 'hover:bg-blue-500');
+            btn.classList.add('bg-emerald-500', 'hover:bg-emerald-400');
+            icon.className = 'fas fa-check text-white';
+            text.innerText = 'คัดลอกสำเร็จ!';
+
+            setTimeout(() => {
+                btn.classList.remove('bg-emerald-500', 'hover:bg-emerald-400');
+                btn.classList.add('bg-blue-600', 'hover:bg-blue-500');
+                icon.className = 'far fa-copy text-white';
+                text.innerText = 'คัดลอก Prompt';
+            }, 2000);
+        } catch (err) {
+            alert("ไม่สามารถคัดลอกได้ กรุณากด Ctrl+C เพื่อคัดลอกเองครับ");
+        }
+    }
+
+    const handoutInputs = [hSubject, hGrade, hDuration, hTopic, hObjective, hAiPolicy, hExtra];
+    handoutInputs.forEach(input => input.addEventListener('input', generateHandoutPrompt));
+    hTypes.forEach(input => input.addEventListener('change', generateHandoutPrompt));
+
+    generateHandoutPrompt();
+</script>
+        <!-- Session 2.2: Smart Handouts -->
+
         
         <!-- Session 2: AI-Powered Lesson Design -->
         <section id="session2" class="scroll-mt-32" aria-labelledby="heading-s2">
