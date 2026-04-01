@@ -930,7 +930,7 @@
         </section>
         
         <!-- Session 2.1: AI-Powered Lesson Design -->
-        <section id="session3" class="scroll-mt-32 pt-16">
+       <section id="session3" class="scroll-mt-32 pt-16 pb-16">
             <div class="flex flex-col lg:flex-row gap-8 items-start max-w-7xl mx-auto">
                 
                 <div class="lg:w-4/12">
@@ -939,77 +939,134 @@
                     
                     <div class="bg-blue-50 border-l-4 border-blue-500 p-5 rounded-r-xl mb-6">
                         <h3 class="font-bold text-blue-800 flex items-center gap-2 mb-2">
-                            <i class="fas fa-layer-group"></i> 
-                            <span>Macro to Micro</span>
+                            <i class="fas fa-magic"></i> 
+                            <span>Prompting 101</span>
                         </h3>
-                        <p class="text-blue-900 text-sm">การสั่ง AI ที่ดีที่สุด ต้องเริ่มจากการให้ AI เห็น "ภาพใหญ่ (Unit Plan)" ก่อน แล้วค่อยสั่งเจาะลึก "ภาพย่อย (Lesson Plan)" ทีละแผน เพื่อให้เนื้อหาเชื่อมโยงกันอย่างสมบูรณ์</p>
+                        <p class="text-blue-900 text-sm">การสั่ง AI ให้ได้ผลลัพธ์ที่ดี ไม่ใช่การเขียนคำสั่งยาวๆ แต่คือการ **"กำหนดตัวแปร (Parameters)"** และ **"ขอบเขต (Constraints)"** ให้ชัดเจน</p>
                     </div>
                     
                     <div class="space-y-4">
                         <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden">
                             <div class="absolute top-0 left-0 w-1 h-full bg-emerald-500"></div>
-                            <h4 class="font-bold text-slate-800 text-md mb-1">สูตรลับ 9 ขั้นตอน (BBL)</h4>
-                            <p class="text-sm text-slate-600">Prompt ที่เราเตรียมไว้ให้ ผสานเทคนิค Brain-Based Learning ครบ 4 ขั้น (นำ-สอน-สรุป-ประเมิน) พร้อมโครงสร้างแผน 9 ข้อมาตรฐานกระทรวงฯ</p>
-                        </div>
-                        
-                        <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden">
-                            <div class="absolute top-0 left-0 w-1 h-full bg-amber-500"></div>
-                            <h4 class="font-bold text-slate-800 text-md mb-1">เทคนิคการใช้งาน</h4>
-                            <ol class="text-sm text-slate-600 list-decimal pl-4 mt-2 space-y-1">
-                                <li>กรอกข้อมูลรายวิชาของคุณครู</li>
-                                <li>กดเลือกรูปแบบ Prompt ที่ต้องการ</li>
-                                <li>กดปุ่ม Copy แล้วนำไปวางใน Gemini ได้เลย!</li>
-                            </ol>
+                            <h4 class="font-bold text-slate-800 text-md mb-1">ส่วนผสมของ Prompt ที่ดี</h4>
+                            <ul class="text-sm text-slate-600 list-disc pl-4 mt-2 space-y-1">
+                                <li><b>Role:</b> สวมบทบาทให้ AI (เช่น เป็นผู้เชี่ยวชาญ)</li>
+                                <li><b>Context:</b> บริบท (วิชา, ระดับชั้น, หัวข้อ)</li>
+                                <li><b>Task:</b> งานที่ต้องการ (แผนการสอน 9 ข้อ)</li>
+                                <li><b>Format:</b> รูปแบบผลลัพธ์ (ตาราง, กระชับ)</li>
+                                <li><b>Constraints:</b> ข้อจำกัด (เช่น ห้ามใช้ศัพท์ยาก)</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
 
                 <div class="lg:w-8/12 w-full">
-                    <div class="bg-slate-900 p-6 md:p-8 rounded-3xl shadow-xl border border-slate-800 relative overflow-hidden min-h-[500px]">
+                    <div class="bg-slate-900 p-6 md:p-8 rounded-3xl shadow-xl border border-slate-800 relative overflow-hidden min-h-[600px]">
                         
-                        <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl -z-0"></div>
+                        <div class="absolute -top-20 -right-20 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl -z-0"></div>
 
-                        <div class="relative z-10">
-                            <h3 class="text-2xl font-bold text-white flex items-center gap-3 mb-6">
-                                <i class="fas fa-terminal text-emerald-400"></i>
-                                เครื่องมือปรุงคำสั่ง (Prompt Generator)
+                        <div class="relative z-10 flex flex-col h-full">
+                            <h3 class="text-2xl font-bold text-white flex items-center gap-3 mb-2">
+                                <i class="fas fa-keyboard text-emerald-400"></i>
+                                ห้องปฏิบัติการปรุงคำสั่ง (Prompt Lab)
                             </h3>
+                            <p class="text-slate-400 text-sm mb-6">กรอกข้อมูลด้านล่าง ระบบจะประกอบร่างเป็นคำสั่ง (Prompt) ที่สมบูรณ์แบบให้อัตโนมัติ</p>
 
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                                <div>
-                                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">รายวิชา</label>
-                                    <input type="text" id="prompt-subject" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-emerald-500 outline-none transition" placeholder="เช่น วิทยาศาสตร์">
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                                <div class="bg-slate-800/50 p-5 rounded-2xl border border-slate-700">
+                                    <h4 class="text-emerald-400 font-bold mb-4 text-sm uppercase tracking-wider flex items-center gap-2">
+                                        <i class="fas fa-info-circle"></i> 1. ข้อมูลพื้นฐาน
+                                    </h4>
+                                    <div class="space-y-3">
+                                        <div>
+                                            <label class="block text-xs font-semibold text-slate-300 mb-1">รายวิชา</label>
+                                            <input type="text" id="p-subject" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition" placeholder="เช่น วิทยาศาสตร์">
+                                        </div>
+                                        <div class="flex gap-3">
+                                            <div class="w-1/2">
+                                                <label class="block text-xs font-semibold text-slate-300 mb-1">ระดับชั้น</label>
+                                                <input type="text" id="p-grade" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition" placeholder="เช่น ปวช. 1">
+                                            </div>
+                                            <div class="w-1/2">
+                                                <label class="block text-xs font-semibold text-slate-300 mb-1">จำนวนแผน</label>
+                                                <input type="number" id="p-count" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition" placeholder="เช่น 4" min="1" value="4">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-semibold text-slate-300 mb-1">ชื่อหน่วยการเรียนรู้ / เรื่อง</label>
+                                            <input type="text" id="p-topic" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition" placeholder="เช่น ระบบนิเวศเบื้องต้น">
+                                        </div>
+                                        <div id="lesson-detail-container" class="hidden">
+                                            <label class="block text-xs font-semibold text-slate-300 mb-1">ชื่อแผนการสอน (สำหรับการเจาะลึก)</label>
+                                            <input type="text" id="p-lesson-name" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition" placeholder="เช่น องค์ประกอบของระบบนิเวศ">
+                                        </div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">ระดับชั้น</label>
-                                    <input type="text" id="prompt-grade" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-emerald-500 outline-none transition" placeholder="เช่น ม.1">
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">ชื่อหน่วยการเรียนรู้</label>
-                                    <input type="text" id="prompt-topic" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-3 text-white focus:ring-2 focus:ring-emerald-500 outline-none transition" placeholder="เช่น ระบบนิเวศ">
+
+                                <div class="bg-slate-800/50 p-5 rounded-2xl border border-slate-700 flex flex-col">
+                                    <h4 class="text-amber-400 font-bold mb-4 text-sm uppercase tracking-wider flex items-center gap-2">
+                                        <i class="fas fa-sliders-h"></i> 2. ปรับแต่งมิติการสอน
+                                    </h4>
+                                    
+                                    <div class="mb-4">
+                                        <label class="block text-xs font-semibold text-slate-300 mb-2">รูปแบบกิจกรรม (เลือกได้หลายข้อ)</label>
+                                        <div class="grid grid-cols-2 gap-2 text-sm text-slate-300">
+                                            <label class="flex items-center gap-2 cursor-pointer hover:text-white">
+                                                <input type="checkbox" class="p-style form-checkbox text-emerald-500 bg-slate-900 border-slate-600 rounded focus:ring-emerald-500" value="เน้นการลงมือปฏิบัติจริง (Hands-on)"> ปฏิบัติจริง
+                                            </label>
+                                            <label class="flex items-center gap-2 cursor-pointer hover:text-white">
+                                                <input type="checkbox" class="p-style form-checkbox text-emerald-500 bg-slate-900 border-slate-600 rounded focus:ring-emerald-500" value="เน้นการทำงานเป็นทีม (Collaborative)"> ทำงานเป็นทีม
+                                            </label>
+                                            <label class="flex items-center gap-2 cursor-pointer hover:text-white">
+                                                <input type="checkbox" class="p-style form-checkbox text-emerald-500 bg-slate-900 border-slate-600 rounded focus:ring-emerald-500" value="เน้นการใช้เกมเป็นฐาน (Gamification)"> ใช้เกม (Gamification)
+                                            </label>
+                                            <label class="flex items-center gap-2 cursor-pointer hover:text-white">
+                                                <input type="checkbox" class="p-style form-checkbox text-emerald-500 bg-slate-900 border-slate-600 rounded focus:ring-emerald-500" value="เน้นการอภิปรายและวิจารณ์ (Discussion)"> อภิปราย/ถกเถียง
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-4">
+                                        <div class="flex justify-between items-center mb-1">
+                                            <label class="block text-xs font-semibold text-slate-300">ระดับความลึกของเนื้อหา</label>
+                                            <span id="depth-label" class="text-xs font-bold text-emerald-400">ปานกลาง</span>
+                                        </div>
+                                        <input type="range" id="p-depth" min="1" max="3" value="2" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-500">
+                                        <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+                                            <span>พื้นฐาน</span>
+                                            <span>ปานกลาง</span>
+                                            <span>เจาะลึก/วิเคราะห์</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-auto">
+                                        <label class="block text-xs font-semibold text-slate-300 mb-1">ข้อจำกัด (ถ้ามี)</label>
+                                        <input type="text" id="p-constraint" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition" placeholder="เช่น ห้ามใช้อุปกรณ์เทคโนโลยี, มีเวลาจำกัด">
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="flex flex-wrap gap-2 mb-4 border-b border-slate-700 pb-4">
-                                <button onclick="changePromptType('unit')" id="tab-unit" class="prompt-tab active-tab bg-emerald-500/20 text-emerald-400 border border-emerald-500/50 px-4 py-2 rounded-lg text-sm font-bold transition shadow-[0_0_15px_rgba(16,185,129,0.2)]">
-                                    1. สร้างตารางหน่วย (Unit Plan)
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <button onclick="changePromptType('unit')" id="tab-unit" class="prompt-tab active-tab bg-emerald-500 text-slate-900 px-4 py-2 rounded-lg text-sm font-bold transition shadow-lg shadow-emerald-500/30">
+                                    <i class="fas fa-table mr-1"></i> โครงร่างหน่วย (Unit Plan)
                                 </button>
-                                <button onclick="changePromptType('detail')" id="tab-detail" class="prompt-tab bg-slate-800 text-slate-400 hover:bg-slate-700 border border-slate-700 px-4 py-2 rounded-lg text-sm font-bold transition">
-                                    2. เจาะลึกแผน 9 ข้อ (BBL)
+                                <button onclick="changePromptType('detail')" id="tab-detail" class="prompt-tab bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-600 px-4 py-2 rounded-lg text-sm font-bold transition">
+                                    <i class="fas fa-list-ol mr-1"></i> เจาะลึกแผน 9 ข้อ
                                 </button>
-                                <button onclick="changePromptType('quick')" id="tab-quick" class="prompt-tab bg-slate-800 text-slate-400 hover:bg-slate-700 border border-slate-700 px-4 py-2 rounded-lg text-sm font-bold transition">
-                                    ⚡ สร้างหลายแผนแบบกระชับ
+                                <button onclick="changePromptType('quick')" id="tab-quick" class="prompt-tab bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-600 px-4 py-2 rounded-lg text-sm font-bold transition">
+                                    <i class="fas fa-bolt mr-1"></i> แผนรวบรัด (ย่อ)
                                 </button>
                             </div>
 
-                            <div class="relative group">
-                                <div class="absolute top-3 right-3">
-                                    <button onclick="copyPrompt()" id="btn-copy" class="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-lg transition text-sm font-bold flex items-center gap-2 shadow-lg active:scale-95">
+                            <div class="relative group flex-1">
+                                <div class="absolute top-3 right-3 z-20">
+                                    <button onclick="copyPrompt()" id="btn-copy" class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg transition text-sm font-bold flex items-center gap-2 shadow-lg active:scale-95">
                                         <i class="far fa-copy" id="copy-icon"></i> <span id="copy-text">คัดลอก Prompt</span>
                                     </button>
                                 </div>
-                                <textarea id="generated-prompt" readonly class="w-full h-[320px] bg-[#0d1117] border border-slate-700 rounded-xl p-5 text-emerald-300 font-mono text-sm resize-none outline-none leading-relaxed shadow-inner overflow-y-auto" spellcheck="false"></textarea>
+                                <textarea id="generated-prompt" readonly class="w-full h-full min-h-[250px] bg-[#0d1117] border border-slate-700 rounded-xl p-5 text-emerald-300 font-mono text-sm resize-none outline-none leading-relaxed shadow-inner overflow-y-auto" spellcheck="false"></textarea>
                             </div>
+
                         </div>
                     </div>
                 </div>
@@ -1017,75 +1074,113 @@
         </section>
 
         <script>
-            const subjectInput = document.getElementById('prompt-subject');
-            const gradeInput = document.getElementById('prompt-grade');
-            const topicInput = document.getElementById('prompt-topic');
+            // Elements - ข้อมูลพื้นฐาน
+            const pSubject = document.getElementById('p-subject');
+            const pGrade = document.getElementById('p-grade');
+            const pTopic = document.getElementById('p-topic');
+            const pCount = document.getElementById('p-count');
+            const pLessonName = document.getElementById('p-lesson-name');
+            const lessonDetailContainer = document.getElementById('lesson-detail-container');
+            
+            // Elements - มิติการสอน
+            const pStyles = document.querySelectorAll('.p-style');
+            const pDepth = document.getElementById('p-depth');
+            const depthLabel = document.getElementById('depth-label');
+            const pConstraint = document.getElementById('p-constraint');
+
+            // Elements - UI
             const resultBox = document.getElementById('generated-prompt');
             const tabs = document.querySelectorAll('.prompt-tab');
             const copyBtn = document.getElementById('btn-copy');
             
             let currentType = 'unit';
 
-            // ข้อมูลโครงสร้าง Prompt Template (เปลี่ยนจาก {ตัวแปร} เป็นค่าที่กรอกจริง)
-            const promptTemplates = {
-                unit: `สวมบทบาทเป็นผู้เชี่ยวชาญด้านการออกแบบการสอน ช่วยสร้าง 'ตารางสรุปหน่วยการเรียนรู้ (Unit Plan)' 
+            // ตัวแปรความลึกของเนื้อหา
+            const depthLevels = {
+                "1": { label: "พื้นฐาน", desc: "เน้นการปูพื้นฐาน อธิบายทฤษฎีให้เข้าใจง่าย และศัพท์ไม่ซับซ้อน" },
+                "2": { label: "ปานกลาง", desc: "เนื้อหาเหมาะสมตามวัย มีการประยุกต์ใช้ทฤษฎีในสถานการณ์ทั่วไป" },
+                "3": { label: "เจาะลึก/วิเคราะห์", desc: "เน้นการคิดวิเคราะห์เชิงลึก (Critical Thinking) ถกเถียงประเด็นซับซ้อน และต่อยอดระดับสูง" }
+            };
 
-รายวิชา: {subject}
-ระดับชั้น: {grade}
-หน่วยการเรียนรู้ที่ 1 เรื่อง: {topic}
-จำนวน: 4 แผนการสอน
+            // อัปเดต Label ของ Slider
+            pDepth.addEventListener('input', (e) => {
+                depthLabel.innerText = depthLevels[e.target.value].label;
+                generatePrompt();
+            });
 
-โดยในตารางให้ระบุหัวข้อดังนี้:
-1. ชื่อแผนการสอน
+            // ฟังก์ชันประกอบร่าง Prompt
+            function generatePrompt() {
+                // 1. ดึงค่าจากช่องพื้นฐาน
+                const sub = pSubject.value.trim() || "[ระบุวิชา]";
+                const grd = pGrade.value.trim() || "[ระบุชั้น]";
+                const top = pTopic.value.trim() || "[ระบุหัวข้อ]";
+                const cnt = pCount.value || "[จำนวน]";
+                const lName = pLessonName.value.trim() || "[ระบุชื่อแผน]";
+
+                // 2. ดึงค่าจากมิติการสอน
+                let styles = Array.from(pStyles).filter(cb => cb.checked).map(cb => cb.value);
+                let styleText = styles.length > 0 ? `\n- รูปแบบการสอนที่อยากเน้น: ${styles.join(', ')}` : "";
+                
+                let depthDesc = depthLevels[pDepth.value].desc;
+                let depthText = `\n- ระดับความลึกของเนื้อหา: ${depthDesc}`;
+
+                let constraint = pConstraint.value.trim();
+                let constraintText = constraint ? `\n- ข้อควรระวัง/ข้อจำกัด: ${constraint}` : "";
+
+                let additionalParams = styleText + depthText + constraintText;
+
+                // 3. ประกอบร่างตามประเภท Tab
+                let finalPrompt = "";
+
+                if (currentType === 'unit') {
+                    finalPrompt = `สวมบทบาทเป็นผู้เชี่ยวชาญด้านการออกแบบการสอน ช่วยสร้าง 'ตารางสรุปหน่วยการเรียนรู้ (Unit Plan)'\n
+--- ข้อมูลพื้นฐาน ---
+รายวิชา: ${sub}
+ระดับชั้น: ${grd}
+หน่วยการเรียนรู้เรื่อง: ${top}
+จำนวน: ${cnt} แผนการสอน\n
+--- เงื่อนไขพิเศษ (พิจารณาในการออกแบบกิจกรรม) ---${additionalParams}\n
+ช่วยสร้างเป็นตาราง โดยระบุหัวข้อดังนี้:
+1. ลำดับที่ / ชื่อแผนการสอน
 2. ตัวชี้วัด/จุดประสงค์
 3. สาระสำคัญ
-4. ไอเดียกิจกรรม Brain-Based Learning แบบสั้นๆ`,
-
-                detail: `ช่วยเขียนแผนการจัดการเรียนรู้ที่ 1 จากตารางด้านบนอย่างละเอียด โดยใช้โครงสร้าง 9 ข้อดังนี้
-
-ข้อมูลเบื้องต้นสำหรับแผนการสอน:
-รายวิชา: {subject}
-ระดับชั้น: {grade}
-หน่วยการเรียนรู้เรื่อง: {topic}
-ระยะเวลา: 1 ชั่วโมง
-
-โครงสร้างแผนการจัดการเรียนรู้ที่ต้องการ (เขียนให้ครบถ้วน):
-1. มาตรฐานการเรียนรู้/ตัวชี้วัด: ระบุให้สอดคล้องกับเนื้อหา
-2. จุดประสงค์การเรียนรู้: ครอบคลุม K, P, A
+4. ไอเดียกิจกรรม Brain-Based Learning แบบสั้นๆ (ให้สอดคล้องกับเงื่อนไขพิเศษ)`;
+                } 
+                else if (currentType === 'detail') {
+                    finalPrompt = `ช่วยเขียนแผนการจัดการเรียนรู้อย่างละเอียด (Lesson Plan) โดยใช้โครงสร้าง 9 ข้อมาตรฐาน\n
+--- ข้อมูลเบื้องต้นสำหรับแผนการสอน ---
+รายวิชา: ${sub} | ระดับชั้น: ${grd}
+หน่วยการเรียนรู้เรื่อง: ${top}
+แผนการจัดการเรียนรู้เรื่อง: ${lName}
+ระยะเวลา: 1 ชั่วโมง\n
+--- เงื่อนไขพิเศษสำหรับการออกแบบเนื้อหาและกิจกรรม ---${additionalParams}\n
+--- โครงสร้างแผนการจัดการเรียนรู้ที่ต้องการ (เขียนรายละเอียดให้ครบถ้วน) ---
+1. มาตรฐานการเรียนรู้/ตัวชี้วัด: สอดคล้องกับเนื้อหา
+2. จุดประสงค์การเรียนรู้: ครอบคลุมความรู้ ทักษะ และเจตคติ
 3. สาระการเรียนรู้: แกนกลางและท้องถิ่น
 4. สาระสำคัญ/ความคิดรวบยอด: สรุปใจความสำคัญ
 5. สมรรถนะสำคัญและคุณลักษณะอันพึงประสงค์: ระบุพฤติกรรมบ่งชี้
 6. กิจกรรมการเรียนรู้ (Brain-Based Learning):
    - ขั้นนำ: เตรียมความพร้อมของสมอง (Preparation)
-   - ขั้นสอน: เชื่อมโยงความรู้ (Acquisition) และ ฝึกใช้ข้อมูล (Elaboration)
-   - ขั้นสรุป: สรุปความรู้ (Memory Formation) และนำไปใช้ (Functional Integration)
-7. การวัดและประเมินผล: ตาราง 4 คอลัมน์ (รายการวัด, วิธีวัด, เครื่องมือ, เกณฑ์)
+   - ขั้นสอน: เชื่อมโยงความรู้เดิมกับความรู้ใหม่ (Acquisition) และ ฝึกใช้ข้อมูล (Elaboration)
+   - ขั้นสรุป: สรุปองค์ความรู้ (Memory Formation) และนำไปใช้ (Functional Integration)
+7. การวัดและประเมินผล: ตาราง 4 คอลัมน์ (รายการวัดก่อน/ระหว่าง/หลัง, วิธีวัด, เครื่องมือ, เกณฑ์)
 8. สื่อและแหล่งการเรียนรู้
-9. แบบบันทึกหลังแผน: เว้นว่างสำหรับบันทึกผล ปัญหา และแนวทางแก้ไข`,
-
-                quick: `ช่วยเขียนโครงร่างแผนการจัดการเรียนรู้จำนวน 3 แผน ต่อเนื่องกัน
-
-รายวิชา: {subject}
-ระดับชั้น: {grade}
-หน่วยการเรียนรู้เรื่อง: {topic}
-
+9. แบบบันทึกหลังแผน: เว้นว่างสำหรับบันทึกผล ปัญหา และแนวทางแก้ไข`;
+                } 
+                else if (currentType === 'quick') {
+                    finalPrompt = `ช่วยเขียนโครงร่างแผนการจัดการเรียนรู้จำนวน ${cnt} แผน ต่อเนื่องกัน\n
+--- ข้อมูลพื้นฐาน ---
+รายวิชา: ${sub}
+ระดับชั้น: ${grd}
+หน่วยการเรียนรู้เรื่อง: ${top}\n
+--- เงื่อนไขพิเศษ (พิจารณาในการออกแบบกิจกรรม) ---${additionalParams}\n
 โดยแต่ละแผนให้สรุปเนื้อหาตามโครงสร้างนี้แบบกระชับ:
 - ชื่อแผนและจุดประสงค์การเรียนรู้
 - สาระสำคัญ
 - กิจกรรม Brain-Based Learning (สรุปสั้นๆ 4 ขั้น: นำ, สอน, สรุป, ประเมิน)
-- ชิ้นงาน/ภาระงานที่ใช้ประเมินผล`
-            };
-
-            // ฟังก์ชันประกอบร่าง Prompt
-            function generatePrompt() {
-                const sub = subjectInput.value.trim() || "[ระบุวิชา]";
-                const grd = gradeInput.value.trim() || "[ระบุระดับชั้น]";
-                const top = topicInput.value.trim() || "[ระบุชื่อหน่วย]";
-
-                let finalPrompt = promptTemplates[currentType]
-                    .replace(/{subject}/g, sub)
-                    .replace(/{grade}/g, grd)
-                    .replace(/{topic}/g, top);
+- ชิ้นงาน/ภาระงานที่ใช้ประเมินผล`;
+                }
 
                 resultBox.value = finalPrompt;
             }
@@ -1094,14 +1189,23 @@
             function changePromptType(type) {
                 currentType = type;
                 
+                // ซ่อน/แสดง กล่องใส่ชื่อแผน (เฉพาะตอนเจาะลึก)
+                if(type === 'detail') {
+                    lessonDetailContainer.classList.remove('hidden');
+                    pCount.parentElement.classList.add('hidden'); // ซ่อนจำนวนแผน
+                } else {
+                    lessonDetailContainer.classList.add('hidden');
+                    pCount.parentElement.classList.remove('hidden'); // แสดงจำนวนแผน
+                }
+                
                 // รีเซ็ตสีปุ่ม Tab ทั้งหมด
                 tabs.forEach(tab => {
-                    tab.className = "prompt-tab bg-slate-800 text-slate-400 hover:bg-slate-700 border border-slate-700 px-4 py-2 rounded-lg text-sm font-bold transition";
+                    tab.className = "prompt-tab bg-slate-800 text-slate-300 hover:bg-slate-700 border border-slate-600 px-4 py-2 rounded-lg text-sm font-bold transition";
                 });
                 
                 // ไฮไลต์ปุ่ม Tab ที่ถูกเลือก
                 const activeTab = document.getElementById(`tab-${type}`);
-                activeTab.className = "prompt-tab active-tab bg-emerald-500/20 text-emerald-400 border border-emerald-500/50 px-4 py-2 rounded-lg text-sm font-bold transition shadow-[0_0_15px_rgba(16,185,129,0.2)]";
+                activeTab.className = "prompt-tab active-tab bg-emerald-500 text-slate-900 px-4 py-2 rounded-lg text-sm font-bold transition shadow-lg shadow-emerald-500/30";
 
                 generatePrompt();
             }
@@ -1113,33 +1217,29 @@
                     const copyIcon = document.getElementById('copy-icon');
                     const copyText = document.getElementById('copy-text');
                     
-                    // เปลี่ยนหน้าตาปุ่มชั่วคราวให้รู้ว่า Copy สำเร็จ
-                    copyBtn.classList.remove('bg-slate-700', 'hover:bg-slate-600');
-                    copyBtn.classList.add('bg-emerald-600', 'hover:bg-emerald-700');
+                    // เอฟเฟกต์ปุ่มตอน Copy
+                    copyBtn.classList.remove('bg-blue-600', 'hover:bg-blue-500');
+                    copyBtn.classList.add('bg-emerald-500', 'hover:bg-emerald-400');
                     copyIcon.className = 'fas fa-check text-white';
                     copyText.innerText = 'คัดลอกสำเร็จ!';
-                    copyText.className = 'text-white';
                     
-                    // คืนค่าปุ่มกลับมาเหมือนเดิมหลัง 2 วินาที
                     setTimeout(() => {
-                        copyBtn.classList.remove('bg-emerald-600', 'hover:bg-emerald-700');
-                        copyBtn.classList.add('bg-slate-700', 'hover:bg-slate-600');
+                        copyBtn.classList.remove('bg-emerald-500', 'hover:bg-emerald-400');
+                        copyBtn.classList.add('bg-blue-600', 'hover:bg-blue-500');
                         copyIcon.className = 'far fa-copy text-white';
                         copyText.innerText = 'คัดลอก Prompt';
-                        copyText.className = 'text-white';
                     }, 2000);
                 } catch (err) {
-                    console.error('Failed to copy text: ', err);
                     alert("ไม่สามารถคัดลอกได้ กรุณากด Ctrl+C เพื่อคัดลอกเองครับ");
                 }
             }
 
-            // เมื่อพิมพ์ข้อความในช่อง Input ให้ประกอบ Prompt ใหม่ทันที (Real-time)
-            subjectInput.addEventListener('input', generatePrompt);
-            gradeInput.addEventListener('input', generatePrompt);
-            topicInput.addEventListener('input', generatePrompt);
+            // ผูก Event Listener ให้ทุกๆ Input (พิมพ์ปุ๊บ Prompt เปลี่ยนปั๊บ)
+            const allInputs = [pSubject, pGrade, pTopic, pCount, pLessonName, pConstraint];
+            allInputs.forEach(input => input.addEventListener('input', generatePrompt));
+            pStyles.forEach(cb => cb.addEventListener('change', generatePrompt));
 
-            // โหลด Prompt ตั้งต้นตอนเปิดหน้าเว็บ
+            // โหลด Prompt ตั้งต้น
             generatePrompt();
         </script>
         <!-- Session 2.1: AI-Powered Lesson Design -->
