@@ -381,84 +381,8 @@
                 </a>
             </div>
         </section>
-
-        <!-- Session 1: Mindset & Prompting -->
-        <section id="session1" class="scroll-mt-32" aria-labelledby="heading-s1">
-            <div class="flex flex-col lg:flex-row gap-12 items-start">
-                <div class="lg:w-5/12">
-                    <div class="inline-block bg-indigo-100 text-indigo-700 px-3 py-1 rounded-lg text-sm font-bold mb-4">Session 1 • 15 Mins</div>
-                    <h2 id="heading-s1" class="text-3xl font-bold mb-6 text-slate-900" data-i18n="s1_title">Getting Started <br>AI Literacy & Mindset</h2>
-                    
-                    <div class="bg-amber-50 border-l-4 border-amber-400 p-5 rounded-r-xl mb-8" role="note" aria-label="เคล็ดลับ">
-                        <h3 class="font-bold text-amber-800 flex items-center gap-2 mb-2">
-                            <i class="fas fa-quote-left" aria-hidden="true"></i> 
-                            <span data-i18n="s1_note_title">AI is your Intern!</span>
-                        </h3>
-                        <p class="text-amber-900 text-sm" data-i18n="s1_note_desc">"มอง AI เป็นเด็กฝึกงานที่มีประสบการณ์น้อย มันเดาคำเก่ง แต่เราต้องสั่งงานให้ชัดเจน และ **เน้นย้ำเรื่องการตรวจสอบความถูกต้องเสมอ**"</p>
-                    </div>
-
-                    <div class="space-y-4">
-                        <h4 class="font-bold text-slate-800 text-lg" data-i18n="s1_pillars_title">โครงสร้าง The 4 Pillars of Prompting</h4>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm"><span class="block text-blue-600 font-bold mb-1">1. Role</span> <span data-i18n="s1_p1">สวมบทบาทให้ AI</span></div>
-                            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm"><span class="block text-blue-600 font-bold mb-1">2. Context</span> <span data-i18n="s1_p2">บอกบริบท/ข้อจำกัด</span></div>
-                            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm"><span class="block text-blue-600 font-bold mb-1">3. Task</span> <span data-i18n="s1_p3">สั่งภารกิจให้ชัดเจน</span></div>
-                            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm"><span class="block text-blue-600 font-bold mb-1">4. Format</span> <span data-i18n="s1_p4">กำหนดรูปแบบผลลัพธ์</span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Interactive Prompt Builder -->
-                <div class="lg:w-7/12 w-full bg-white p-8 rounded-3xl shadow-lg border border-slate-200">
-                    <h3 class="text-2xl font-bold mb-6 text-slate-800 flex items-center gap-3">
-                        <div class="bg-blue-100 text-blue-600 p-2 rounded-lg" aria-hidden="true"><i class="fas fa-wand-magic-sparkles"></i></div>
-                        <span data-i18n="builder_title">ลองสร้างคำสั่งแรกของคุณ</span>
-                    </h3>
-                    
-                    <form class="space-y-6" aria-label="ฟอร์มสร้างคำสั่ง AI">
-                        <div>
-                            <label for="builder-role" class="block text-sm font-bold text-slate-800 mb-2" data-i18n="label_role">บทบาท (Role)</label>
-                            <select id="builder-role" class="w-full border border-slate-300 rounded-xl p-3 bg-slate-50 text-slate-800 focus:ring-2 focus:ring-blue-500 outline-none" onchange="updateLivePrompt()">
-                                <option value="ครูเชี่ยวชาญด้านการโรงแรมและการท่องเที่ยว">ครูเชี่ยวชาญด้านการโรงแรมและการท่องเที่ยว</option>
-                                <option value="ผู้เชี่ยวชาญด้านไอทีและเทคโนโลยีดิจิทัล">ผู้เชี่ยวชาญด้านไอทีและเทคโนโลยีดิจิทัล</option>
-                                <option value="อาจารย์แผนกบัญชีและการตลาด">อาจารย์แผนกบัญชีและการตลาด</option>
-                                <option value="ช่างเครื่องยนต์และช่างเทคนิคอาวุโส">ช่างเครื่องยนต์และช่างเทคนิคอาวุโส</option>
-                                <option value="ครูผู้สอนวิชาสามัญ">ครูผู้สอนวิชาสามัญ</option>
-                            </select>
-                        </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                            <div>
-                                <label for="builder-context" class="block text-sm font-bold text-slate-800 mb-2" data-i18n="label_context">บริบท (Context)</label>
-                                <input type="text" id="builder-context" placeholder="เช่น สำหรับเด็ก ปวช.1" class="w-full border border-slate-300 rounded-xl p-3 bg-slate-50 text-slate-800 focus:ring-2 focus:ring-blue-500 outline-none" onkeyup="updateLivePrompt()" value="สำหรับเด็ก ปวช. ที่ชอบเรียนแบบลงมือปฏิบัติ">
-                            </div>
-                            <div>
-                                <label for="builder-format" class="block text-sm font-bold text-slate-800 mb-2" data-i18n="label_format">รูปแบบ (Format)</label>
-                                <select id="builder-format" class="w-full border border-slate-300 rounded-xl p-3 bg-slate-50 text-slate-800 focus:ring-2 focus:ring-blue-500 outline-none" onchange="updateLivePrompt()">
-                                    <option value="อธิบายเป็นขั้นตอน 1-2-3 เข้าใจง่าย">อธิบายเป็นขั้นตอน 1-2-3</option>
-                                    <option value="จัดรูปแบบเป็นตาราง">จัดรูปแบบเป็นตาราง</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div>
-                            <label for="builder-task" class="block text-sm font-bold text-slate-800 mb-2" data-i18n="label_task">ภารกิจ (Task)</label>
-                            <textarea id="builder-task" rows="2" placeholder="เช่น ออกแบบกิจกรรมละลายพฤติกรรม..." class="w-full border border-slate-300 rounded-xl p-3 bg-slate-50 text-slate-800 resize-none focus:ring-2 focus:ring-blue-500 outline-none" onkeyup="updateLivePrompt()">ออกแบบกิจกรรมการแก้ปัญหาเฉพาะหน้า (Problem Solving) 1 กิจกรรม ใช้เวลา 15 นาที</textarea>
-                        </div>
-                    </form>
-
-                    <div class="mt-8 bg-slate-900 rounded-2xl p-6 relative">
-                        <div class="absolute top-3 right-4 text-[10px] font-bold text-slate-500 uppercase" aria-hidden="true">Live Output</div>
-                        <div class="overflow-x-auto prompt-scroll" role="region" aria-live="polite">
-                            <p id="live-prompt-text" class="text-emerald-400 font-mono text-sm leading-relaxed whitespace-pre-wrap mt-2">...</p>
-                        </div>
-                        <button onclick="copyElementText('live-prompt-text', 'คำสั่งของคุณ')" class="mt-4 w-full bg-white/10 hover:bg-white/20 text-white border border-white/30 py-3 rounded-xl font-bold transition flex items-center justify-center gap-2">
-                            <i class="fas fa-copy" aria-hidden="true"></i> <span data-i18n="btn_copy">คัดลอกคำสั่ง</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Session 2.2: The Outcome -->
-        <section id="session2" class="scroll-mt-32">
+<!-- Session 1: The Outcome -->
+       <section id="session2" class="scroll-mt-32">
             <div class="flex flex-col lg:flex-row gap-8 items-start max-w-7xl mx-auto">
                 
                 <div class="lg:w-4/12">
@@ -586,13 +510,6 @@
         </section>
 
         <script>
-            // 🔒 ระบบ Lock Screen
-            const securityOverlay = document.getElementById('security-overlay');
-            const pinInput = document.getElementById('workshop-pin');
-            const btnUnlock = document.getElementById('btn-unlock');
-            const pinError = document.getElementById('pin-error');
-            const lockIcon = document.getElementById('lock-icon');
-
             // 🧠 ฐานข้อมูลอัจฉริยะ 100 หมวด (ครอบจักรวาล อาชีวศึกษาและวิชาสามัญ)
             const smartDatabase = [
                 // ================= กลุ่ม IT & Computer Science (1-12) =================
@@ -687,7 +604,7 @@
                 { keywords: ["สังคม", "ประวัติศาสตร์", "หน้าที่พลเมือง", "อาเซียน", "วัฒนธรรม", "สังคมศึกษา"], outcome: "ทักษะการวิเคราะห์วิพากษ์ (Critical Thinking) ต่อเหตุการณ์ประวัติศาสตร์และปัญหาสังคม", allow: "ใช้ AI ช่วยเรียงลำดับ Time-line เหตุการณ์สำคัญ หรือเปรียบเทียบการปกครองแบบต่างๆ", disallow: "ห้ามก๊อปปี้บทวิเคราะห์การเมืองหรือสังคมจาก AI มาส่ง นักเรียนต้องมีจุดยืนและมุมมองของตนเอง" },
 
                 // ================= กลุ่ม Languages, Humanities & Others (78-100) =================
-                { keywords: ["ภาษาอังกฤษ", "english", "grammar", "vocab", "conversation", "speaking", "แปล", "toeic"], outcome: "ทักษะการใช้ภาษาต่างประเทศเพื่อการสื่อสารในชีวิตประจำวันและวิชาชีพระดับสากล", allow: "ใช้ AI เป็นคู่สนทนาฝึกพูด (Voice Chat), ตรวจแกรมม่า (Proofreading), หรือขอตัวอย่างประโยค", disallow: "ห้ามให้ AI แปลบทความทั้งหน้าแล้วส่งเลยโดยไม่เกลาสำนวน หรือให้เขียน Essay แทนทั้งหมด" },
+                { keywords: ["ภาษาอังกฤษ", "english", "grammar", "vocab", "conversation", "speaking", "แปล", "toeic"], outcome: "ทักษะการใช้ภาษาต่างประเทศเพื่อการสื่อสารในชีวิตประจำวันและวิชาชีระดับสากล", allow: "ใช้ AI เป็นคู่สนทนาฝึกพูด (Voice Chat), ตรวจแกรมม่า (Proofreading), หรือขอตัวอย่างประโยค", disallow: "ห้ามให้ AI แปลบทความทั้งหน้าแล้วส่งเลยโดยไม่เกลาสำนวน หรือให้เขียน Essay แทนทั้งหมด" },
                 { keywords: ["ภาษาต่างประเทศ", "ภาษาจีน", "ภาษาญี่ปุ่น", "ภาษาเกาหลี", "chinese", "japanese", "แปลภาษา"], outcome: "ทักษะความเข้าใจข้ามวัฒนธรรม การสื่อสารภาษาที่ 3 และการขยายวิสัยทัศน์โลก", allow: "ใช้ AI ช่วยอธิบายรากศัพท์ (Kanji/Hanja), ฝึกคัดลายมือเสมือน, หรืออธิบายไวยากรณ์ที่ซับซ้อน", disallow: "ห้ามให้ AI แปลข้อความส่งโดยไม่พยายามแปลตนเองก่อน หรือให้ AI แต่งประโยคระดับสูงที่ตนเองอ่านไม่ออก" },
                 { keywords: ["ภูมิศาสตร์", "แผนที่", "ภูมิอากาศ", "โลก", "ทวีป", "ภัยพิบัติ"], outcome: "ทักษะความเข้าใจปฏิสัมพันธ์ระหว่างมนุษย์กับสภาพแวดล้อมทางกายภาพ", allow: "ใช้ AI อธิบายปรากฏการณ์เอลนีโญ/ลานีญา หรือรวบรวมสถิติภัยพิบัติ", disallow: "ห้ามใช้ AI เขียนวิเคราะห์การเปลี่ยนแปลงสภาพภูมิอากาศในท้องถิ่นโดยปราศจากการสังเกตด้วยตนเอง" },
                 { keywords: ["ศาสนา", "พระพุทธศาสนา", "ศีลธรรม", "หลักธรรม"], outcome: "การขัดเกลาจิตใจ ความเข้าใจในหลักธรรมคำสอน และการประยุกต์ใช้ในชีวิตประจำวัน", allow: "ใช้ AI ช่วยอธิบายพุทธประวัติ หรือสรุปหลักธรรมยากๆ (เช่น ปฏิจจสมุปบาท) ให้เข้าใจง่าย", disallow: "ห้ามใช้ AI เขียนเรียงความสะท้อนการนำหลักธรรมไปใช้ในชีวิตจริง นักเรียนต้องเขียนจากประสบการณ์ตรง" },
@@ -709,12 +626,12 @@
                 { keywords: ["ประชาสัมพันธ์โรงเรียน", "กรรมการนักเรียน", "สภานักเรียน", "จัดกิจกรรม"], outcome: "ทักษะความเป็นผู้นำ (Leadership) การเป็นกระบอกเสียง และการจัดการชุมชนในโรงเรียน", allow: "ใช้ AI ร่างสคริปต์ประกาศเสียงตามสาย หรือช่วยจัดทำแบบฟอร์มรับฟังความคิดเห็น", disallow: "ห้ามใช้ AI เขียนนโยบายสภานักเรียนส่งครูโดยไม่ได้สำรวจปัญหาที่แท้จริงของเพื่อนนักเรียนในโรงเรียน" },
                 { keywords: ["คหกรรม", "เย็บปักถักร้อย", "งานฝีมือ", "ร้อยมาลัย", "แกะสลัก", "ประดิษฐ์ประดอย"], outcome: "ทักษะความประณีต สมาธิ และการสืบสานศิลปวัฒนธรรมงานฝีมือ", allow: "ใช้ AI หาประวัติความเป็นมาของลายไทย หรือดูรูปตัวอย่างงานแกะสลักเพื่อเป็น Reference", disallow: "ห้ามใช้ชิ้นงานสำเร็จรูปมาส่งแทนงานฝีมือของตนเอง หรืออ้างสิทธิ์ในภาพที่ AI Generate ว่าวาดเอง" },
                 { keywords: ["เสริมสวย", "ช่างผม", "ตัดผม", "แต่งหน้า", "ทำเล็บ", "สปาผม"], outcome: "ทักษะสุนทรียศาสตร์บนร่างกายมนุษย์ การบริการ และความแม่นยำในการใช้อุปกรณ์", allow: "ใช้ AI อัปเดตเทรนด์สีผมปีล่าสุด หรือวิเคราะห์รูปหน้า (Face shape) เบื้องต้นทางทฤษฎี", disallow: "ห้ามใช้ AI ทำรายงานขั้นตอนการตัดผมหรือผสมสีผมโดยที่นักเรียนไม่ได้ลงมือปฏิบัติกับหัวหุ่นหรือคนจริง" },
-                { keywords: ["ดนตรีไทย", "ขลุ่ย", "ระนาด", "ซอ", "รำไทย", "นาฏศิลป์", "โขน"], outcome: "ทักษะความอ่อนช้อย การสืบสานจังหวะดนตรีไทย และความภาคภูมิใจในเอกลักษณ์ชาติ", allow: "ใช้ AI หาประวัติเครื่องดนตรีโบราณ หรือเนื้อร้องเพลงไทยเดิมเพื่อฝึกซ้อม", disallow: "ห้ามให้ AI วิเคราะห์สุนทรียศาสตร์ของท่ารำแทน นักเรียนต้องฝึกปฏิบัติและรับรู้ถึงความสวยงามด้วยตนเอง" }
+                { keywords: ["ดนตรีไทย", "ขลุ่ย", "ระนาด", "ซอ", "รำไทย", "นาฏศิลป์", "โขน"], outcome: "ทักษะความอ่อนช้อย การสืบสานจังหวะดนตรีไทย และความภาคภูมิใจในเอกลักษณ์ชาติ", allow: "ใช้ AI หาประวัติเครื่องดนตรีโบราณ หรือเนื้อร้องเพลงไทยเดิมเพื่อฝึกซ้อม", disallow: "ห้ามให้ AI วิเคราะห์สุนทรียศาสตร์ของท่ารำแทน นักเรียนต้องฝึกปฏิบัติและรับรู้ถึงความสวยงามด้วยตนเอง" },
             
                 // ================= 1. กลุ่ม Advanced Tech & Future Skills (เทคโนโลยีขั้นสูง) =================
                 { keywords: ["บล็อกเชน", "คริปโต", "blockchain", "crypto", "smart contract", "web3"], outcome: "ทักษะความเข้าใจระบบกระจายศูนย์ (Decentralized) และการรักษาความปลอดภัยของข้อมูล", allow: "ใช้ AI ช่วยอธิบายกลไก Consensus หรือตรวจสอบช่องโหว่ (Vulnerability) ของโค้ดเบื้องต้น", disallow: "ห้ามใช้ AI เขียน Smart Contract ทั้งหมดเพื่อส่งงานโดยไม่เข้าใจลอจิกการทำงานและต้นทุน (Gas Fee)" },
                 { keywords: ["คลาวด์", "cloud", "aws", "azure", "google cloud", "เซิร์ฟเวอร์จำลอง"], outcome: "ทักษะการออกแบบและบริหารจัดการโครงสร้างพื้นฐานด้านไอที (Infrastructure)", allow: "ใช้ AI แนะนำสถาปัตยกรรมคลาวด์ที่เหมาะสมกับโจทย์ หรือช่วยจำลองการคำนวณค่าใช้จ่าย (Pricing)", disallow: "ห้ามคัดลอกสคริปต์ตั้งค่า (Provisioning) จาก AI มารันโดยไม่เข้าใจสิทธิ์การเข้าถึง (IAM)" },
-                { keywords: ["devops", "ci/cd", "docker", "kubernetes", "pipeline", "deploy"], outcome: "ทักษะการพัฒนาระบบอัตโนมัติเพื่อเชื่อมต่อการเขียนโค้ดและการปฏิบัติการ", allow: "ใช้ AI ช่วยเขียน Dockerfile พื้นฐาน หรืออธิบาย Error log ของ Pipeline", disallow: "ห้ามใช้ AI คอนฟิกระบบ Deploy อัตโนมัติทั้งหมดโดยไม่ได้ทดสอบในสภาพแวดล้อมจำลองด้วยตนเอง" },
+                { keywords: ["devops", "ci/cd", "docker", "kubernetes", "pipeline", "deploy"], outcome: "ทักษะการพัฒระบบอัตโนมัติเพื่อเชื่อมต่อการเขียนโค้ดและการปฏิบัติการ", allow: "ใช้ AI ช่วยเขียน Dockerfile พื้นฐาน หรืออธิบาย Error log ของ Pipeline", disallow: "ห้ามใช้ AI คอนฟิกระบบ Deploy อัตโนมัติทั้งหมดโดยไม่ได้ทดสอบในสภาพแวดล้อมจำลองด้วยตนเอง" },
                 { keywords: ["ar", "vr", "metaverse", "โลกเสมือน", "augmented reality", "virtual reality"], outcome: "ทักษะการสร้างประสบการณ์เสมือนจริง (Immersive Experience) และการปฏิสัมพันธ์เชิงมิติ", allow: "ใช้ AI ช่วยหาไอเดียการตอบสนองของ UI ในโลกเสมือน หรือค้นหาสคริปต์ตรวจจับการเคลื่อนไหว", disallow: "ห้ามใช้ AI สร้างฉาก 3D สภาพแวดล้อมทั้งหมดโดยที่นักเรียนไม่ได้จัดวางหรือปรับแต่งสเกลเอง" },
                 { keywords: ["prompt engineering", "เขียนพรอมต์", "สั่ง ai", "คำสั่ง ai", "แชทบอท"], outcome: "ทักษะการสื่อสารเชิงตรรกะและการรีดเร้นศักยภาพของปัญญาประดิษฐ์", allow: "ใช้ AI เพื่อทดสอบผลลัพธ์ของพรอมต์เปรียบเทียบกัน หรือช่วยเกลาคำศัพท์ให้กระชับขึ้น", disallow: "ห้ามให้ AI ตัวหนึ่งเขียนพรอมต์สำเร็จรูปเพื่อไปป้อน AI อีกตัวส่งครูโดยไม่มีการดัดแปลงแก้ไข" },
                 { keywords: ["อีสปอร์ต", "e-sports", "แคสเตอร์", "แข่งเกม", "จัดการแข่งขันเกม"], outcome: "ทักษะการบริหารจัดการธุรกิจอีสปอร์ต การทำงานเป็นทีม และกลยุทธ์การแข่งขัน", allow: "ใช้ AI ร่างตารางสายการแข่งขัน (Bracket) หรือวิเคราะห์สถิติเมต้า (Meta) ของเกมเบื้องต้น", disallow: "ห้ามใช้ AI เขียนแผนธุรกิจอีสปอร์ตโดยไม่ได้สำรวจฐานแฟนคลับและสปอนเซอร์ที่มีอยู่จริง" },
@@ -824,17 +741,14 @@
                 { keywords: ["จัดดอกไม้", "floral design", "floristry", "ร้อยมาลัย", "พวงหรีด", "ช่อดอกไม้"], outcome: "ทักษะศิลปะองค์ประกอบ (Composition) ความประณีต และความเข้าใจธรรมชาติของพันธุ์ไม้", allow: "ใช้ AI ค้นหาความหมายของดอกไม้แต่ละชนิด หรือหาทฤษฎีการจับคู่สี (Color wheel) สำหรับดอกไม้", disallow: "ห้ามใช้ภาพที่ AI Generate ส่งเป็นผลงานประกวดจัดดอกไม้ของตนเอง นักเรียนต้องลงมือจับสัมผัสดอกไม้จริง" },
                 { keywords: ["ชีววิทยาดาราศาสตร์", "astrobiology", "สิ่งมีชีวิตนอกโลก", "ดาวอังคาร", "กำเนิดชีวิต"], outcome: "ทักษะการคิดเชิงวิพากษ์ข้ามศาสตร์ (Interdisciplinary) ผสานชีววิทยา ฟิสิกส์ และดาราศาสตร์", allow: "ใช้ AI รวบรวมข้อมูลภารกิจค้นหาดาวเคราะห์นอกระบบ (Exoplanet) ของ NASA", disallow: "ห้ามใช้ AI สร้างทฤษฎีสิ่งมีชีวิตนอกโลกที่ขัดแย้งกับกฎฟิสิกส์พื้นฐานเพื่อส่งรายงานวิชาการ" },
                 { keywords: ["ชีวสารสนเทศ", "bioinformatics", "ข้อมูลรหัสพันธุกรรม", "dna", "โปรตีน", "จีโนม"], outcome: "ทักษะการประมวลผลข้อมูลชีวภาพขนาดใหญ่ด้วยคอมพิวเตอร์และการตีความทางพันธุศาสตร์", allow: "ใช้ AI เขียนโค้ดไพธอน (Python) เบื้องต้นสำหรับใช้อ่านลำดับเบส DNA ในไฟล์ FASTA", disallow: "ห้ามใช้ AI วิเคราะห์และสรุปผลความสัมพันธ์ทางวิวัฒนาการ (Phylogenetic) ส่งโดยไม่เข้าใจอัลกอริทึมการเปรียบเทียบ" }
-                        
             ];
 
-            // คำตอบ Default ถ้าพิมพ์คำทั่วไปที่ไม่อยู่ใน 100 หมวด
             const defaultAnalysis = {
                 outcome: "ทักษะความเข้าใจเนื้อหาพื้นฐาน การแก้ปัญหา และการนำความรู้ไปประยุกต์ใช้ในชีวิตจริง",
                 allow: "อนุญาตให้ใช้ AI เป็นผู้ช่วยส่วนตัว (Tutor) เพื่ออธิบายจุดที่ไม่เข้าใจ หาข้อมูลดิบ หรือช่วยระดมสมองหาไอเดียตั้งต้น",
                 disallow: "ไม่อนุญาตให้ AI ทำกระบวนการคิดวิเคราะห์ ตัดสินใจ หรือผลิตชิ้นงานสำเร็จรูปแทนทั้งหมด นักเรียนต้องเป็นเจ้าของผลงานตัวจริง"
             };
 
-            // ฟังก์ชันวิเคราะห์ด้วย Keyword Scoring 
             function simulateAIAnalysis(text) {
                 const lowerText = text.toLowerCase();
                 let matchedAnalysis = defaultAnalysis;
@@ -853,7 +767,6 @@
                 return matchedAnalysis;
             }
 
-            // --- UI Transitions & Logistics ---
             const s1 = document.getElementById('step-1');
             const sLoad = document.getElementById('step-loading');
             const s2 = document.getElementById('step-2');
@@ -939,7 +852,83 @@
             
             setTimeout(() => { showStep(s1); }, 100);
         </script>
-          <!-- Session 2.2: The Outcome -->
+        <!-- Session 1: The Outcome -->
+        <!-- Session 1: Mindset & Prompting -->
+        <section id="session1" class="scroll-mt-32" aria-labelledby="heading-s1">
+            <div class="flex flex-col lg:flex-row gap-12 items-start">
+                <div class="lg:w-5/12">
+                    <div class="inline-block bg-indigo-100 text-indigo-700 px-3 py-1 rounded-lg text-sm font-bold mb-4">Session 1 • 15 Mins</div>
+                    <h2 id="heading-s1" class="text-3xl font-bold mb-6 text-slate-900" data-i18n="s1_title">Getting Started <br>AI Literacy & Mindset</h2>
+                    
+                    <div class="bg-amber-50 border-l-4 border-amber-400 p-5 rounded-r-xl mb-8" role="note" aria-label="เคล็ดลับ">
+                        <h3 class="font-bold text-amber-800 flex items-center gap-2 mb-2">
+                            <i class="fas fa-quote-left" aria-hidden="true"></i> 
+                            <span data-i18n="s1_note_title">AI is your Intern!</span>
+                        </h3>
+                        <p class="text-amber-900 text-sm" data-i18n="s1_note_desc">"มอง AI เป็นเด็กฝึกงานที่มีประสบการณ์น้อย มันเดาคำเก่ง แต่เราต้องสั่งงานให้ชัดเจน และ **เน้นย้ำเรื่องการตรวจสอบความถูกต้องเสมอ**"</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-slate-800 text-lg" data-i18n="s1_pillars_title">โครงสร้าง The 4 Pillars of Prompting</h4>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm"><span class="block text-blue-600 font-bold mb-1">1. Role</span> <span data-i18n="s1_p1">สวมบทบาทให้ AI</span></div>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm"><span class="block text-blue-600 font-bold mb-1">2. Context</span> <span data-i18n="s1_p2">บอกบริบท/ข้อจำกัด</span></div>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm"><span class="block text-blue-600 font-bold mb-1">3. Task</span> <span data-i18n="s1_p3">สั่งภารกิจให้ชัดเจน</span></div>
+                            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm"><span class="block text-blue-600 font-bold mb-1">4. Format</span> <span data-i18n="s1_p4">กำหนดรูปแบบผลลัพธ์</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Prompt Builder -->
+                <div class="lg:w-7/12 w-full bg-white p-8 rounded-3xl shadow-lg border border-slate-200">
+                    <h3 class="text-2xl font-bold mb-6 text-slate-800 flex items-center gap-3">
+                        <div class="bg-blue-100 text-blue-600 p-2 rounded-lg" aria-hidden="true"><i class="fas fa-wand-magic-sparkles"></i></div>
+                        <span data-i18n="builder_title">ลองสร้างคำสั่งแรกของคุณ</span>
+                    </h3>
+                    
+                    <form class="space-y-6" aria-label="ฟอร์มสร้างคำสั่ง AI">
+                        <div>
+                            <label for="builder-role" class="block text-sm font-bold text-slate-800 mb-2" data-i18n="label_role">บทบาท (Role)</label>
+                            <select id="builder-role" class="w-full border border-slate-300 rounded-xl p-3 bg-slate-50 text-slate-800 focus:ring-2 focus:ring-blue-500 outline-none" onchange="updateLivePrompt()">
+                                <option value="ครูเชี่ยวชาญด้านการโรงแรมและการท่องเที่ยว">ครูเชี่ยวชาญด้านการโรงแรมและการท่องเที่ยว</option>
+                                <option value="ผู้เชี่ยวชาญด้านไอทีและเทคโนโลยีดิจิทัล">ผู้เชี่ยวชาญด้านไอทีและเทคโนโลยีดิจิทัล</option>
+                                <option value="อาจารย์แผนกบัญชีและการตลาด">อาจารย์แผนกบัญชีและการตลาด</option>
+                                <option value="ช่างเครื่องยนต์และช่างเทคนิคอาวุโส">ช่างเครื่องยนต์และช่างเทคนิคอาวุโส</option>
+                                <option value="ครูผู้สอนวิชาสามัญ">ครูผู้สอนวิชาสามัญ</option>
+                            </select>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div>
+                                <label for="builder-context" class="block text-sm font-bold text-slate-800 mb-2" data-i18n="label_context">บริบท (Context)</label>
+                                <input type="text" id="builder-context" placeholder="เช่น สำหรับเด็ก ปวช.1" class="w-full border border-slate-300 rounded-xl p-3 bg-slate-50 text-slate-800 focus:ring-2 focus:ring-blue-500 outline-none" onkeyup="updateLivePrompt()" value="สำหรับเด็ก ปวช. ที่ชอบเรียนแบบลงมือปฏิบัติ">
+                            </div>
+                            <div>
+                                <label for="builder-format" class="block text-sm font-bold text-slate-800 mb-2" data-i18n="label_format">รูปแบบ (Format)</label>
+                                <select id="builder-format" class="w-full border border-slate-300 rounded-xl p-3 bg-slate-50 text-slate-800 focus:ring-2 focus:ring-blue-500 outline-none" onchange="updateLivePrompt()">
+                                    <option value="อธิบายเป็นขั้นตอน 1-2-3 เข้าใจง่าย">อธิบายเป็นขั้นตอน 1-2-3</option>
+                                    <option value="จัดรูปแบบเป็นตาราง">จัดรูปแบบเป็นตาราง</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="builder-task" class="block text-sm font-bold text-slate-800 mb-2" data-i18n="label_task">ภารกิจ (Task)</label>
+                            <textarea id="builder-task" rows="2" placeholder="เช่น ออกแบบกิจกรรมละลายพฤติกรรม..." class="w-full border border-slate-300 rounded-xl p-3 bg-slate-50 text-slate-800 resize-none focus:ring-2 focus:ring-blue-500 outline-none" onkeyup="updateLivePrompt()">ออกแบบกิจกรรมการแก้ปัญหาเฉพาะหน้า (Problem Solving) 1 กิจกรรม ใช้เวลา 15 นาที</textarea>
+                        </div>
+                    </form>
+
+                    <div class="mt-8 bg-slate-900 rounded-2xl p-6 relative">
+                        <div class="absolute top-3 right-4 text-[10px] font-bold text-slate-500 uppercase" aria-hidden="true">Live Output</div>
+                        <div class="overflow-x-auto prompt-scroll" role="region" aria-live="polite">
+                            <p id="live-prompt-text" class="text-emerald-400 font-mono text-sm leading-relaxed whitespace-pre-wrap mt-2">...</p>
+                        </div>
+                        <button onclick="copyElementText('live-prompt-text', 'คำสั่งของคุณ')" class="mt-4 w-full bg-white/10 hover:bg-white/20 text-white border border-white/30 py-3 rounded-xl font-bold transition flex items-center justify-center gap-2">
+                            <i class="fas fa-copy" aria-hidden="true"></i> <span data-i18n="btn_copy">คัดลอกคำสั่ง</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
         
         <!-- Session 2: AI-Powered Lesson Design -->
         <section id="session2" class="scroll-mt-32" aria-labelledby="heading-s2">
