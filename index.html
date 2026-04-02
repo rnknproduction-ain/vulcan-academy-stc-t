@@ -848,6 +848,252 @@
             setTimeout(() => { showStep(s1); }, 100);
         </script>
         <!-- Session 1: The Outcome -->
+        <section id="session2-checkup" class="scroll-mt-32 pt-16 pb-8">
+            <div class="flex flex-col lg:flex-row gap-8 items-start max-w-7xl mx-auto">
+                
+                <div class="lg:w-4/12">
+                    <div class="inline-block bg-blue-100 text-blue-700 px-3 py-1 rounded-lg text-sm font-bold mb-4">Session 2 • Check-in</div>
+                    <h2 class="text-3xl font-bold mb-6 text-slate-900">Before We Begin...</h2>
+                    
+                    <div class="bg-blue-50 border-l-4 border-blue-500 p-5 rounded-r-xl mb-6">
+                        <h3 class="font-bold text-blue-800 flex items-center gap-2 mb-2">
+                            <i class="fas fa-chalkboard-teacher"></i> 
+                            <span>คุณครูพร้อมลุยต่อไหมครับ?</span>
+                        </h3>
+                        <p class="text-blue-900 text-sm leading-relaxed">
+                            ก่อนที่เราจะไปให้ AI ช่วย "ออกแบบแผนการสอน" และ "สร้างใบงานอัจฉริยะ" ขอเช็กความพร้อมกันหน่อยครับ พิมพ์ความรู้สึกหรือวิชาที่สอนส่งเข้ามาได้เลย!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="lg:w-8/12 w-full">
+                    <div class="bg-white p-6 md:p-8 rounded-3xl shadow-xl border border-slate-200 relative">
+                        
+                        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold text-slate-800 flex items-center gap-3">
+                                    <div class="bg-gradient-to-r from-blue-500 to-cyan-500 text-white p-2 rounded-lg"><i class="fas fa-cloud"></i></div>
+                                    Live Teacher Board
+                                </h3>
+                            </div>
+                            
+                            <div class="flex items-center gap-3">
+                                <div class="flex gap-1 border-r border-slate-200 pr-3">
+                                    <button id="s2-btn-reset-data" class="w-8 h-8 rounded-full flex items-center justify-center text-slate-400 hover:text-rose-500 hover:bg-rose-50 transition-colors" title="ล้างข้อมูลทั้งหมด (Admin)">
+                                        <i class="fas fa-trash-alt text-sm"></i>
+                                    </button>
+                                    <button id="s2-btn-lock-toggle" class="w-8 h-8 rounded-full flex items-center justify-center text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors" title="ล็อก/ปลดล็อกการส่ง (Admin)">
+                                        <i id="s2-lock-icon" class="fas fa-unlock text-sm"></i>
+                                    </button>
+                                </div>
+                                <div id="s2-status-badge" class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap">เปิดรับข้อความ</div>
+                            </div>
+                        </div>
+                        
+                        <div id="s2-live-board" class="relative w-full h-64 bg-[#0d1117] rounded-2xl overflow-hidden mb-6 border border-slate-700 shadow-inner flex items-center justify-center group">
+                            
+                            <button id="s2-btn-fullscreen" class="absolute top-3 right-3 z-50 bg-white/10 hover:bg-white/30 text-white p-2 rounded-lg backdrop-blur-sm transition opacity-0 group-hover:opacity-100" title="ขยายเต็มจอ">
+                                <i id="s2-fullscreen-icon" class="fas fa-expand"></i>
+                            </button>
+
+                            <div id="s2-word-cloud-container" class="absolute inset-0 p-8 flex flex-wrap content-center justify-center gap-3 overflow-hidden"></div>
+                            
+                            <span id="s2-waiting-text" class="text-slate-500 font-mono animate-pulse">รอรับข้อความจากคุณครู...</span>
+                        </div>
+
+                        <div id="s2-input-area" class="flex flex-col sm:flex-row gap-4">
+                            <div class="flex-1 flex gap-2">
+                                <input type="text" id="s2-feeling-input" maxlength="20" placeholder="สอนวิชาอะไรกันบ้างเอ่ย..." class="w-full border border-slate-300 rounded-xl p-3 bg-slate-50 text-slate-800 focus:ring-2 focus:ring-blue-500 outline-none disabled:bg-slate-200 disabled:cursor-not-allowed transition">
+                                <button id="s2-btn-send-feeling" class="bg-blue-600 hover:bg-blue-700 text-white px-6 font-bold rounded-xl transition shadow-md disabled:bg-slate-400">ส่ง</button>
+                            </div>
+                            <div class="flex gap-2 justify-center bg-slate-100 p-2 rounded-xl border border-slate-200">
+                                <button class="s2-emoji-btn text-2xl hover:scale-125 transition-transform disabled:opacity-50" data-emoji="🔥">🔥</button>
+                                <button class="s2-emoji-btn text-2xl hover:scale-125 transition-transform disabled:opacity-50" data-emoji="💡">💡</button>
+                                <button class="s2-emoji-btn text-2xl hover:scale-125 transition-transform disabled:opacity-50" data-emoji="😲">😲</button>
+                                <button class="s2-emoji-btn text-2xl hover:scale-125 transition-transform disabled:opacity-50" data-emoji="💙">💙</button>
+                            </div>
+                        </div>
+                        <p id="s2-lock-msg" class="hidden text-center text-rose-600 font-bold mt-4 animate-bounce"><i class="fas fa-lock mr-2"></i> ปิดรับข้อความชั่วคราว เตรียมเข้าสู่บทเรียน</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+            import { getDatabase, ref, push, onValue, onChildAdded, remove, set } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-database.js";
+
+            // ข้อมูลเชื่อมต่อ Firebase ของอิน (แก้ไขตามจริงถ้าจำเป็น)
+            const firebaseConfig = {
+                apiKey: "AIzaSyBobhdPkqOoIY1fpZq6AAkipLC30QMiSgE",
+                authDomain: "vulcan-academy.firebaseapp.com",
+                databaseURL: "https://vulcan-academy-default-rtdb.asia-southeast1.firebasedatabase.app",
+                projectId: "vulcan-academy",
+                storageBucket: "vulcan-academy.firebasestorage.app",
+                messagingSenderId: "284133044410",
+                appId: "1:284133044410:web:04dce2a48339a2aa4bd283",
+                measurementId: "G-2588QQYZ01"
+            };
+
+            // สร้าง Database Path ใหม่สำหรับ Session 2 เพื่อไม่ให้ปนกับอันเก่า
+            const app = initializeApp(firebaseConfig, "Session2App"); // ตั้งชื่อแอปย่อยไม่ให้ซ้ำ
+            const db = getDatabase(app);
+            const wordsRef = ref(db, 'workshop/session2/words');
+            const emojisRef = ref(db, 'workshop/session2/emojis');
+            const settingsRef = ref(db, 'workshop/session2/settings');
+
+            const wordInput = document.getElementById('s2-feeling-input');
+            const sendBtn = document.getElementById('s2-btn-send-feeling');
+            const cloudContainer = document.getElementById('s2-word-cloud-container');
+            const waitingText = document.getElementById('s2-waiting-text');
+            const board = document.getElementById('s2-live-board');
+            
+            // Admin Controls
+            const btnReset = document.getElementById('s2-btn-reset-data');
+            const btnLockToggle = document.getElementById('s2-btn-lock-toggle');
+            const btnFullscreen = document.getElementById('s2-btn-fullscreen');
+            const fullscreenIcon = document.getElementById('s2-fullscreen-icon');
+            let isLocked = false;
+
+            // --- ระบบ Fullscreen ---
+            btnFullscreen.addEventListener('click', () => {
+                if (!document.fullscreenElement) {
+                    board.requestFullscreen().catch(err => console.error(err));
+                } else {
+                    document.exitFullscreen();
+                }
+            });
+
+            document.addEventListener('fullscreenchange', () => {
+                if (document.fullscreenElement === board) {
+                    fullscreenIcon.classList.replace('fa-expand', 'fa-compress');
+                    board.classList.replace('rounded-2xl', 'rounded-none');
+                    board.classList.replace('border', 'border-0');
+                    board.classList.replace('h-64', 'h-screen');
+                } else {
+                    fullscreenIcon.classList.replace('fa-compress', 'fa-expand');
+                    board.classList.replace('rounded-none', 'rounded-2xl');
+                    board.classList.replace('border-0', 'border');
+                    board.classList.replace('h-screen', 'h-64');
+                }
+            });
+
+            // --- ระบบ Lock ---
+            onValue(settingsRef, (snapshot) => {
+                const settings = snapshot.val();
+                isLocked = settings?.isLocked || false;
+                
+                wordInput.disabled = isLocked;
+                sendBtn.disabled = isLocked;
+                document.querySelectorAll('.s2-emoji-btn').forEach(b => b.disabled = isLocked);
+                
+                const statusBadge = document.getElementById('s2-status-badge');
+                const lockMsg = document.getElementById('s2-lock-msg');
+                const lockIcon = document.getElementById('s2-lock-icon');
+
+                if (isLocked) {
+                    statusBadge.innerText = "ล็อกกระดานแล้ว";
+                    statusBadge.className = "bg-rose-100 text-rose-700 px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap";
+                    lockMsg.classList.remove('hidden');
+                    lockIcon.className = "fas fa-lock text-rose-500";
+                } else {
+                    statusBadge.innerText = "เปิดรับข้อความ";
+                    statusBadge.className = "bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap";
+                    lockMsg.classList.add('hidden');
+                    lockIcon.className = "fas fa-unlock text-sm";
+                }
+            });
+
+            btnLockToggle.addEventListener('click', () => {
+                set(settingsRef, { isLocked: !isLocked });
+            });
+
+            // --- ระบบ Reset ---
+            btnReset.addEventListener('click', () => {
+                if(confirm('ล้างกระดาน Session 2 ทั้งหมด?')) {
+                    remove(wordsRef);
+                    remove(emojisRef);
+                    cloudContainer.innerHTML = '';
+                    waitingText.style.display = 'block';
+                }
+            });
+
+            // --- ส่งคำ ---
+            sendBtn.addEventListener('click', () => {
+                if(isLocked) return;
+                const word = wordInput.value.trim();
+                if(word.length > 0) {
+                    push(wordsRef, { text: word, time: Date.now() });
+                    wordInput.value = '';
+                }
+            });
+            wordInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') sendBtn.click(); });
+
+            // --- ส่ง Emoji ---
+            document.querySelectorAll('.s2-emoji-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    if(isLocked) return;
+                    push(emojisRef, { emoji: e.target.dataset.emoji, time: Date.now() });
+                });
+            });
+
+            // --- แสดงผล Word Cloud ---
+            onValue(wordsRef, (snapshot) => {
+                const data = snapshot.val();
+                cloudContainer.innerHTML = ''; 
+                if(!data) {
+                    waitingText.style.display = 'block';
+                    return;
+                }
+                waitingText.style.display = 'none';
+                
+                const wordCounts = {};
+                Object.values(data).forEach(item => {
+                    const w = item.text.toUpperCase();
+                    wordCounts[w] = (wordCounts[w] || 0) + 1;
+                });
+
+                const colors = ['text-cyan-400', 'text-blue-400', 'text-emerald-400', 'text-purple-400', 'text-amber-400', 'text-white'];
+                
+                Object.entries(wordCounts).forEach(([word, count]) => {
+                    const span = document.createElement('span');
+                    span.innerText = word;
+                    
+                    // คำนวณขนาดตัวอักษร
+                    const calculatedSize = 1 + ((count - 1) * 0.4); 
+                    const finalSize = Math.min(calculatedSize, 10); 
+                    span.style.fontSize = `${finalSize}rem`;
+                    span.style.lineHeight = '1.1';
+
+                    // คำนวณความหนา
+                    let weightClass = 'font-normal';
+                    if (count >= 2 && count <= 3) weightClass = 'font-semibold';
+                    else if (count > 3 && count <= 5) weightClass = 'font-bold';
+                    else if (count > 5) weightClass = 'font-extrabold drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]';
+
+                    span.className = `${weightClass} ${colors[Math.floor(Math.random() * colors.length)]} m-2 transition-all duration-500 hover:scale-110 cursor-default inline-block`;
+                    
+                    cloudContainer.appendChild(span);
+                });
+            });
+
+            // --- Emoji Animation ---
+            onChildAdded(emojisRef, (data) => {
+                const emojiEl = document.createElement('div');
+                emojiEl.innerText = data.val().emoji;
+                emojiEl.className = 'absolute text-4xl md:text-5xl pointer-events-none drop-shadow-md z-10';
+                emojiEl.style.left = `${Math.random() * 90}%`;
+                emojiEl.style.bottom = '-20px';
+                board.appendChild(emojiEl);
+                
+                let bottom = -20; let opacity = 1;
+                const anim = setInterval(() => {
+                    bottom += 3; opacity -= 0.008; 
+                    emojiEl.style.bottom = `${bottom}px`; emojiEl.style.opacity = opacity;
+                    if(opacity <= 0) { clearInterval(anim); emojiEl.remove(); }
+                }, 20);
+            });
+        </script>
         
          <!-- Hero Section -->
         <section class="text-center pt-8" aria-labelledby="hero-title">
@@ -1742,7 +1988,7 @@
     <div class="flex flex-col lg:flex-row gap-8 items-start max-w-7xl mx-auto">
         
         <div class="lg:w-4/12">
-            <div class="inline-block bg-pink-100 text-pink-700 px-3 py-1 rounded-lg text-sm font-bold mb-4">Session 3 • 45 Mins</div>
+            <div class="inline-block bg-pink-100 text-pink-700 px-3 py-1 rounded-lg text-sm font-bold mb-4">Session 3</div>
             <h2 class="text-3xl font-bold mb-6 text-slate-900">AI Visual Storyteller</h2>
             
             <div class="bg-pink-50 border-l-4 border-pink-500 p-5 rounded-r-xl mb-6">
