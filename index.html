@@ -1827,6 +1827,700 @@
             </div>
         </section>
 
+        <!-- Session T: Test -->
+        <section id="session-poster" class="scroll-mt-32 pt-16 pb-16">
+    <div class="flex flex-col lg:flex-row gap-8 items-start max-w-7xl mx-auto">
+        
+        <div class="lg:w-4/12">
+            <div class="inline-block bg-pink-100 text-pink-700 px-3 py-1 rounded-lg text-sm font-bold mb-4">Session 3 • 45 Mins</div>
+            <h2 class="text-3xl font-bold mb-6 text-slate-900">AI Visual Storyteller</h2>
+            
+            <div class="bg-pink-50 border-l-4 border-pink-500 p-5 rounded-r-xl mb-6">
+                <h3 class="font-bold text-pink-800 flex items-center gap-2 mb-2">
+                    <i class="fas fa-image"></i> 
+                    <span>เสกโปสเตอร์ผลงานระดับรางวัล</span>
+                </h3>
+                <p class="text-pink-900 text-sm leading-relaxed">
+                    หมดปัญหาทำอาร์ตเวิร์กไม่สวย! ใช้ AI ช่วยออกแบบภาพพื้นหลังอินโฟกราฟิก (Infographic) สำหรับนำเสนอ "Best Practice" หรือ "ประเด็นท้าทาย" ในสไตล์ 3D Glassmorphism สุดล้ำ
+                </p>
+            </div>
+            
+            <div class="space-y-3">
+                <h4 class="font-bold text-slate-800 text-lg">💡 วิธีสร้างภาพด้วย Gemini</h4>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-pink-500"></div>
+                    <ol class="text-sm text-slate-700 list-decimal pl-4 space-y-2">
+                        <li>เปิดแอป <b>Gemini</b></li>
+                        <li>คลิกเมนู 2 ขีด เลือกเมนู <b>"สร้างรูปภาพ"</b></li>
+                        <li>มุมขวาล่างในช่องแชท เปลี่ยนจาก <i>"รวดเร็ว"</i> เลือก <b>"Pro"</b> (เพื่อใช้โมเดล Nano Banana 2 ที่เก่งสุด)</li>
+                        <li>คลิกปุ่ม <b>+</b> เพื่ออัปโหลดข้อมูล (ถ้ามี)</li>
+                        <li><b>คัดลอกคำสั่ง (Prompt)</b> จากเครื่องมือด้านขวาไปวาง แล้วกดส่งได้เลย!</li>
+                    </ol>
+                </div>
+                
+                <div class="bg-slate-900 p-4 rounded-xl border border-slate-800 shadow-sm text-sm text-slate-300 mt-4">
+                    <i class="fas fa-exclamation-triangle text-amber-400 mr-1"></i> <b>Pro Tip:</b> AI ในปัจจุบันยังไม่เก่งเรื่องการพิมพ์ข้อความภาษาไทยยาวๆ ลงไปในภาพ แนะนำให้ใช้ AI สร้าง <b>"ภาพพื้นหลังและ Layout สวยๆ"</b> แล้วค่อยนำภาพนั้นไปพิมพ์ข้อความภาษาไทยทับอีกทีใน Canva หรือ PowerPoint ค่ะ
+                </div>
+            </div>
+        </div>
+
+        <div class="lg:w-8/12 w-full">
+            <div class="bg-slate-900 p-6 md:p-8 rounded-3xl shadow-xl border border-slate-800 relative overflow-hidden min-h-[640px] flex flex-col">
+                
+                <div class="absolute -top-20 -right-20 w-80 h-80 bg-pink-500/10 rounded-full blur-3xl -z-0"></div>
+
+                <div class="relative z-10 flex flex-col h-full">
+                    <h3 class="text-2xl font-bold text-white flex items-center gap-3 mb-2">
+                        <i class="fas fa-palette text-pink-400"></i>
+                        ตู้กด Prompt โปสเตอร์วิชาการ
+                    </h3>
+                    <p class="text-slate-400 text-sm mb-6">
+                        กรอกรายละเอียดผลงานของคุณ เพื่อสร้างคำสั่งสำหรับวาดภาพอินโฟกราฟิกแบบ 3D
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        
+                        <div class="bg-slate-800/50 p-5 rounded-2xl border border-slate-700">
+                            <h4 class="text-pink-400 font-bold mb-4 text-sm uppercase tracking-wider flex items-center gap-2">
+                                <i class="fas fa-file-alt"></i> 1. ข้อมูลผลงาน
+                            </h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1">ประเภทการนำเสนอ</label>
+                                    <select id="p-type" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-pink-500 focus:ring-1 focus:ring-pink-500 outline-none transition">
+                                        <option value="รายงานผลการปฏิบัติที่เป็นเลิศ (Best Practice)">รายงานผลการปฏิบัติที่เป็นเลิศ (Best Practice)</option>
+                                        <option value="การนำเสนอประเด็นท้าทาย">การนำเสนอประเด็นท้าทาย (Challenge Report)</option>
+                                        <option value="สรุปผลงานวิจัยในชั้นเรียน">สรุปผลงานวิจัยในชั้นเรียน (Action Research)</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1">หัวข้อเรื่อง / ชื่องาน</label>
+                                    <input type="text" id="p-topic" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-pink-500 focus:ring-1 focus:ring-pink-500 outline-none transition" placeholder="เช่น การใช้เกมเสริมทักษะภาษาอังกฤษ">
+                                </div>
+                                
+                                <div class="flex gap-3">
+                                    <div class="w-1/2">
+                                        <label class="block text-xs font-semibold text-slate-300 mb-1">ชื่อผู้จัดทำ (ครู)</label>
+                                        <input type="text" id="p-teacher" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-pink-500 focus:ring-1 focus:ring-pink-500 outline-none transition" placeholder="ชื่อ-นามสกุล">
+                                    </div>
+                                    <div class="w-1/2">
+                                        <label class="block text-xs font-semibold text-slate-300 mb-1">โรงเรียน / วิทยาลัย</label>
+                                        <input type="text" id="p-school" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-pink-500 focus:ring-1 focus:ring-pink-500 outline-none transition" placeholder="ชื่อสถานศึกษา">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-800/50 p-5 rounded-2xl border border-slate-700">
+                            <h4 class="text-amber-400 font-bold mb-4 text-sm uppercase tracking-wider flex items-center gap-2">
+                                <i class="fas fa-paint-brush"></i> 2. กำหนดธีมภาพ (Visuals)
+                            </h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1">โทนสีหลัก (Color Theme)</label>
+                                    <select id="p-color" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-pink-500 focus:ring-1 focus:ring-pink-500 outline-none transition">
+                                        <option value="Bright Pink, Sky Blue, Soft Purple, White, Pearl Light">ชมพูสดใส - ฟ้า - ม่วงอ่อน (Modern Educational)</option>
+                                        <option value="Navy Blue, Emerald Green, White, Gold">กรมท่า - เขียวมรกต - ทอง (Corporate/Professional)</option>
+                                        <option value="Warm Orange, Sunny Yellow, Soft Blue, White">ส้ม - เหลือง - ฟ้า (Energetic/Creative)</option>
+                                        <option value="Teal, Light Blue, Silver, White">น้ำเงินอมเขียว - ฟ้าอ่อน - เงิน (Tech/Innovation)</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1">ภาพประกอบหลัก (Visual Hero)</label>
+                                    <textarea id="p-hero" rows="3" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white resize-none focus:border-pink-500 focus:ring-1 focus:ring-pink-500 outline-none transition" placeholder="เช่น เด็ก ปวช. กำลังซ่อมเครื่องยนต์ด้วยสีหน้าตั้งใจ, ห้องเรียนคอมพิวเตอร์ที่ทันสมัย..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative group flex-1 flex flex-col">
+                        <div class="absolute top-3 right-4 z-20">
+                            <button onclick="copyPosterPrompt()" id="btn-copy-poster" class="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-lg transition text-sm font-bold flex items-center gap-2 shadow-lg border border-slate-500 active:scale-95">
+                                <i class="far fa-copy" id="copy-poster-icon"></i> <span id="copy-poster-text">Copy Prompt</span>
+                            </button>
+                        </div>
+                        <div class="absolute top-3 left-4 text-[10px] font-bold text-slate-500 uppercase tracking-wider" aria-hidden="true">Prompt for Gemini Pro Image</div>
+                        
+                        <textarea id="generated-poster-prompt" readonly class="w-full flex-1 min-h-[300px] bg-[#0d1117] border border-slate-700 rounded-xl p-5 pt-10 text-pink-300 font-mono text-[13px] resize-none outline-none leading-relaxed shadow-inner overflow-y-auto" spellcheck="false"></textarea>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // การเชื่อมโยง Elements
+    const pType = document.getElementById('p-type');
+    const pTopic = document.getElementById('p-topic');
+    const pTeacher = document.getElementById('p-teacher');
+    const pSchool = document.getElementById('p-school');
+    const pColor = document.getElementById('p-color');
+    const pHero = document.getElementById('p-hero');
+    const posterResultBox = document.getElementById('generated-poster-prompt');
+
+    // ฟังก์ชันประกอบร่าง Prompt
+    function generatePosterPrompt() {
+        const type = pType.value;
+        const topic = pTopic.value.trim() || "........................................................";
+        const teacher = pTeacher.value.trim() || "............................";
+        const school = pSchool.value.trim() || "............................";
+        const color = pColor.value;
+        const hero = pHero.value.trim() || "3D semi-realistic Thai classroom, นักเรียนไทยกำลังเรียนอย่างตั้งใจ สมจริง บรรยากาศ smart classroom, active learning";
+
+        // แยกสีออกมาทำ Gradient
+        const colorsArr = color.split(", ");
+        const gradientStr = colorsArr.join(" → ");
+
+        const prompt = `สร้างภาพอินโฟกราฟิกแนว 3D Semi-realistic Educational Infographic Poster ความละเอียดสูง ขนาด A4 แนวตั้ง (3:4)
+
+หัวข้อหลัก: "${type}"
+หัวข้อรอง: "${topic}"
+
+STYLE:
+Modern Academic Infographic, Premium Educational Poster, Future Classroom, Active Learning, Semi-realistic 3D, Professional / Clean / Elegant
+
+COLOR THEME:
+${color}
+Gradient: ${gradientStr}
+Effects: Soft Glow, Glassmorphism, Light Gradient, Floating Digital Elements, Soft luminous atmosphere
+
+HEADER SECTION:
+หัวข้อใหญ่: "${type}"
+Highlight กลาง: "${topic}"
+ชื่อผู้จัดทำ: ครู ${teacher} โรงเรียน ${school}
+ข้อกำหนดหัวข้อ: จัดให้สมดุลกับเนื้อหา เน้นให้แต่ละ block อ่านง่ายชัดเจน
+
+VISUAL HERO (สมจริงมาก):
+ด้านซ้ายบนหรือตรงกลาง: ${hero}
+มีองค์ประกอบ: digital creativity board, modern educational innovation, realistic lighting
+
+LAYOUT:
+Glassmorphism Cards, Rounded Corner, Soft Shadow, Floating Panels, Dashboard Grid Layout
+แบ่ง block 8 BLOCKS ชัดเจน อ่านง่ายมาก (ใส่ Text ปลอมแบบ Lorum Ipsum เป็นเส้นๆ ไว้ในแต่ละบล็อก)
+1. ความเป็นมาและความสำคัญ
+2. วัตถุประสงค์
+3. กลุ่มเป้าหมาย
+4. ขั้นตอนการดำเนินงาน
+5. กิจกรรมการเรียนรู้
+6. วิธีดำเนินงาน
+7. ผลลัพธ์เชิงปริมาณ
+8. ผลลัพธ์เชิงคุณภาพ
+
+FOOTER:
+พื้นหลัง: Digital Grid + Technology Layer
+แสดงข้อความ: โรงเรียน ${school}
+
+GRAPHIC ELEMENTS:
+ใช้สัญลักษณ์ที่เข้ากับวิชา, Digital Learning Icons แบบนุ่มนวล ไม่เด่นเกินไป
+EFFECTS: Layered Depth, Soft Shadow, Glass Effect, Floating Panels
+
+SIGNATURE:
+มุมขวาล่าง: ฟอนต์ลายมือ elegant signature 
+
+IMPORTANT RULE:
+รายละเอียดแต่ละ block ต้องชัดเจน แบ่งสัดส่วนดี ภาพดูสมจริงระดับงานประกวด
+RESULT: ภาพต้องให้ความรู้สึกว่า “สดใส ทันสมัย สมจริง อ่านง่าย และโดดเด่นระดับมืออาชีพ”`;
+
+        posterResultBox.value = prompt;
+    }
+
+    // ฟังก์ชัน Copy Prompt
+    async function copyPosterPrompt() {
+        try {
+            await navigator.clipboard.writeText(posterResultBox.value);
+            const icon = document.getElementById('copy-poster-icon');
+            const text = document.getElementById('copy-poster-text');
+            const btn = document.getElementById('btn-copy-poster');
+
+            // แอนิเมชันตอนกด Copy
+            btn.classList.remove('bg-slate-700', 'hover:bg-slate-600', 'border-slate-500');
+            btn.classList.add('bg-emerald-500', 'hover:bg-emerald-400', 'border-emerald-500');
+            icon.className = 'fas fa-check text-white';
+            text.innerText = 'คัดลอกสำเร็จ!';
+
+            // คืนค่าปุ่มกลับเหมือนเดิมหลัง 2 วินาที
+            setTimeout(() => {
+                btn.classList.remove('bg-emerald-500', 'hover:bg-emerald-400', 'border-emerald-500');
+                btn.classList.add('bg-slate-700', 'hover:bg-slate-600', 'border-slate-500');
+                icon.className = 'far fa-copy text-white';
+                text.innerText = 'Copy Prompt';
+            }, 2000);
+        } catch (err) {
+            alert("ไม่สามารถคัดลอกได้ กรุณากด Ctrl+C เพื่อคัดลอกด้วยตนเองครับ");
+        }
+    }
+
+    // ผูก Event Listeners ทุก Input
+    const posterInputs = [pType, pTopic, pTeacher, pSchool, pColor, pHero];
+    posterInputs.forEach(input => input.addEventListener('input', generatePosterPrompt));
+
+    // รันครั้งแรกตอนโหลดเว็บ
+    generatePosterPrompt();
+</script>
+        <!-- Session T: Test -->
+
+         <!-- Session T: Test2 -->
+        <section id="session-game" class="scroll-mt-32 pt-16 pb-16">
+    <div class="flex flex-col lg:flex-row gap-8 items-start max-w-7xl mx-auto">
+        
+        <div class="lg:w-4/12">
+            <div class="inline-block bg-amber-100 text-amber-700 px-3 py-1 rounded-lg text-sm font-bold mb-4">Session 4 • 40 Mins</div>
+            <h2 class="text-3xl font-bold mb-6 text-slate-900">Creative Classroom Lab</h2>
+            
+            <div class="bg-amber-50 border-l-4 border-amber-500 p-5 rounded-r-xl mb-6">
+                <h3 class="font-bold text-amber-800 flex items-center gap-2 mb-2">
+                    <i class="fas fa-gamepad"></i> 
+                    <span>Gamification in Action</span>
+                </h3>
+                <p class="text-amber-900 text-sm leading-relaxed">
+                    ยกระดับการสอนด้วยการสร้าง "มินิเกมลากวาง (Drag & Drop)" ให้เด็กๆ ได้ทบทวนความรู้ผ่านหน้าจอสัมผัส โดยใช้ AI ของ Canva เขียนโค้ดเกมให้เราแบบอัตโนมัติ!
+                </p>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-amber-500"></div>
+                    <h4 class="font-bold text-slate-800 text-md mb-2">💡 วิธีใช้งานคำสั่งนี้ใน Canva</h4>
+                    <ol class="text-sm text-slate-600 list-decimal pl-4 mt-2 space-y-2">
+                        <li>ล็อกอินเข้า <b>Canva</b> (แนะนำให้ใช้บัญชี Canva for Education)</li>
+                        <li>เลือกสร้างงานออกแบบใหม่ (Create a design) แบบ <b>"แอป (App)"</b> หรือ <b>"เว็บไซต์ (Website)"</b></li>
+                        <li>มองหาฟีเจอร์ <b>Canva Magic Studio</b> (ไอคอนรูปดาวประกาย) หรือแอปที่เกี่ยวกับการสร้าง Interactive Content</li>
+                        <li><b>คัดลอกคำสั่ง (Prompt)</b> จากเครื่องมือด้านขวาไปวาง แล้วรอดูเวทมนตร์ได้เลย!</li>
+                    </ol>
+                </div>
+
+                <div class="bg-slate-900 p-4 rounded-xl border border-slate-800 shadow-sm text-sm text-slate-300">
+                    <i class="fas fa-info-circle text-cyan-400 mr-1"></i> <b>ข้อแนะนำ:</b> เมื่อ AI ออกแบบหน้าตาเกมมาให้เบื้องต้นแล้ว คุณครูสามารถกดแก้ไข เลื่อนตำแหน่งปุ่ม หรือเปลี่ยนรูปภาพผลไม้/คำศัพท์ ให้ตรงใจมากขึ้นในภายหลังได้ค่ะ (Prompt นี้อ้างอิงโครงสร้างจาก "ครูกู๊ด")
+                </div>
+            </div>
+        </div>
+
+        <div class="lg:w-8/12 w-full">
+            <div class="bg-slate-900 p-6 md:p-8 rounded-3xl shadow-xl border border-slate-800 relative overflow-hidden min-h-[640px] flex flex-col">
+                
+                <div class="absolute -top-20 -right-20 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl -z-0"></div>
+
+                <div class="relative z-10 flex flex-col h-full">
+                    <h3 class="text-2xl font-bold text-white flex items-center gap-3 mb-2">
+                        <i class="fas fa-puzzle-piece text-amber-400"></i>
+                        เครื่องมือสร้าง Prompt มินิเกม (Canva)
+                    </h3>
+                    <p class="text-slate-400 text-sm mb-6">
+                        เปลี่ยนเนื้อหาบทเรียนของคุณให้กลายเป็นคำสั่งสร้างเกมจับคู่ภาพกับคำศัพท์ที่รองรับการแตะหน้าจอมือถือ
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        
+                        <div class="bg-slate-800/50 p-5 rounded-2xl border border-slate-700">
+                            <h4 class="text-amber-400 font-bold mb-4 text-sm uppercase tracking-wider flex items-center gap-2">
+                                <i class="fas fa-tag"></i> 1. ข้อมูลของเกม
+                            </h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1">ชื่อเกม (ตั้งให้น่าสนใจ)</label>
+                                    <input type="text" id="g-name" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition" placeholder="เช่น Fruit HaHa!, หรือ ตะลุยอวกาศคำศัพท์">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1">เป้าหมาย/คำอธิบายเกม</label>
+                                    <input type="text" id="g-desc" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition" placeholder="เช่น เกมจับคู่คำศัพท์ภาษาอังกฤษผลไม้สำหรับเด็กประถมต้น">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1">ธีมการออกแบบ (Theme & Tone)</label>
+                                    <textarea id="g-theme" rows="2" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white resize-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none transition" placeholder="เช่น โทนสีพาสเทลสบายตา พร้อมภาพผลไม้การ์ตูนน่ารัก"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-800/50 p-5 rounded-2xl border border-slate-700">
+                            <h4 class="text-emerald-400 font-bold mb-4 text-sm uppercase tracking-wider flex items-center gap-2">
+                                <i class="fas fa-cogs"></i> 2. ระบบเกมและเนื้อหา
+                            </h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1">หมวดหมู่คำศัพท์ที่ให้จับคู่</label>
+                                    <input type="text" id="g-vocab" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition" placeholder="เช่น ภาพผลไม้ กับ คำศัพท์ภาษาอังกฤษ">
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1">จำนวนข้อ / คู่</label>
+                                    <select id="g-count" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition">
+                                        <option value="5">5 คู่ (แนะนำสำหรับเด็กเล็ก)</option>
+                                        <option value="10" selected>10 คู่ (มาตรฐาน)</option>
+                                        <option value="15">15 คู่</option>
+                                        <option value="20">20 คู่ (ท้าทาย)</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-1">ลิงก์โลโก้เกม (URL รูปภาพ - ถ้ามี)</label>
+                                    <input type="text" id="g-logo" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none transition text-[11px]" placeholder="เช่น https://pic.in.th/logo.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative group flex-1 flex flex-col mt-2">
+                        <div class="absolute top-3 right-4 z-20">
+                            <button onclick="copyGamePrompt()" id="btn-copy-game" class="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-lg transition text-sm font-bold flex items-center gap-2 shadow-lg border border-slate-500 active:scale-95">
+                                <i class="far fa-copy" id="copy-game-icon"></i> <span id="copy-game-text">Copy Prompt</span>
+                            </button>
+                        </div>
+                        <div class="absolute top-3 left-4 text-[10px] font-bold text-slate-500 uppercase tracking-wider" aria-hidden="true">Prompt for Canva AI</div>
+                        
+                        <textarea id="generated-game-prompt" readonly class="w-full flex-1 min-h-[350px] bg-[#0d1117] border border-slate-700 rounded-xl p-5 pt-10 text-amber-300 font-mono text-[13px] resize-none outline-none leading-relaxed shadow-inner overflow-y-auto" spellcheck="false"></textarea>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // การเชื่อมโยง Elements
+    const gName = document.getElementById('g-name');
+    const gDesc = document.getElementById('g-desc');
+    const gTheme = document.getElementById('g-theme');
+    const gVocab = document.getElementById('g-vocab');
+    const gCount = document.getElementById('g-count');
+    const gLogo = document.getElementById('g-logo');
+    const gameResultBox = document.getElementById('generated-game-prompt');
+
+    // ฟังก์ชันประกอบร่าง Prompt
+    function generateGamePrompt() {
+        const name = gName.value.trim() || "Fruit HaHa!";
+        const desc = gDesc.value.trim() || "เกมจับคู่คำศัพท์ภาษาอังกฤษผลไม้สำหรับเด็กประถมต้น";
+        const theme = gTheme.value.trim() || "ใช้โทนสีพาสเทลที่ดูสบายตา เหมาะกับเด็กประถมต้น พร้อมภาพผลไม้แบบการ์ตูนน่ารัก";
+        const vocab = gVocab.value.trim() || "ภาพผลไม้";
+        const count = gCount.value;
+        const logoUrl = gLogo.value.trim();
+        
+        const logoSection = logoUrl ? `\n• โลโก้แสดงด้านบนชื่อเกมในหน้าแรก = แสดงจากลิงก์รูปภาพนี้: ${logoUrl}` : "";
+
+        const prompt = `สร้างเกมจับคู่คำศัพท์กับภาพ
+
+🎯 ชื่อเกม: ${name} ${desc}
+🖌️ ธีมการออกแบบ: ${theme}
+
+➡️ รูปแบบกิจกรรม:
+• หน้าแรก แสดงปุ่ม 'เรียนคำศัพท์' และ 'เล่นเกมทบทวน'
+• หน้าเรียนคำศัพท์: แสดงคำศัพท์ ${count} คำ พร้อมเสียงอ่าน คำแปล และ${vocab}
+• หน้าเล่นเกมจับคู่: ให้นักเรียนลากคำศัพท์ไปวางให้ตรงกับ${vocab}
+
+🔊 ระบบเสียง:
+• แตะที่คำศัพท์เพื่อฟังเสียงอ่าน (รองรับมือถือ/แท็บเล็ต)
+• ไม่มีเสียงหลังตรวจคำตอบเพื่อไม่รบกวนผู้เรียน
+
+🧠 ระบบคำใบ้และฟีดแบ็ก:
+• สามารถวางคำใหม่ทับของเดิมได้ หากยังไม่กดตรวจคำตอบ
+• เมื่อกดตรวจคำตอบจะแสดงเครื่องหมาย ✅ (ถูก) และ ❌ (ผิด)
+• คะแนนขึ้นทันทีเมื่อวางถูก และปรับอัปเดตตามคำตอบที่เปลี่ยน
+
+📱 การแสดงผล:
+• รองรับทุกอุปกรณ์ (Responsive Design) — มือถือ แท็บเล็ต คอมพิวเตอร์
+• ไม่มีการเลื่อนหน้าจอ (No Scrolling)
+• ปรับขนาดตัวอักษรและปุ่มให้เหมาะสมกับหน้าจอแต่ละขนาดอัตโนมัติ
+
+🎮 การลากวาง (Drag & Drop):
+• Drag & Drop ทำงานลื่นไหล พร้อมเอฟเฟกต์เมื่อลากเข้าใกล้ตำแหน่งที่ถูกต้อง
+• รองรับการแตะค้างแล้วลากด้วยนิ้วบนหน้าจอสัมผัส (Touch Screen)
+
+📌 รายละเอียดเพิ่มเติม:${logoSection}
+• เขียนโค้ดโครงสร้างที่ยืดหยุ่น เพื่อให้ครูสามารถเข้าไปปรับแก้เนื้อหาและรูปภาพได้ง่ายภายหลัง`;
+
+        gameResultBox.value = prompt;
+    }
+
+    // ฟังก์ชัน Copy Prompt
+    async function copyGamePrompt() {
+        try {
+            await navigator.clipboard.writeText(gameResultBox.value);
+            const icon = document.getElementById('copy-game-icon');
+            const text = document.getElementById('copy-game-text');
+            const btn = document.getElementById('btn-copy-game');
+
+            // แอนิเมชันตอนกด Copy
+            btn.classList.remove('bg-slate-700', 'hover:bg-slate-600', 'border-slate-500');
+            btn.classList.add('bg-emerald-500', 'hover:bg-emerald-400', 'border-emerald-500');
+            icon.className = 'fas fa-check text-white';
+            text.innerText = 'คัดลอกสำเร็จ!';
+
+            // คืนค่าปุ่มกลับเหมือนเดิมหลัง 2 วินาที
+            setTimeout(() => {
+                btn.classList.remove('bg-emerald-500', 'hover:bg-emerald-400', 'border-emerald-500');
+                btn.classList.add('bg-slate-700', 'hover:bg-slate-600', 'border-slate-500');
+                icon.className = 'far fa-copy text-white';
+                text.innerText = 'Copy Prompt';
+            }, 2000);
+        } catch (err) {
+            alert("ไม่สามารถคัดลอกได้ กรุณากด Ctrl+C เพื่อคัดลอกด้วยตนเองครับ");
+        }
+    }
+
+    // ผูก Event Listeners ทุก Input
+    const gameInputs = [gName, gDesc, gTheme, gVocab, gCount, gLogo];
+    gameInputs.forEach(input => input.addEventListener('input', generateGamePrompt));
+
+    // รันครั้งแรกตอนโหลดเว็บ
+    generateGamePrompt();
+</script>
+         <!-- Session T: Test2 -->
+
+         <!-- Session T: Test3 -->
+        <section id="session-game" class="scroll-mt-32 pt-16 pb-16">
+    <div class="flex flex-col lg:flex-row gap-8 items-start max-w-7xl mx-auto">
+        
+        <div class="lg:w-4/12">
+            <div class="inline-block bg-amber-100 text-amber-700 px-3 py-1 rounded-lg text-sm font-bold mb-4">Session 4 • 40 Mins</div>
+            <h2 class="text-3xl font-bold mb-6 text-slate-900">Creative Classroom Lab</h2>
+            
+            <div class="bg-amber-50 border-l-4 border-amber-500 p-5 rounded-r-xl mb-6">
+                <h3 class="font-bold text-amber-800 flex items-center gap-2 mb-2">
+                    <i class="fas fa-gamepad"></i> 
+                    <span>Gamification in Action</span>
+                </h3>
+                <p class="text-amber-900 text-sm leading-relaxed">
+                    เปลี่ยนเนื้อหาบทเรียนให้กลายเป็น "มินิเกม (Mini-game)" ด้วยเครื่องมือ AI ช่วยสร้างสคริปต์ ไม่ว่าจะเป็นเกมใน Canva หรือเขียนโค้ด Web Game แบบไม่ต้องมีพื้นฐาน
+                </p>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-1 h-full bg-amber-500"></div>
+                    <h4 class="font-bold text-slate-800 text-md mb-2">💡 เครื่องมือ 2 รูปแบบ</h4>
+                    <ul class="text-sm text-slate-600 pl-2 space-y-3">
+                        <li>
+                            <b class="text-slate-800 flex items-center gap-2"><i class="fas fa-puzzle-piece text-amber-500 w-4"></i> 1. Canva Drag & Drop</b>
+                            สร้างเกมจับคู่ภาพกับคำศัพท์ง่ายๆ เหมาะสำหรับเด็กเล็ก ใช้ AI ใน Canva ช่วยสร้างโครงร่างให้
+                        </li>
+                        <li class="pt-2 border-t border-slate-100">
+                            <b class="text-slate-800 flex items-center gap-2"><i class="fas fa-code text-cyan-500 w-4"></i> 2. Web Coding Game</b>
+                            สร้างเกมตรรกะ/อัลกอริทึม (Interactive HTML) ให้นำ Prompt ไปวางใน ChatGPT หรือ Claude แล้วเซฟเป็นไฟล์ .html นำไปเล่นได้ทันที
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="lg:w-8/12 w-full">
+            <div class="bg-slate-900 p-6 md:p-8 rounded-3xl shadow-xl border border-slate-800 relative overflow-hidden min-h-[640px] flex flex-col">
+                
+                <div class="absolute -top-20 -right-20 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl -z-0"></div>
+
+                <div class="relative z-10 flex flex-col h-full">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4 border-b border-slate-700 pb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white flex items-center gap-3 mb-1">
+                                <i class="fas fa-gamepad text-amber-400"></i>
+                                Game Prompt Generator
+                            </h3>
+                            <p class="text-slate-400 text-sm">เลือกรูปแบบเกมที่ต้องการสร้าง</p>
+                        </div>
+                        
+                        <div class="flex gap-2 bg-slate-800 p-1 rounded-xl">
+                            <button onclick="switchGameTab('canva')" id="g-tab-canva" class="g-tab px-4 py-2 rounded-lg text-sm font-bold transition-all bg-amber-500 text-slate-900 shadow-lg">
+                                Canva Game
+                            </button>
+                            <button onclick="switchGameTab('html')" id="g-tab-html" class="g-tab px-4 py-2 rounded-lg text-sm font-bold transition-all bg-transparent text-slate-400 hover:text-white">
+                                Web HTML Game
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="g-content-canva" class="g-content transition-opacity duration-300">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div class="bg-slate-800/50 p-5 rounded-2xl border border-slate-700">
+                                <h4 class="text-amber-400 font-bold mb-4 text-sm flex items-center gap-2"><i class="fas fa-tag"></i> 1. ข้อมูลของเกม</h4>
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-xs font-semibold text-slate-300 mb-1">ชื่อเกม</label>
+                                        <input type="text" id="gc-name" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-amber-500 outline-none" placeholder="เช่น Fruit HaHa!">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-semibold text-slate-300 mb-1">คำอธิบาย</label>
+                                        <input type="text" id="gc-desc" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-amber-500 outline-none" placeholder="เช่น เกมจับคู่ผลไม้สำหรับประถมต้น">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-slate-800/50 p-5 rounded-2xl border border-slate-700">
+                                <h4 class="text-emerald-400 font-bold mb-4 text-sm flex items-center gap-2"><i class="fas fa-cogs"></i> 2. ระบบเกม</h4>
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-xs font-semibold text-slate-300 mb-1">หมวดหมู่ที่จะให้จับคู่</label>
+                                        <input type="text" id="gc-vocab" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-amber-500 outline-none" placeholder="เช่น ภาพผลไม้ กับ คำศัพท์">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-semibold text-slate-300 mb-1">จำนวนข้อ</label>
+                                        <select id="gc-count" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-amber-500 outline-none">
+                                            <option value="5">5 คู่</option>
+                                            <option value="10" selected>10 คู่</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="g-content-html" class="g-content hidden opacity-0 transition-opacity duration-300">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div class="bg-slate-800/50 p-5 rounded-2xl border border-slate-700">
+                                <h4 class="text-cyan-400 font-bold mb-4 text-sm flex items-center gap-2"><i class="fas fa-laptop-code"></i> 1. ตั้งค่าเกมตรรกะ</h4>
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-xs font-semibold text-slate-300 mb-1">พล็อตเรื่องของเกม (Story)</label>
+                                        <input type="text" id="gh-story" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-cyan-500 outline-none" placeholder="เช่น ชาย แกะ และหมาป่าข้ามแม่น้ำ" value="ชาย แกะ และหมาป่าข้ามแม่น้ำ">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-semibold text-slate-300 mb-1">ตัวละคร/ไอเทม ในเกม</label>
+                                        <input type="text" id="gh-chars" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-cyan-500 outline-none" placeholder="เช่น ชาย 1 คน, แกะ 2 ตัว, หมาป่า 1 ตัว" value="ชาย 1 คน, แกะ 2 ตัว, หมาป่า 1 ตัว">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-slate-800/50 p-5 rounded-2xl border border-slate-700">
+                                <h4 class="text-purple-400 font-bold mb-4 text-sm flex items-center gap-2"><i class="fas fa-list-ol"></i> 2. กติกา & ดีไซน์</h4>
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-xs font-semibold text-slate-300 mb-1">กฎการแพ้ชนะ (Rules)</label>
+                                        <textarea id="gh-rules" rows="2" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white resize-none focus:border-cyan-500 outline-none" placeholder="เช่น ห้ามทิ้งหมาป่าไว้กับแกะโดยไม่มีชายดูแล">ห้ามทิ้งหมาป่าไว้กับแกะโดยไม่มีชายดูแล (หมาป่าจะกินแกะ), เรือนั่งได้แค่ 2 ตัว</textarea>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-semibold text-slate-300 mb-1">โทนสี (UI Design)</label>
+                                        <input type="text" id="gh-theme" class="w-full bg-slate-900 border border-slate-600 rounded-lg p-2.5 text-sm text-white focus:border-cyan-500 outline-none" placeholder="เช่น ฟ้าอ่อน-เขียวอ่อน สบายตา" value="ฟ้าอ่อน-เขียวอ่อน สบายตา">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="relative group flex-1 flex flex-col mt-2">
+                        <div class="absolute top-3 right-4 z-20">
+                            <button onclick="copyGamePrompt()" id="btn-copy-game" class="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-lg transition text-sm font-bold flex items-center gap-2 shadow-lg border border-slate-500 active:scale-95">
+                                <i class="far fa-copy" id="copy-game-icon"></i> <span id="copy-game-text">Copy Prompt</span>
+                            </button>
+                        </div>
+                        <div class="absolute top-3 left-4 text-[10px] font-bold text-slate-500 uppercase tracking-wider" id="result-label">Prompt for AI</div>
+                        
+                        <textarea id="generated-game-prompt" readonly class="w-full flex-1 min-h-[250px] bg-[#0d1117] border border-slate-700 rounded-xl p-5 pt-10 text-amber-300 font-mono text-[13px] resize-none outline-none leading-relaxed shadow-inner overflow-y-auto" spellcheck="false"></textarea>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    let currentGameMode = 'canva';
+
+    // Canva Elements
+    const gcName = document.getElementById('gc-name');
+    const gcDesc = document.getElementById('gc-desc');
+    const gcVocab = document.getElementById('gc-vocab');
+    const gcCount = document.getElementById('gc-count');
+
+    // HTML Elements
+    const ghStory = document.getElementById('gh-story');
+    const ghChars = document.getElementById('gh-chars');
+    const ghRules = document.getElementById('gh-rules');
+    const ghTheme = document.getElementById('gh-theme');
+
+    const gameResultBox = document.getElementById('generated-game-prompt');
+
+    // สลับโหมด
+    function switchGameTab(mode) {
+        currentGameMode = mode;
+        const btnCanva = document.getElementById('g-tab-canva');
+        const btnHtml = document.getElementById('g-tab-html');
+        const contentCanva = document.getElementById('g-content-canva');
+        const contentHtml = document.getElementById('g-content-html');
+        const resultLabel = document.getElementById('result-label');
+
+        if (mode === 'canva') {
+            btnCanva.className = "g-tab px-4 py-2 rounded-lg text-sm font-bold transition-all bg-amber-500 text-slate-900 shadow-lg";
+            btnHtml.className = "g-tab px-4 py-2 rounded-lg text-sm font-bold transition-all bg-transparent text-slate-400 hover:text-white";
+            
+            contentHtml.classList.add('hidden', 'opacity-0');
+            contentCanva.classList.remove('hidden');
+            setTimeout(() => contentCanva.classList.remove('opacity-0'), 50);
+            
+            gameResultBox.classList.replace('text-cyan-300', 'text-amber-300');
+            resultLabel.innerText = "Prompt for Canva AI";
+        } else {
+            btnHtml.className = "g-tab px-4 py-2 rounded-lg text-sm font-bold transition-all bg-cyan-500 text-slate-900 shadow-lg";
+            btnCanva.className = "g-tab px-4 py-2 rounded-lg text-sm font-bold transition-all bg-transparent text-slate-400 hover:text-white";
+            
+            contentCanva.classList.add('hidden', 'opacity-0');
+            contentHtml.classList.remove('hidden');
+            setTimeout(() => contentHtml.classList.remove('opacity-0'), 50);
+            
+            gameResultBox.classList.replace('text-amber-300', 'text-cyan-300');
+            resultLabel.innerText = "Prompt for ChatGPT / Claude (Web Game)";
+        }
+        generateGamePrompt();
+    }
+
+    // ประกอบร่าง Prompt
+    function generateGamePrompt() {
+        let prompt = "";
+
+        if (currentGameMode === 'canva') {
+            const name = gcName.value.trim() || "Fruit HaHa!";
+            const desc = gcDesc.value.trim() || "เกมจับคู่คำศัพท์ภาษาอังกฤษผลไม้สำหรับเด็กประถมต้น";
+            const vocab = gcVocab.value.trim() || "ภาพผลไม้ กับ คำศัพท์";
+            const count = gcCount.value;
+
+            prompt = `สร้างเกมจับคู่คำศัพท์กับภาพ\n\n🎯 ชื่อเกม: ${name}\n📖 คำอธิบาย: ${desc}\n\n➡️ รูปแบบกิจกรรม:\n• หน้าแรก แสดงปุ่ม 'เรียนคำศัพท์' และ 'เล่นเกมทบทวน'\n• หน้าเรียนคำศัพท์: แสดงคำศัพท์ ${count} คำ พร้อมเสียงอ่าน คำแปล และ${vocab}\n• หน้าเล่นเกมจับคู่: ให้นักเรียนลากคำศัพท์ไปวางให้ตรงกับ${vocab}\n\n🧠 ระบบคำใบ้และฟีดแบ็ก:\n• เมื่อกดตรวจคำตอบจะแสดงเครื่องหมาย ✅ (ถูก) และ ❌ (ผิด)\n• คะแนนขึ้นทันทีเมื่อวางถูก\n\n📱 การแสดงผล: รองรับทุกอุปกรณ์ (Responsive Design)\n🎮 การลากวาง: Drag & Drop ทำงานลื่นไหลบนหน้าจอสัมผัส`;
+        } else {
+            const story = ghStory.value.trim() || "ชาย แกะ และหมาป่าข้ามแม่น้ำ";
+            const chars = ghChars.value.trim() || "ชาย 1 คน, แกะ 2 ตัว, หมาป่า 1 ตัว";
+            const rules = ghRules.value.trim() || "ห้ามทิ้งหมาป่าไว้กับแกะโดยไม่มีชายดูแล";
+            const theme = ghTheme.value.trim() || "ฟ้าอ่อน-เขียวอ่อน";
+
+            prompt = `สร้างเกมปริศนาฝึกอัลกอริทึมแบบ Interactive HTML ที่สมบูรณ์ด้วยข้อกำหนดดังนี้:\n\nเป้าหมายเกม: ${story}\n\nตัวละคร: ${chars}\n\nกฎของเกม:\n- ${rules}\n- ตรวจสอบเงื่อนไขแจ้งเตือนเมื่อฝ่าฝืนกฎ (Game Over)\n\nการออกแบบ UI:\n- ใช้ Tailwind CSS (ผ่าน CDN)\n- โทนสี: ${theme}\n- ใช้ฟอนต์ภาษาไทย (เช่น Kanit)\n- Responsive Design เล่นบนมือถือได้\n\nฟีเจอร์ที่ต้องมี:\n- ระบบ Drag & Drop หรือคลิกเพื่อย้ายตัวละคร\n- ปุ่มเริ่มเกมใหม่ (Reset)\n- นับจำนวนขั้นตอนที่ใช้\n- ปุ่มแสดง "วิธีการเล่น/เฉลย"\n\nAnimation:\n- ตัวละครเคลื่อนไหวสมูท (Transitions)\n- มีเอฟเฟกต์เมื่อชนะ (Bounce) หรือแพ้ (Shake)\n\nข้อกำหนดทางเทคนิค:\nสร้างเป็นไฟล์ HTML เดียว (Single File) ที่รวม CSS และ Javascript ไว้ภายใน สามารถดับเบิลคลิกเปิดเล่นผ่าน Browser ได้ทันทีโดยไม่ต้องลงโปรแกรมเพิ่ม`;
+        }
+
+        gameResultBox.value = prompt;
+    }
+
+    // ฟังก์ชัน Copy
+    async function copyGamePrompt() {
+        try {
+            await navigator.clipboard.writeText(gameResultBox.value);
+            const icon = document.getElementById('copy-game-icon');
+            const text = document.getElementById('copy-game-text');
+            const btn = document.getElementById('btn-copy-game');
+            const successColor = currentGameMode === 'canva' ? 'bg-amber-500' : 'bg-cyan-500';
+
+            btn.className = `text-slate-900 px-4 py-2 rounded-lg transition text-sm font-bold flex items-center gap-2 shadow-lg active:scale-95 ${successColor}`;
+            icon.className = 'fas fa-check';
+            text.innerText = 'คัดลอกสำเร็จ!';
+
+            setTimeout(() => {
+                btn.className = "bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-lg transition text-sm font-bold flex items-center gap-2 shadow-lg border border-slate-500 active:scale-95";
+                icon.className = 'far fa-copy text-white';
+                text.innerText = 'Copy Prompt';
+            }, 2000);
+        } catch (err) {
+            alert("ไม่สามารถคัดลอกได้ครับ");
+        }
+    }
+
+    // ผูก Events
+    const inputs = [gcName, gcDesc, gcVocab, gcCount, ghStory, ghChars, ghRules, ghTheme];
+    inputs.forEach(input => input.addEventListener('input', generateGamePrompt));
+
+    generateGamePrompt();
+</script>
+         <!-- Session T: Test3 -->
+        
         <!-- Session 5: Wrap-up -->
         <section id="session5" class="scroll-mt-32" aria-labelledby="heading-s5">
             <div class="bg-blue-50 border border-blue-100 rounded-[3rem] p-8 md:p-12 text-center">
