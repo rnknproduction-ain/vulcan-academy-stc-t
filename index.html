@@ -42,6 +42,28 @@
             }
         }
         .focusable-card:focus-within { outline: 4px solid var(--focus-color); outline-offset: 4px; }
+
+        /* Word cloud: show full student responses without breaking or truncating long text */
+        #word-cloud-container,
+        #s2-word-cloud-container {
+            scrollbar-width: thin;
+            overflow: auto;
+            justify-content: flex-start;
+        }
+        .word-cloud-chip {
+            max-width: none;
+            white-space: nowrap;
+            overflow-wrap: normal;
+            word-break: keep-all;
+            text-align: center;
+            padding: 0.1rem 0.25rem;
+            flex: 0 0 auto;
+        }
+        #live-board:fullscreen #word-cloud-container,
+        #s2-live-board:fullscreen #s2-word-cloud-container {
+            padding-top: 4rem;
+            align-content: flex-start;
+        }
     </style>
 </head>
 <body class="text-slate-800 antialiased relative" id="main-body">
@@ -139,13 +161,13 @@
 <button aria-label="ขยายกระดานเต็มจอ" class="absolute top-3 right-3 z-50 bg-white/10 hover:bg-white/30 text-white p-2 rounded-lg backdrop-blur-sm transition opacity-0 group-hover:opacity-100" id="btn-fullscreen" title="ขยายเต็มจอ">
 <i class="fas fa-expand" id="fullscreen-icon"></i>
 </button>
-<div aria-hidden="true" class="absolute inset-0 p-8 flex flex-wrap content-center justify-center gap-3 overflow-hidden" id="word-cloud-container"></div>
+<div aria-hidden="true" class="absolute inset-0 p-6 pt-12 flex flex-wrap content-start justify-start gap-3 overflow-auto" id="word-cloud-container"></div>
 <p aria-live="polite" class="sr-only" id="word-cloud-summary">ยังไม่มีข้อความบนกระดาน</p>
 <span class="text-slate-500 font-mono animate-pulse" id="waiting-text">รอรับข้อความจากคุณครู...</span>
 </div>
 <div class="flex flex-col sm:flex-row gap-4" id="input-area">
 <div class="flex-1 flex gap-2">
-<input class="w-full border border-slate-300 rounded-xl p-3 bg-slate-50 text-slate-800 focus:ring-2 focus:ring-purple-500 outline-none disabled:bg-slate-200 disabled:cursor-not-allowed" id="feeling-input" maxlength="25" placeholder="พิมพ์ข้อความที่นี่..." type="text"/>
+<input class="w-full border border-slate-300 rounded-xl p-3 bg-slate-50 text-slate-800 focus:ring-2 focus:ring-purple-500 outline-none disabled:bg-slate-200 disabled:cursor-not-allowed" id="feeling-input" placeholder="พิมพ์ข้อความที่นี่..." type="text"/>
 <button class="bg-purple-600 hover:bg-purple-700 text-white px-6 font-bold rounded-xl transition shadow-md disabled:bg-slate-400" id="btn-send-feeling">ส่ง</button>
 </div>
 <div class="flex gap-2 justify-center bg-slate-100 p-2 rounded-xl border border-slate-200">
@@ -320,15 +342,19 @@
         
         // Base size คือ 1rem (16px) 
         // ทุกๆ 1 count จะบวกเพิ่ม 0.5rem (ปรับเลข 0.5 นี้ได้ตามต้องการให้ใหญ่เร็ว/ช้า)
-        const calculatedSize = 1 + ((count - 1) * 0.5); 
+        const calculatedSize = 1 + ((count - 1) * 0.22);
+        const finalSize = Math.min(calculatedSize, 4.5);
         
-        // จำกัดขนาดสูงสุดไว้สักนิด เผื่อคนพิมพ์ซ้ำ 1000 ครั้งเว็บจะได้ไม่พัง (สมมติจำกัดที่ 15rem)
-        // ถ้าไม่อยากจำกัดเลย ให้ลบ Math.min ออกเหลือแค่ calculatedSize
-        const finalSize = Math.min(calculatedSize, 15); 
-        
-        // ใส่ขนาดตรงๆ ผ่าน Inline Style
+        // ใส่ขนาดตรงๆ ผ่าน Inline Style แต่จำกัดไม่ให้ใหญ่จนตัดข้อความของนักเรียน
         span.style.fontSize = `${finalSize}rem`;
-        span.style.lineHeight = '1.1'; // บังคับให้บรรทัดไม่ห่างเกินไปเวลาคำใหญ่ๆ
+        span.style.lineHeight = '1.18';
+        // แสดงข้อความเต็มแบบไม่ตัดคำ: ถ้ายาวเกินพื้นที่ ให้เลื่อนกระดานแทน
+        span.style.maxWidth = 'none';
+        span.style.whiteSpace = 'nowrap';
+        span.style.overflowWrap = 'normal';
+        span.style.wordBreak = 'keep-all';
+        span.style.flex = '0 0 auto';
+        span.title = `${word} (${count} ครั้ง)`;
 
         // จัดการความหนาของตัวอักษร (Weight) ตามจำนวน count
         let weightClass = 'font-normal';
@@ -336,7 +362,7 @@
         else if (count > 3 && count <= 5) weightClass = 'font-bold';
         else if (count > 5) weightClass = 'font-extrabold drop-shadow-lg';
 
-        span.className = `${weightClass} ${colors[Math.floor(Math.random() * colors.length)]} m-2 transition-all duration-500 hover:scale-110 cursor-default inline-block`;
+        span.className = `word-cloud-chip ${weightClass} ${colors[Math.floor(Math.random() * colors.length)]} m-2 transition-all duration-500 hover:scale-105 cursor-default inline-block`;
         
         cloudContainer.appendChild(span);
     });
@@ -851,13 +877,13 @@
 <button aria-label="ขยายกระดาน Session 2 เต็มจอ" class="absolute top-3 right-3 z-50 bg-white/10 hover:bg-white/30 text-white p-2 rounded-lg backdrop-blur-sm transition opacity-0 group-hover:opacity-100" id="s2-btn-fullscreen" title="ขยายเต็มจอ">
 <i class="fas fa-expand" id="s2-fullscreen-icon"></i>
 </button>
-<div aria-hidden="true" class="absolute inset-0 p-8 flex flex-wrap content-center justify-center gap-3 overflow-hidden" id="s2-word-cloud-container"></div>
+<div aria-hidden="true" class="absolute inset-0 p-6 pt-12 flex flex-wrap content-start justify-start gap-3 overflow-auto" id="s2-word-cloud-container"></div>
 <p aria-live="polite" class="sr-only" id="s2-word-cloud-summary">ยังไม่มีข้อความบนกระดาน Session 2</p>
 <span class="text-slate-500 font-mono animate-pulse" id="s2-waiting-text">รอรับข้อความจากคุณครู...</span>
 </div>
 <div class="flex flex-col sm:flex-row gap-4" id="s2-input-area">
 <div class="flex-1 flex gap-2">
-<input class="w-full border border-slate-300 rounded-xl p-3 bg-slate-50 text-slate-800 focus:ring-2 focus:ring-blue-500 outline-none disabled:bg-slate-200 disabled:cursor-not-allowed transition" id="s2-feeling-input" maxlength="20" placeholder="กรอกตัวอย่าง outcome..." type="text"/>
+<input class="w-full border border-slate-300 rounded-xl p-3 bg-slate-50 text-slate-800 focus:ring-2 focus:ring-blue-500 outline-none disabled:bg-slate-200 disabled:cursor-not-allowed transition" id="s2-feeling-input" placeholder="กรอกตัวอย่าง outcome..." type="text"/>
 <button class="bg-blue-600 hover:bg-blue-700 text-white px-6 font-bold rounded-xl transition shadow-md disabled:bg-slate-400" id="s2-btn-send-feeling">ส่ง</button>
 </div>
 <div class="flex gap-2 justify-center bg-slate-100 p-2 rounded-xl border border-slate-200">
@@ -1020,10 +1046,17 @@
                     span.innerText = word;
                     
                     // คำนวณขนาดตัวอักษร
-                    const calculatedSize = 1 + ((count - 1) * 0.4); 
-                    const finalSize = Math.min(calculatedSize, 10); 
+                    const calculatedSize = 1 + ((count - 1) * 0.2);
+                    const finalSize = Math.min(calculatedSize, 4.2);
                     span.style.fontSize = `${finalSize}rem`;
-                    span.style.lineHeight = '1.1';
+                    span.style.lineHeight = '1.18';
+                    // แสดงข้อความเต็มเหมือน Online Whiteboard: ไม่ตัดกลางคำ/กลางประโยค ถ้ายาวให้เลื่อนกระดานแทน
+                    span.style.maxWidth = 'none';
+                    span.style.whiteSpace = 'nowrap';
+                    span.style.overflowWrap = 'normal';
+                    span.style.wordBreak = 'keep-all';
+                    span.style.flex = '0 0 auto';
+                    span.title = `${word} (${count} ครั้ง)`;
 
                     // คำนวณความหนา
                     let weightClass = 'font-normal';
@@ -1031,7 +1064,7 @@
                     else if (count > 3 && count <= 5) weightClass = 'font-bold';
                     else if (count > 5) weightClass = 'font-extrabold drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]';
 
-                    span.className = `${weightClass} ${colors[Math.floor(Math.random() * colors.length)]} m-2 transition-all duration-500 hover:scale-110 cursor-default inline-block`;
+                    span.className = `word-cloud-chip ${weightClass} ${colors[Math.floor(Math.random() * colors.length)]} m-2 transition-all duration-500 hover:scale-105 cursor-default inline-block`;
                     
                     cloudContainer.appendChild(span);
                 });
@@ -1275,6 +1308,7 @@
                                 ลองสร้างแผนการสอนของคุณเอง
                             </h3>
 <p class="text-slate-400 text-sm mb-6">กรอกข้อมูลด้านล่าง ระบบจะประกอบร่างเป็นคำสั่ง (Prompt) ที่สมบูรณ์แบบให้อัตโนมัติ</p>
+                            <p class="text-emerald-300/90 text-xs mb-6 bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-3 leading-relaxed"><i class="fas fa-paperclip mr-1"></i> เคล็ดลับ: ถ้าแต่ละโรงเรียนมีฟอร์มแผนการสอนไม่เหมือนกัน ให้แนบรูป/ไฟล์ตัวอย่างใน Gemini หรือ ChatGPT ก่อน แล้ววาง Prompt นี้ ระบบจะถอด pattern ของเอกสารเดิมให้เป็นฐานตั้งต้นได้</p>
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
 <div class="bg-slate-800/50 p-5 rounded-2xl border border-slate-700">
 <h4 class="text-emerald-400 font-bold mb-4 text-sm uppercase tracking-wider flex items-center gap-2">
@@ -1427,53 +1461,97 @@
                 var finalPrompt = "";
 
                 if (currentType === 'unit') {
-                    finalPrompt = `สวมบทบาทเป็นผู้เชี่ยวชาญด้านการออกแบบการสอน ช่วยสร้าง 'ตารางสรุปหน่วยการเรียนรู้ (Unit Plan)'\n
+                    finalPrompt = `สวมบทบาทเป็นผู้เชี่ยวชาญด้านการออกแบบการสอน และผู้ช่วยครูที่เข้าใจบริบทโรงเรียนไทย
+
+ภารกิจ: ช่วยสร้าง "ตารางสรุปหน่วยการเรียนรู้ (Unit Plan)" ที่นำไปคุยต่อกับครู/หัวหน้ากลุ่มสาระได้จริง
+
 --- ข้อมูลพื้นฐาน ---
 รายวิชา: ${sub}
 ระดับชั้น: ${grd}
 หน่วยการเรียนรู้เรื่อง: ${top}
-จำนวน: ${cnt} แผนการสอน\n
---- เงื่อนไขพิเศษ (พิจารณาในการออกแบบกิจกรรม) ---${additionalParams}\n
+จำนวน: ${cnt} แผนการสอน
+
+--- เงื่อนไขพิเศษ (พิจารณาในการออกแบบกิจกรรม) ---${additionalParams}
+
+--- วิธีใช้เอกสารแนบ / รูปแบบของโรงเรียน ---
+ถ้าฉันแนบรูปภาพ ไฟล์ Word/PDF หรือเอกสารตัวอย่างของโรงเรียนมาด้วย ให้ทำ 3 ขั้นก่อนสร้างคำตอบ:
+1. ถอด pattern ของเอกสารเดิม เช่น หัวข้อที่ต้องมี ลำดับตาราง คำราชการ ช่องลงนาม และสำนวนที่โรงเรียนใช้
+2. รักษาโครงสร้างเดิมให้มากที่สุด แต่ปรับเนื้อหาให้เหมาะกับหัวข้อที่ฉันให้
+3. ถ้ามีข้อมูลไม่พอ ให้ถามคำถามสั้น ๆ ไม่เกิน 3 ข้อ ก่อนสรุป
+ถ้าไม่มีไฟล์แนบ ให้ใช้รูปแบบมาตรฐานที่ยืดหยุ่นและนำไปปรับกับแต่ละโรงเรียนได้ง่าย
+
 ช่วยสร้างเป็นตาราง โดยระบุหัวข้อดังนี้:
 1. ลำดับที่ / ชื่อแผนการสอน
-2. ตัวชี้วัด/จุดประสงค์
-3. สาระสำคัญ
-4. ไอเดียกิจกรรม Brain-Based Learning แบบสั้นๆ (ให้สอดคล้องกับเงื่อนไขพิเศษ)`;
+2. เป้าหมายการเรียนรู้ที่เขียนด้วยคำกริยาเชิงพฤติกรรมขึ้นต้น เช่น อธิบาย, วิเคราะห์, จำแนก, ออกแบบ, ทดลอง, ประเมิน, นำเสนอ
+3. สาระสำคัญ / ความคิดรวบยอด
+4. กิจกรรมการเรียนรู้แบบครูทำอะไร-นักเรียนทำอะไร แยกเป็นขั้นนำ ขั้นสอน ขั้นฝึก ขั้นสรุป
+5. หลักฐานการเรียนรู้หรือชิ้นงานที่ใช้ดูความเข้าใจจริง
+6. วิธีปรับกิจกรรมสำหรับห้องเรียนที่เวลา/อุปกรณ์/พื้นฐานผู้เรียนต่างกัน
+
+ขอให้คำตอบไม่กว้างเกินไป แต่มีรายละเอียดพอให้ครูเอาไปต่อยอดได้ทันที`;
                 } 
                 else if (currentType === 'detail') {
-                    finalPrompt = `ช่วยเขียนแผนการจัดการเรียนรู้อย่างละเอียด (Lesson Plan) โดยใช้โครงสร้าง 9 ข้อมาตรฐาน\n
+                    finalPrompt = `สวมบทบาทเป็นผู้เชี่ยวชาญด้านการออกแบบแผนการจัดการเรียนรู้ และผู้ช่วยตรวจคุณภาพเอกสารครู
+
+ภารกิจ: ช่วยเขียนแผนการจัดการเรียนรู้อย่างละเอียด (Lesson Plan) โดยยึดบริบทของโรงเรียนจริง และปรับตามเอกสารแนบถ้ามี
+
 --- ข้อมูลเบื้องต้นสำหรับแผนการสอน ---
 รายวิชา: ${sub} | ระดับชั้น: ${grd}
 หน่วยการเรียนรู้เรื่อง: ${top}
 แผนการจัดการเรียนรู้เรื่อง: ${lName}
-ระยะเวลา: 1 ชั่วโมง\n
---- เงื่อนไขพิเศษสำหรับการออกแบบเนื้อหาและกิจกรรม ---${additionalParams}\n
+ระยะเวลา: 1 ชั่วโมง
+
+--- เงื่อนไขพิเศษสำหรับการออกแบบเนื้อหาและกิจกรรม ---${additionalParams}
+
+--- วิธีใช้เอกสารแนบ / รูปแบบของโรงเรียน ---
+ถ้าฉันแนบรูปภาพ ไฟล์ Word/PDF หรือเอกสารแผนการสอนเดิมมาด้วย ให้ถอดแบบฟอร์มเป็น pattern ก่อน เช่น:
+- ชื่อหัวข้อและลำดับข้อที่โรงเรียนใช้
+- รูปแบบตาราง ช่องลงนาม และช่องบันทึกหลังสอน
+- ภาษาราชการ/ภาษาวิชาการที่ควรรักษาไว้
+- ส่วนใดที่ควรเติมเนื้อหาใหม่และส่วนใดควรคงไว้
+จากนั้นให้สร้างแผนใหม่โดยยึด pattern นั้นเป็นหลัก
+
 --- โครงสร้างแผนการจัดการเรียนรู้ที่ต้องการ (เขียนรายละเอียดให้ครบถ้วน) ---
-1. มาตรฐานการเรียนรู้/ตัวชี้วัด: สอดคล้องกับเนื้อหา
-2. จุดประสงค์การเรียนรู้: ครอบคลุมความรู้ ทักษะ และเจตคติ
-3. สาระการเรียนรู้: แกนกลางและท้องถิ่น
-4. สาระสำคัญ/ความคิดรวบยอด: สรุปใจความสำคัญ
-5. สมรรถนะสำคัญและคุณลักษณะอันพึงประสงค์: ระบุพฤติกรรมบ่งชี้
-6. กิจกรรมการเรียนรู้ (Brain-Based Learning):
-   - ขั้นนำ: เตรียมความพร้อมของสมอง (Preparation)
-   - ขั้นสอน: เชื่อมโยงความรู้เดิมกับความรู้ใหม่ (Acquisition) และ ฝึกใช้ข้อมูล (Elaboration)
-   - ขั้นสรุป: สรุปองค์ความรู้ (Memory Formation) และนำไปใช้ (Functional Integration)
-7. การวัดและประเมินผล: ตาราง 4 คอลัมน์ (รายการวัดก่อน/ระหว่าง/หลัง, วิธีวัด, เครื่องมือ, เกณฑ์)
-8. สื่อและแหล่งการเรียนรู้
-9. แบบบันทึกหลังแผน: เว้นว่างสำหรับบันทึกผล ปัญหา และแนวทางแก้ไข`;
+1. มาตรฐานการเรียนรู้/ตัวชี้วัด: สอดคล้องกับหัวข้อ และระบุเหตุผลสั้น ๆ ว่าทำไมจึงเลือกตัวชี้วัดนี้
+2. จุดประสงค์การเรียนรู้: เขียนด้วยคำกริยาเชิงพฤติกรรมขึ้นต้นทุกข้อ เช่น อธิบาย, จำแนก, วิเคราะห์, ทดลอง, ออกแบบ, ประเมิน, นำเสนอ และแบ่งเป็น K/S/A หรือ ความรู้-ทักษะ-เจตคติ
+3. สาระการเรียนรู้: แกนกลาง + ตัวอย่างที่เชื่อมชีวิตจริงหรืออาชีพจริง
+4. สาระสำคัญ/ความคิดรวบยอด: สรุปให้ครูอ่านแล้วรู้แก่นของคาบนี้ทันที
+5. สมรรถนะสำคัญและคุณลักษณะอันพึงประสงค์: ระบุพฤติกรรมที่สังเกตได้ ไม่ใช้คำกว้าง ๆ อย่างเดียว
+6. กิจกรรมการเรียนรู้แบบละเอียด โดยเขียนเป็น Action Steps:
+   - ขั้นนำ: ครูทำอะไร / นักเรียนทำอะไร / คำถามเปิดคลาส
+   - ขั้นสอน: ครูอธิบายหรือสาธิตอะไร / นักเรียนสังเกตหรือทดลองอะไร
+   - ขั้นฝึก: นักเรียนลงมือทำอะไร / ครูเดินดูอะไร / จุดที่มักเข้าใจผิดคืออะไร
+   - ขั้นสรุป: นักเรียนสะท้อนอะไร / ครูเช็กความเข้าใจอย่างไร
+   - ขั้นต่อยอด: งานสั้น ๆ หรือคำถามที่พาไปใช้จริง
+7. การวัดและประเมินผล: ตาราง 4 คอลัมน์ (รายการวัดก่อน/ระหว่าง/หลัง, วิธีวัด, เครื่องมือ, เกณฑ์) พร้อมระบุหลักฐานที่จับต้องได้
+8. สื่อและแหล่งการเรียนรู้: แยกสื่อครู สื่อนักเรียน และทางเลือกเมื่อไม่มีอุปกรณ์
+9. แบบบันทึกหลังแผน: เตรียมหัวข้อให้ครูบันทึกผล ปัญหา ผู้เรียนที่ต้องดูแลเพิ่ม และแนวทางปรับครั้งต่อไป
+
+เพิ่มท้ายคำตอบด้วย:
+- Checklist ตรวจคุณภาพแผน 5 ข้อ
+- คำถามที่ควรถามครูเพิ่ม หากต้องทำให้ตรงฟอร์มโรงเรียนมากขึ้น`;
                 } 
                 else if (currentType === 'quick') {
-                    finalPrompt = `ช่วยเขียนโครงร่างแผนการจัดการเรียนรู้จำนวน ${cnt} แผน ต่อเนื่องกัน\n
+                    finalPrompt = `สวมบทบาทเป็นผู้ช่วยครูที่ช่วยแตกหน่วยการเรียนรู้ให้กลายเป็นแผนสั้น ๆ ที่ใช้คุยต่อได้เร็ว
+
+ช่วยเขียนโครงร่างแผนการจัดการเรียนรู้จำนวน ${cnt} แผน ต่อเนื่องกัน
+
 --- ข้อมูลพื้นฐาน ---
 รายวิชา: ${sub}
 ระดับชั้น: ${grd}
-หน่วยการเรียนรู้เรื่อง: ${top}\n
---- เงื่อนไขพิเศษ (พิจารณาในการออกแบบกิจกรรม) ---${additionalParams}\n
-โดยแต่ละแผนให้สรุปเนื้อหาตามโครงสร้างนี้แบบกระชับ:
-- ชื่อแผนและจุดประสงค์การเรียนรู้
-- สาระสำคัญ
-- กิจกรรม Brain-Based Learning (สรุปสั้นๆ 4 ขั้น: นำ, สอน, สรุป, ประเมิน)
-- ชิ้นงาน/ภาระงานที่ใช้ประเมินผล`;
+หน่วยการเรียนรู้เรื่อง: ${top}
+
+--- เงื่อนไขพิเศษ (พิจารณาในการออกแบบกิจกรรม) ---${additionalParams}
+
+ถ้ามีไฟล์หรือรูปแบบแผนการสอนแนบมาด้วย ให้ยึด pattern ของไฟล์นั้น เช่น หัวข้อ ตาราง ภาษาที่ใช้ และลำดับเอกสาร
+
+โดยแต่ละแผนให้สรุปเนื้อหาตามโครงสร้างนี้แบบกระชับแต่ใช้งานได้:
+- ชื่อแผน
+- จุดประสงค์การเรียนรู้ที่ขึ้นต้นด้วยคำกริยาเชิงพฤติกรรม
+- สาระสำคัญ 2-3 บรรทัด
+- Flow กิจกรรมแบบ Action: ครูทำอะไร / นักเรียนทำอะไร / เช็กความเข้าใจอย่างไร
+- ชิ้นงานหรือหลักฐานการเรียนรู้
+- วิธีปรับเมื่อห้องเรียนมีพื้นฐานผู้เรียนต่างกันหรืออุปกรณ์ไม่พร้อม`;
                 }
 
                 resultBox.value = finalPrompt;
@@ -1807,13 +1885,96 @@
         var prompt = "";
 
         if (currentHandoutTab === 'worksheet') {
-            prompt = `สวมบทบาทเป็นผู้เชี่ยวชาญด้านการออกแบบใบงานการเรียนรู้\n\nช่วยสร้าง "${handoutType}" สำหรับใช้ในห้องเรียน โดยมีข้อมูลดังนี้:\n- รายวิชา: ${subject}\n- ระดับชั้น: ${grade}\n- หัวข้อ: ${topic}\n- เวลา: ${duration}\n- เป้าหมายการเรียนรู้: ${objective}\n- ระดับการอธิบาย (Scaffolding): ${levelDesc}\n- นโยบายการใช้ AI ของผู้เรียน: ${aiPolicy}${inclusiveText}${extraText}\n\nกรุณาสร้างผลลัพธ์ในรูปแบบดังนี้:\n1. ชื่อใบงาน\n2. จุดประสงค์ของใบงาน (ใช้ภาษาที่นักเรียนเข้าใจง่าย)\n3. คำชี้แจงและกติกาการใช้งาน AI\n4. ภาระงานหรือขั้นตอนการทำงาน 4-6 ข้อ\n5. Self-Checklist สำหรับให้นักเรียนตรวจสอบความเรียบร้อยของงานตนเองก่อนส่ง\n\nขอให้ใช้ภาษากระชับ ชัดเจน และพร้อมนำไปปรินต์แจกใช้งานจริง`;
+            prompt = `สวมบทบาทเป็นผู้เชี่ยวชาญด้านการออกแบบใบงานการเรียนรู้ และผู้ช่วยครูที่เข้าใจว่าแบบฟอร์มของแต่ละโรงเรียนไม่เหมือนกัน
+
+ช่วยสร้าง "${handoutType}" สำหรับใช้ในห้องเรียน โดยมีข้อมูลดังนี้:
+- รายวิชา: ${subject}
+- ระดับชั้น: ${grade}
+- หัวข้อ: ${topic}
+- เวลา: ${duration}
+- เป้าหมายการเรียนรู้: ${objective}
+- ระดับการอธิบาย (Scaffolding): ${levelDesc}
+- นโยบายการใช้ AI ของผู้เรียน: ${aiPolicy}${inclusiveText}${extraText}
+
+--- ถ้ามีรูป/ไฟล์/ใบงานตัวอย่างแนบมาด้วย ---
+ให้ถอด pattern ของเอกสารก่อน เช่น หัวกระดาษ โลโก้/ชื่อโรงเรียน ช่องชื่อ-ชั้น-เลขที่ ลำดับคำชี้แจง ตาราง ช่องให้ตอบ รูปแบบภาษา และเกณฑ์การส่งงาน จากนั้นสร้างใบงานใหม่โดยรักษา pattern เดิมให้มากที่สุด
+ถ้าไม่มีไฟล์แนบ ให้สร้างรูปแบบกลางที่นำไปปรับกับโรงเรียนต่าง ๆ ได้ง่าย
+
+กรุณาสร้างผลลัพธ์ในรูปแบบดังนี้:
+1. ชื่อใบงานที่ชัดเจนและสื่อเป้าหมาย
+2. จุดประสงค์ของใบงาน โดยขึ้นต้นด้วยคำกริยาเชิงพฤติกรรม เช่น อธิบาย, จำแนก, วิเคราะห์, ทดลอง, ออกแบบ, ประเมิน, นำเสนอ
+3. คำชี้แจงสำหรับนักเรียนแบบอ่านแล้วลงมือทำได้ทันที
+4. กติกาการใช้งาน AI ที่บอกว่าใช้ช่วยอะไรได้ และอะไรต้องคิดเอง
+5. ภาระงานหรือขั้นตอนการทำงาน 4-6 ข้อ โดยทุกข้อขึ้นต้นด้วย Action Verb เช่น สำรวจ, เลือก, วิเคราะห์, ทดลอง, เปรียบเทียบ, สรุป, สะท้อนคิด
+6. ช่องคำตอบ/ตารางทำงานที่จัดเป็นรูปแบบพร้อมนำไปวางในเอกสารได้
+7. Self-Checklist ก่อนส่งงาน 5 ข้อ
+8. คำถามสะท้อนคิดท้ายใบงาน 2-3 ข้อ เพื่อให้ครูเห็นกระบวนการคิดของนักเรียน
+
+ขอให้ใช้ภาษากระชับ ชัดเจน เหมาะกับระดับชั้น และพร้อมนำไปปรินต์แจกใช้งานจริง`;
         } 
         else if (currentHandoutTab === 'rubric') {
-            prompt = `สวมบทบาทเป็นผู้เชี่ยวชาญด้านการวัดและประเมินผลการเรียนรู้\n\nช่วยสร้างเกณฑ์การให้คะแนน (Rubric) สำหรับ "${handoutType}" โดยมีข้อมูลดังนี้:\n- รายวิชา: ${subject}\n- ระดับชั้น: ${grade}\n- หัวข้อ: ${topic}\n- เป้าหมายการเรียนรู้: ${objective}\n- ระดับความซับซ้อน: ${levelDesc}\n- นโยบายการใช้ AI ของผู้เรียน: ${aiPolicy}${inclusiveText}${extraText}\n\nกรุณาสร้าง Rubric แบบ 4 ระดับคะแนน (ยอดเยี่ยม, ดี, พอใช้, ปรับปรุง) โดยประเมินจากมิติต่อไปนี้:\n1. ความเข้าใจเนื้อหา\n2. ความถูกต้องของชิ้นงานหรือการแก้ปัญหา\n3. การอธิบายเหตุผล / กระบวนการคิด (Process)\n4. ความรับผิดชอบต่อการใช้ AI ตามกติกา\n\nขอผลลัพธ์ในรูปแบบตาราง (Markdown Table) ที่อ่านง่าย พร้อมคำอธิบายพฤติกรรมบ่งชี้ที่ชัดเจนในแต่ละช่องคะแนน`;
+            prompt = `สวมบทบาทเป็นผู้เชี่ยวชาญด้านการวัดและประเมินผลการเรียนรู้
+
+ช่วยสร้างเกณฑ์การให้คะแนน (Rubric) สำหรับ "${handoutType}" โดยมีข้อมูลดังนี้:
+- รายวิชา: ${subject}
+- ระดับชั้น: ${grade}
+- หัวข้อ: ${topic}
+- เป้าหมายการเรียนรู้: ${objective}
+- ระดับความซับซ้อน: ${levelDesc}
+- นโยบายการใช้ AI ของผู้เรียน: ${aiPolicy}${inclusiveText}${extraText}
+
+--- ถ้ามีเอกสารแนบหรือ Rubric เดิม ---
+ให้ถอด pattern เดิมก่อน เช่น ระดับคะแนน คำเรียกระดับ เกณฑ์รายช่อง น้ำหนักคะแนน และภาษาที่โรงเรียนใช้ แล้วปรับเนื้อหาให้เข้ากับหัวข้อใหม่นี้
+
+กรุณาสร้าง Rubric แบบ 4 ระดับคะแนน (ยอดเยี่ยม, ดี, พอใช้, ปรับปรุง) โดยประเมินจากมิติต่อไปนี้:
+1. ความเข้าใจเนื้อหาและความถูกต้อง
+2. กระบวนการคิด / การอธิบายเหตุผล / หลักฐานที่ใช้สนับสนุน
+3. คุณภาพของชิ้นงานหรือการแก้ปัญหา
+4. การสื่อสารและการนำเสนอ
+5. ความรับผิดชอบต่อการใช้ AI ตามกติกา
+
+เงื่อนไขสำคัญ:
+- คำอธิบายแต่ละระดับต้องเป็นพฤติกรรมที่ครูสังเกตได้จริง ไม่ใช่คำกว้าง ๆ
+- ระบุข้อผิดพลาดที่พบบ่อยและวิธีให้ feedback สั้น ๆ สำหรับครู
+- ขอผลลัพธ์ในรูปแบบตาราง Markdown ที่อ่านง่าย`;
         } 
         else if (currentHandoutTab === 'bundle') {
-            prompt = `สวมบทบาทเป็นผู้ช่วยครูระดับแนวหน้าในการออกแบบชุดการเรียนรู้ (Learning Bundle)\n\nช่วยสร้าง “ชุดการสอนพร้อมใช้” สำหรับ "${handoutType}" โดยมีข้อมูลดังนี้:\n- รายวิชา: ${subject} | ระดับชั้น: ${grade}\n- หัวข้อ: ${topic} | เวลา: ${duration}\n- เป้าหมายการเรียนรู้: ${objective}\n- ระดับการพยุงผู้เรียน: ${levelDesc}\n- นโยบาย AI: ${aiPolicy}${inclusiveText}${extraText}\n\nกรุณาสร้างผลลัพธ์แบ่งเป็น 3 ส่วนที่ชัดเจน:\n\n[ส่วน A: ใบงานสำหรับนักเรียน]\n- มีคำชี้แจง, ภาระงานเป็นข้อๆ, และ Self-Checklist ก่อนส่งงาน\n\n[ส่วน B: Rubric การให้คะแนน]\n- ตารางเกณฑ์การประเมินผลแบบ 4 ระดับคะแนนที่กระชับ\n\n[ส่วน C: Teacher Notes (คู่มือครู)]\n- วิธีจัดกิจกรรมในคาบเรียน (Flow)\n- คำถามฉุกคิด (Guiding Questions) เพื่อเช็กความเข้าใจระหว่างคลาส\n- สิ่งที่ครูควรเดินสังเกตระหว่างเด็กทำกิจกรรม\n\nขอให้ใช้ภาษาไทยที่สละสลวย ชัดเจน นำไปใช้ในห้องเรียนได้ทันที`;
+            prompt = `สวมบทบาทเป็นผู้ช่วยครูระดับแนวหน้าในการออกแบบชุดการเรียนรู้ (Learning Bundle) ที่พร้อมใช้และปรับเข้ากับฟอร์มโรงเรียนได้
+
+ช่วยสร้าง “ชุดการสอนพร้อมใช้” สำหรับ "${handoutType}" โดยมีข้อมูลดังนี้:
+- รายวิชา: ${subject} | ระดับชั้น: ${grade}
+- หัวข้อ: ${topic} | เวลา: ${duration}
+- เป้าหมายการเรียนรู้: ${objective}
+- ระดับการพยุงผู้เรียน: ${levelDesc}
+- นโยบาย AI: ${aiPolicy}${inclusiveText}${extraText}
+
+--- ถ้ามีรูป/ไฟล์/เอกสารตัวอย่างแนบมาด้วย ---
+ให้ถอด pattern ของเอกสารนั้นก่อน แล้วใช้เป็นต้นแบบด้านโครงสร้าง ภาษา ตาราง ลำดับหัวข้อ และส่วนที่โรงเรียนต้องการ ถ้าข้อมูลไม่ครบ ให้ถามคำถามเพิ่มไม่เกิน 3 ข้อ
+
+กรุณาสร้างผลลัพธ์แบ่งเป็น 4 ส่วนที่ชัดเจน:
+
+[ส่วน A: ใบงานสำหรับนักเรียน]
+- คำชี้แจงอ่านง่าย
+- ภาระงานเป็นขั้นตอนที่ขึ้นต้นด้วย Action Verb
+- ช่องทำงาน/ตารางที่พร้อมคัดลอกไปวางในเอกสาร
+- Self-Checklist ก่อนส่งงาน
+
+[ส่วน B: Rubric การให้คะแนน]
+- ตารางเกณฑ์การประเมินผลแบบ 4 ระดับคะแนน
+- พฤติกรรมบ่งชี้ที่สังเกตได้จริง
+- Feedback phrase ที่ครูใช้พูดกับนักเรียนได้ทันที
+
+[ส่วน C: Teacher Notes (คู่มือครู)]
+- Flow การจัดกิจกรรมในคาบเรียนแบบนาทีต่อ นาทีโดยประมาณ
+- ครูทำอะไร / นักเรียนทำอะไร
+- คำถามฉุกคิด (Guiding Questions)
+- จุดที่นักเรียนมักสับสน และวิธีช่วยเหลือ
+
+[ส่วน D: Adaptation]
+- วิธีปรับใบงานสำหรับห้องเรียนที่เวลาน้อย อุปกรณ์น้อย หรือพื้นฐานผู้เรียนต่างกัน
+- วิธีปรับให้เหมาะกับนักเรียนที่ต้องการการพยุงเพิ่มเติม
+
+ขอให้ใช้ภาษาไทยที่สละสลวย ชัดเจน นำไปใช้ในห้องเรียนได้ทันที`;
         }
 
         handoutResultBox.value = prompt;
